@@ -217,7 +217,7 @@ public class Person extends Being {
 				if( o instanceof Potion){
 					if( !((Potion)o).isIdentified()){
 						((Potion)o).setIdentified(true);
-						Game.message("Ah, it's a " + ((Potion)o).getSingularName() );
+						Game.message("\"Ah, it's a " + ((Potion)o).getSingularName() + "\"");
 					}
 				}
               Game.message("\"Nice doing business with yer!\"");
