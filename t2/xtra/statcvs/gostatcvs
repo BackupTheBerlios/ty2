@@ -1,0 +1,5 @@
+java -jar statcvs.jar -verbose T2 cvslog ./../../../t2
+mv *.html ./../www/statcvs/
+mv *.png  ./../www/statcvs/
+mv *.gif  ./../www/statcvs/
+mv *.css  ./../www/statcvs/
