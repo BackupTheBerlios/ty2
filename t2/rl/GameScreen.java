@@ -16,6 +16,12 @@ class GameScreen extends Screen {
 	private char key_pickUp = 'g';
 	private char key_eat = 'E';
 	private char key_inventory = 'i';
+	private char key_control_messages = 'P';
+	private char key_control_quit = 'C';
+	private char key_skills = 'a';
+	private char key_saveAs = '-';
+	private char key_control_save = 'S';
+	private char key_control_save_quit = 'X';
 	
 	// this is the main game loop
 	// it catches any exceptions for stability
@@ -89,8 +95,12 @@ class GameScreen extends Screen {
 		boolean controlIsDown = e.isControlDown();
 		if (controlIsDown)
 		{
-			K = e.getKeyText( e.getKeyCode() ).charAt(0); 
-//			System.out.println( K );
+			String keyText = e.getKeyText( e.getKeyCode() );
+			if ( keyText != "Ctrl"){
+				K = keyText.charAt(0); 
+			}
+			System.out.println( K );
+			System.out.println( e.paramString() );
 		}
 			
 		// handle key conversions
@@ -149,10 +159,13 @@ class GameScreen extends Screen {
 			// subtract action points to delay hero
 			h.aps=h.aps-100;
 		}
-			
+
 		// save and load games
-		if (k=='-') {
+		if (k==key_saveAs ) {
 			if (!Game.save()) Game.message("Save game failed.");
+		}
+		if (K==key_control_save && controlIsDown ) {
+			if (!Game.save(true)) Game.message("Save game failed.");
 		}
 
 		if ((k=='+')||(k=='=')) {
@@ -165,13 +178,18 @@ class GameScreen extends Screen {
 			return;
 		}
 
-	//Show previous messages
-	if( K == 'P' && controlIsDown ){
-		MessagesScreen ls = new MessagesScreen("Messages" ,	messagepanel.getMessages().split("\n") );
-		questapp.switchOtherScreen(ls);
-		ls.display();
-		questapp.switchBack(ls);
-	}
+		if( K == key_control_save_quit && controlIsDown ){
+			if (!Game.save()) Game.message("Save game failed.");
+			h.hps=-10;
+		}
+
+		//Show previous messages
+		if( K == key_control_messages && controlIsDown ){
+			MessagesScreen ls = new MessagesScreen("Messages" ,	messagepanel.getMessages().split("\n") );
+			questapp.switchOtherScreen(ls);
+			ls.display();
+			questapp.switchBack(ls);
+		}
 			 
 		// show quests
 		if (k== key_showQuests ) {
@@ -202,11 +220,11 @@ class GameScreen extends Screen {
 				map.addThing(Lib.createArtifact(n),h.x-1,h.y-1,h.x+1,h.y+1);
 			} catch (Exception exception) {return;}
 			
-	if (ch=='P'){
-		for(int tt=1; tt <= Potion.getImplemented(); tt++){
-			map.addThing(Potion.createPotion(tt),h.x,h.y);	
-		}
-	}
+			if (ch=='P'){
+				for(int tt=1; tt <= Potion.getImplemented(); tt++){
+					map.addThing(Potion.createPotion(tt),h.x,h.y);	
+				}
+			}
 			if (ch=='p') {
 				Thing[] portals=map.getObjects(0,0,map.width-1,map.height-1,Portal.class); 
 				if (portals.length>0) {
@@ -214,14 +232,14 @@ class GameScreen extends Screen {
 					map.addThing(h,portals[r].x,portals[r].y);
 				}
 			}
+		} 
 
-			if (ch=='q') {
+		if ( controlIsDown && K == key_control_quit ) {
 				Game.message("Are you sure you want to quit this game (y/n)");
 				if (Game.getOption("yn")=='y') h.hps=-10;
-			}
-		} 
-			
-		if (k=='a') {
+		}
+
+		if (k== key_skills) {
 			ArtScreen ls=new ArtScreen("Your Skills:",h.arts.getArts(Skill.class));
 			questapp.switchOtherScreen(ls);
 			Art a=ls.getArt();
@@ -660,7 +678,6 @@ class GameScreen extends Screen {
 	}
 
 	public Thing getInventoryItem(String s, Thing[] inv) {
-	System.out.println( "Getting stuff			: " + new Date().toString() );		
 	Thing thing;
 		Hero h=Game.hero;
 		InventoryScreen is = new InventoryScreen(s,inv);
