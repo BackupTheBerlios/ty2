@@ -206,7 +206,7 @@ public class SpellBook extends Item implements Description {
 		Hero h=Game.hero;
 		if(!b){
 			if (h.getStat(RPG.ST_LITERACY)>0 && readableCover ) {
-				Game.message("You recognize from the cover it's a " + getName( 1 , ARTICLE_INDEFINITE) );
+				Game.message("You recognize from the cover it's a spell book of " + spell.getName() );
 				setIdentified(true);
 				return true;
 			}else{
