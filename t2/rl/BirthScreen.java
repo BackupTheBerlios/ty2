@@ -100,7 +100,7 @@ public class BirthScreen extends Screen
 									kv = choice;
 
 								status = status_class;
-								prace = races[kv];
+								prace = (String)ror.races.get(kv);
 								pracef = "xtra/edit/".concat((String)ror.files.get(kv));
 								choice = 0;
 							}
@@ -134,7 +134,7 @@ public class BirthScreen extends Screen
 									kv = choice;
 
 								status = status_sign;
-								pclass = classes[kv];
+								pclass = (String)roc.classes.get(kv);
 								pclassf = "xtra/edit/".concat((String)roc.files.get(kv));
 								choice = 0;
 								return new Hero(pname, pracef, pclassf);
@@ -182,7 +182,7 @@ public class BirthScreen extends Screen
 			g.setColor(Color.GRAY);
 			g.drawString("Race", 20, 4 * lineheight);
 			g.setColor(chosenBlue);
-			g.drawString(races[choice], 60, 4 * lineheight);
+			g.drawString((String)ror.races.get(choice), 60, 4 * lineheight);
 			//Draw the different races
 			for(int i = 0; i < ror.races.size(); i++)
 			{
@@ -217,7 +217,7 @@ public class BirthScreen extends Screen
 			g.drawString("Class", 20, 5 * lineheight);
 			g.setColor(chosenBlue);
 			//Draw the different classes
-			g.drawString(classes[choice], 60, 5 * lineheight);
+			g.drawString((String)roc.classes.get(choice), 60, 5 * lineheight);
 			for(int i = 0; i < roc.classes.size(); i++)
 			{//Put letters in front of the choices
 				String s  = "[" + (char)((int)'a' + i) + "] " + roc.classes.get(i);
