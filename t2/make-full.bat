@@ -17,7 +17,3 @@
 @echo Making resource zip...
 @call xtra/bat/make-tyrant2-zip
 @REM @callxtra/bat/ make-web-dist
-
-@echo Copying zip files to /xtra/zip/
-@move /Y tyrant.zip ./xtra/zip/tyrant.zip
-@move /Y tyrantsource.zip ./xtra/zip/tyrantsource.zip
