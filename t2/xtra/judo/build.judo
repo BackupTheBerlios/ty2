@@ -1,0 +1,13 @@
+
+t = openTextFile( "strategy.bat" , "w" );
+
+list "*.java" in "./" @ #args[0] @ "/" recursive fileOnly ;
+
+for f in $$fs_result{
+
+	fc = f.trunc(5) @ ".class";
+	if ( !fc.fileExists() ){
+		. <t> "@echo Compiling " , f , "...";
+		. <t> '@javac "' @ f @ '"';
+	}
+}
