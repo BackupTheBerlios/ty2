@@ -180,7 +180,7 @@ class GameScreen extends Screen {
 
 		if( K == key_control_save_quit && controlIsDown ){
 			if (!Game.save()) Game.message("Save game failed.");
-			h.hps=-10;
+			System.exit(0);
 		}
 
 		//Show previous messages
@@ -236,7 +236,7 @@ class GameScreen extends Screen {
 
 		if ( controlIsDown && K == key_control_quit ) {
 				Game.message("Are you sure you want to quit this game (y/n)");
-				if (Game.getOption("yn")=='y') h.hps=-10;
+				if (Game.getOption("yn")=='y') System.exit(0);
 		}
 
 		if (k== key_skills) {
