@@ -3,7 +3,6 @@ package rl;
 import java.applet.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.Vector;
 
 public class StatusPanel extends TPanel {
   public static final int boxborder=1;

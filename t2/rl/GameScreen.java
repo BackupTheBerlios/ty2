@@ -3,8 +3,7 @@ package rl;
 import java.applet.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.Vector;
-import java.util.Date;
+//import java.util.Date;
 
 class GameScreen extends Screen {
 	public MapPanel mappanel;

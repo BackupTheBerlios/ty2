@@ -1,6 +1,6 @@
 package rl;
 
-import java.util.Vector;
+//import java.util.Vector;
 import java.util.Hashtable;
 
 public class Hero extends Being {

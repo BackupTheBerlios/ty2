@@ -8,8 +8,8 @@ import java.awt.event.*;
 import java.awt.image.*;
 import java.io.*;
 import java.net.*;
-import java.util.Date;
-import java.util.Vector;
+//import java.util.Date;
+//import java.util.Vector;
 
 public class QuestApp extends Applet implements Runnable {
 	public final static String version              = "0.100";

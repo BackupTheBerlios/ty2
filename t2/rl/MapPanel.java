@@ -3,7 +3,7 @@ package rl;
 import java.applet.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.Vector;
+//import java.util.Vector;
 import java.util.Date;
 
 // Panel descendant used to display a Map

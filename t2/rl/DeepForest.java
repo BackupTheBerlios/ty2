@@ -4,8 +4,6 @@
 
 package rl;
 
-import java.util.Random;
-
 class DeepForest extends Map {
   
   public DeepForest(int w, int h) {

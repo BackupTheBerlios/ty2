@@ -4,7 +4,7 @@
 
 package rl;
 
-import java.util.Random;
+//import java.util.Random;
 
 class RogueDungeon extends Map {
   // size of map in terms of blocks

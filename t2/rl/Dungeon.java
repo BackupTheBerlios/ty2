@@ -4,7 +4,6 @@
 
 package rl;
 
-import java.util.Random;
 
 class Dungeon extends Map {
   // local dungeon stylee
