@@ -12,22 +12,43 @@ public class InventoryScreen extends Screen {
 	
 	private static final int pagesize=12;
 	private static final int lineheight=20;
-		
+
+	public Object showContents() {
+		boolean end=false;
+		while (!end) {
+			KeyEvent k=Game.getInput();
+			if (k!=null) {
+				char c=Character.toLowerCase(k.getKeyChar());
+
+				if (k.getKeyCode()==k.VK_ESCAPE || c == 'e' || c == 'i') return null;
+
+				if ((c=='p'||c=='-')&&(page>0)) {
+					page--;  repaint();	
+				}
+
+				if ( c=='n' || c=='+' || c==' ' ){
+					page++;  repaint();
+				}
+			}
+		}
+		return null;		
+	}
+
+
 	public Object getObject() {
 		boolean end=false;
 		while (!end) {
 			KeyEvent k=Game.getInput();
 			if (k!=null) {
-				if (k.getKeyCode()==k.VK_ESCAPE) return null;
-			
 				char c=Character.toLowerCase(k.getKeyChar());
+
+				if (k.getKeyCode()==k.VK_ESCAPE) return null;
 
 				if ((c=='p'||c=='-')&&(page>0)) {
 					page--;
 					repaint();	
 				}
 
-//				if ((c=='n'||c=='+'||c==' ')&&(((page+1)*pagesize)<things.length)) {
 				if ( c=='n' || c=='+' || c==' ' ){
 					page++;
 					repaint();

@@ -58,6 +58,41 @@ public class Inventory extends Object implements Active, Cloneable, java.io.Seri
     return result;    	
   }
 
+  // get all inventory content
+  public Thing[] getInventoryContents() {
+    if (invcount==0) return new Thing[0];
+    Thing[] temp = new Thing[invcount];
+    int tempcount=0;
+    for (int i=0; i<invcount; i++) {
+      Thing t=inv[i];
+      if (t instanceof Item && ((Thing)t).y == 0 ) {
+        temp[tempcount]=t;
+        tempcount++;	
+      }
+    }
+    Thing[] result = new Thing[tempcount];
+    if (tempcount>0) System.arraycopy(temp,0,result,0,tempcount);
+    return result;    	
+  }
+
+  // get all inventory content
+  public Thing[] getEquipmentContents() {
+    if (invcount==0) return new Thing[0];
+    Thing[] temp = new Thing[invcount];
+    int tempcount=0;
+    for (int i=0; i<invcount; i++) {
+      Thing t=inv[i];
+      if (t instanceof Item && ((Thing)t).y != 0 ) {
+        temp[tempcount]=t;
+        tempcount++;	
+      }
+    }
+    Thing[] result = new Thing[tempcount];
+    if (tempcount>0) System.arraycopy(temp,0,result,0,tempcount);
+    return result;    	
+  }
+
+
   public Thing getContents(String s) {
     Thing[] stuff=getContents();
     for (int i=0; i<stuff.length; i++) {
