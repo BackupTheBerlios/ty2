@@ -212,7 +212,14 @@ public class Person extends Being {
               h.addMoney(val);
               addMoney(-val);
               o.remove();
-              addThing(o);           
+              addThing(o);          
+//Identify unidentified sold potions
+				if( o instanceof Potion){
+					if( !((Potion)o).isIdentified()){
+						((Potion)o).setIdentified(true);
+						Game.message("Ah, it's a " + ((Potion)o).getSingularName() );
+					}
+				}
               Game.message("\"Nice doing business with yer!\"");
             } else {
               Game.message("\"Well, you won't get a better price!\"");
