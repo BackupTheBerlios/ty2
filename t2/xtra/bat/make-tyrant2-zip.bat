@@ -1,0 +1,1 @@
+@jar cf tyrant.zip xtra\images\*.gif xtra\www\tyrantjar.html tyrant.jar tyrant.bat

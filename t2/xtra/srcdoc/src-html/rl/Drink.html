@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="GNU source-highlight 1.4
+by Lorenzo Bettini, bettini@gnu.org
+http://w3.newnet.it/bettini
+http://www.gnu.org/software/src-highlite">
+<title>.\rl\Drink.java</title>
+</head>
+<body bgcolor="#FFFFFF" text="#000000" link="#0000EE" vlink="#551A8B" alink="#FF0000">
+<pre>
+<tt>
+01: <b><font color=#0000FF>package</font></b> rl<font color=#FF0000>;</font><a name='line.1'></a>
+02: <a name='line.2'></a>
+03: <b><font color=#0000FF>public</font></b> <b><font color=#0000FF>class</font></b> Drink <b><font color=#0000FF>extends</font></b> ItemType <font color=#000000>{</font><a name='line.3'></a>
+04:   <b><font color=#0000FF>protected</font></b> <font color=#0000FF>int</font> desc<font color=#FF0000>;</font><a name='line.4'></a>
+05:     <a name='line.5'></a>
+06:   <b><font color=#0000FF>private</font></b> <b><font color=#0000FF>static</font></b> <b><font color=#0000FF>final</font></b> Description<font color=#FF0000>[</font><font color=#FF0000>]</font> descriptions<font color=#FF0000>=</font><a name='line.6'></a>
+07:      <font color=#000000>{</font><b><font color=#0000FF>new</font></b> <b><font color=#000000>Describer</font></b><font color=#FF0000>(</font><font color=#808080>"bottle of wine"</font><font color=#FF0000>,</font><font color=#808080>"bottles of wine"</font><font color=#FF0000>,</font><font color=#808080>"A bottle of wine. Good vintage."</font><font color=#FF0000>)</font><a name='line.7'></a>
+08:      <font color=#FF0000>,</font><b><font color=#0000FF>new</font></b> <b><font color=#000000>Describer</font></b><font color=#FF0000>(</font><font color=#808080>"keg of beer"</font><font color=#FF0000>,</font><font color=#808080>"kegs of beer"</font><font color=#FF0000>,</font><font color=#808080>"A keg of strong beer. It seems a lusty brew."</font><font color=#FF0000>)</font><a name='line.8'></a>
+09:      <font color=#000000>}</font><font color=#FF0000>;</font><a name='line.9'></a>
+10: <a name='line.10'></a>
+11:   <b><font color=#0000FF>public</font></b> <b><font color=#0000FF>static</font></b> <b><font color=#0000FF>final</font></b> Drink WINE<font color=#FF0000>=</font>     <b><font color=#0000FF>new</font></b> <b><font color=#000000>Drink</font></b><font color=#FF0000>(</font><font color=#9A1900>223</font><font color=#FF0000>,</font><font color=#9A1900>0</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.11'></a>
+12:   <b><font color=#0000FF>public</font></b> <b><font color=#0000FF>static</font></b> <b><font color=#0000FF>final</font></b> Drink BEERKEG<font color=#FF0000>=</font>  <b><font color=#0000FF>new</font></b> <b><font color=#000000>Drink</font></b><font color=#FF0000>(</font><font color=#9A1900>263</font><font color=#FF0000>,</font><font color=#9A1900>1</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.12'></a>
+13:     <a name='line.13'></a>
+14:   <b><font color=#0000FF>public</font></b> <b><font color=#000000>Drink</font></b><font color=#FF0000>(</font><font color=#0000FF>int</font> im<font color=#FF0000>,</font> <font color=#0000FF>int</font> d<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.14'></a>
+15:     image<font color=#FF0000>=</font>im<font color=#FF0000>;</font><a name='line.15'></a>
+16:     desc <font color=#FF0000>=</font> d<font color=#FF0000>;</font> <a name='line.16'></a>
+17:   <font color=#000000>}</font><a name='line.17'></a>
+18:    <a name='line.18'></a>
+19:   <b><font color=#0000FF>public</font></b> <b><font color=#0000FF>static</font></b> TypeStack <b><font color=#000000>createDrink</font></b><font color=#FF0000>(</font><font color=#0000FF>int</font> f<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.19'></a>
+20:     <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>f<font color=#FF0000>=</font><font color=#FF0000>=</font><font color=#9A1900>0</font><font color=#FF0000>)</font> f<font color=#FF0000>=</font>RPG<font color=#FF0000>.</font><b><font color=#000000>d</font></b><font color=#FF0000>(</font><font color=#9A1900>2</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.20'></a>
+21:         <a name='line.21'></a>
+22:     <b><font color=#0000FF>switch</font></b> <font color=#FF0000>(</font>f<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.22'></a>
+23:       <b><font color=#0000FF>case</font></b> <font color=#9A1900>1</font><font color=#FF0000>:</font><a name='line.23'></a>
+24:         <b><font color=#0000FF>return</font></b> <b><font color=#0000FF>new</font></b> <b><font color=#000000>TypeStack</font></b><font color=#FF0000>(</font>WINE<font color=#FF0000>,</font><font color=#9A1900>1</font><font color=#FF0000>)</font><font color=#FF0000>;</font> <a name='line.24'></a>
+25:       <b><font color=#0000FF>case</font></b> <font color=#9A1900>2</font><font color=#FF0000>:</font><a name='line.25'></a>
+26:         <b><font color=#0000FF>return</font></b> <b><font color=#0000FF>new</font></b> <b><font color=#000000>TypeStack</font></b><font color=#FF0000>(</font>BEERKEG<font color=#FF0000>,</font><font color=#9A1900>1</font><font color=#FF0000>)</font><font color=#FF0000>;</font> <a name='line.26'></a>
+27:       <b><font color=#0000FF>default</font></b><font color=#FF0000>:</font><a name='line.27'></a>
+28:         <b><font color=#0000FF>throw</font></b> <b><font color=#0000FF>new</font></b> <b><font color=#000000>Error</font></b><font color=#FF0000>(</font><font color=#808080>"Drink type not recognised"</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.28'></a>
+29:     <font color=#000000>}</font><a name='line.29'></a>
+30:   <font color=#000000>}</font><a name='line.30'></a>
+31:     <a name='line.31'></a>
+32:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>int</font> <b><font color=#000000>getUse</font></b><font color=#FF0000>(</font>TypeStack s<font color=#FF0000>)</font> <font color=#000000>{</font><b><font color=#0000FF>return</font></b> Thing<font color=#FF0000>.</font>USE_NORMAL<font color=#FF0000>|</font>Thing<font color=#FF0000>.</font>USE_DRINK<font color=#FF0000>;</font><font color=#000000>}</font><a name='line.32'></a>
+33:     <a name='line.33'></a>
+34:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>void</font> <b><font color=#000000>use</font></b><font color=#FF0000>(</font>TypeStack s<font color=#FF0000>,</font> Being user<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.34'></a>
+35:     <b><font color=#000000>use</font></b><font color=#FF0000>(</font>s<font color=#FF0000>,</font>user<font color=#FF0000>,</font>Thing<font color=#FF0000>.</font>USE_DRINK<font color=#FF0000>)</font><font color=#FF0000>;</font>    <a name='line.35'></a>
+36:   <font color=#000000>}</font><a name='line.36'></a>
+37:     <a name='line.37'></a>
+38:     <b><font color=#0000FF>public</font></b> <font color=#0000FF>int</font> <b><font color=#000000>getWeight</font></b><font color=#FF0000>(</font>TypeStack s<font color=#FF0000>)</font> <font color=#000000>{</font><b><font color=#0000FF>return</font></b> <font color=#9A1900>750</font><font color=#FF0000>;</font><font color=#000000>}</font><a name='line.38'></a>
+39:     <a name='line.39'></a>
+40:     <b><font color=#0000FF>public</font></b> <font color=#0000FF>void</font> <b><font color=#000000>use</font></b><font color=#FF0000>(</font>TypeStack s<font color=#FF0000>,</font> Being user<font color=#FF0000>,</font> <font color=#0000FF>int</font> usetype<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.40'></a>
+41:     <font color=#0000FF>boolean</font> ishero<font color=#FF0000>=</font><font color=#FF0000>(</font>user<font color=#FF0000>=</font><font color=#FF0000>=</font>Game<font color=#FF0000>.</font>hero<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.41'></a>
+42:     <a name='line.42'></a>
+43:     <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>usetype<font color=#FF0000>!</font><font color=#FF0000>=</font>Thing<font color=#FF0000>.</font>USE_DRINK<font color=#FF0000>)</font> <b><font color=#0000FF>return</font></b><font color=#FF0000>;</font><a name='line.43'></a>
+44: <a name='line.44'></a>
+45:     Thing t<font color=#FF0000>=</font>s<font color=#FF0000>.</font><b><font color=#000000>remove</font></b><font color=#FF0000>(</font><font color=#9A1900>1</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.45'></a>
+46: <a name='line.46'></a>
+47:     <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>ishero<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.47'></a>
+48:           Game<font color=#FF0000>.</font><b><font color=#000000>message</font></b><font color=#FF0000>(</font><font color=#808080>"You drink "</font><font color=#FF0000>+</font>t<font color=#FF0000>.</font><b><font color=#000000>getTheName</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.48'></a>
+49:           Game<font color=#FF0000>.</font><b><font color=#000000>message</font></b><font color=#FF0000>(</font><font color=#808080>"Very refreshing"</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.49'></a>
+50:     <font color=#000000>}</font><a name='line.50'></a>
+51:     user<font color=#FF0000>.</font>aps<font color=#FF0000>-</font><font color=#FF0000>=</font><font color=#9A1900>500</font><font color=#FF0000>;</font><a name='line.51'></a>
+52:     <a name='line.52'></a>
+53:     <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font><font color=#FF0000>(</font>s<font color=#FF0000>.</font>type<font color=#FF0000>=</font><font color=#FF0000>=</font>WINE<font color=#FF0000>)</font><font color=#FF0000>|</font><font color=#FF0000>|</font><font color=#FF0000>(</font>s<font color=#FF0000>.</font>type<font color=#FF0000>=</font><font color=#FF0000>=</font>BEERKEG<font color=#FF0000>)</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.53'></a>
+54:       user<font color=#FF0000>.</font>mps<font color=#FF0000>=</font>RPG<font color=#FF0000>.</font><b><font color=#000000>max</font></b><font color=#FF0000>(</font>user<font color=#FF0000>.</font>mps<font color=#FF0000>-</font>RPG<font color=#FF0000>.</font><b><font color=#000000>d</font></b><font color=#FF0000>(</font><font color=#9A1900>2</font><font color=#FF0000>,</font><font color=#9A1900>6</font><font color=#FF0000>)</font><font color=#FF0000>,</font><font color=#9A1900>0</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.54'></a>
+55:       <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>ishero<font color=#FF0000>)</font> Game<font color=#FF0000>.</font><b><font color=#000000>message</font></b><font color=#FF0000>(</font><font color=#808080>"You feel a little giddy"</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.55'></a>
+56:     <font color=#000000>}</font><a name='line.56'></a>
+57:   <font color=#000000>}</font><a name='line.57'></a>
+58:     <a name='line.58'></a>
+59:     <b><font color=#0000FF>public</font></b> Description <b><font color=#000000>getDescription</font></b><font color=#FF0000>(</font>TypeStack s<font color=#FF0000>)</font> <font color=#000000>{</font><b><font color=#0000FF>return</font></b> descriptions<font color=#FF0000>[</font>desc<font color=#FF0000>]</font><font color=#FF0000>;</font><font color=#000000>}</font><a name='line.59'></a>
+60: <font color=#000000>}</font></tt><a name='line.60'></a>
+</pre><a name='line.61'></a>
+</body><a name='line.62'></a>
+</html><a name='line.63'></a>

@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="GNU source-highlight 1.4
+by Lorenzo Bettini, bettini@gnu.org
+http://w3.newnet.it/bettini
+http://www.gnu.org/software/src-highlite">
+<title>.\rl\Treasure.java</title>
+</head>
+<body bgcolor="#FFFFFF" text="#000000" link="#0000EE" vlink="#551A8B" alink="#FF0000">
+<pre>
+<tt>
+01: <b><font color=#0000FF>package</font></b> rl<font color=#FF0000>;</font><a name='line.1'></a>
+02: <a name='line.2'></a>
+03: <b><font color=#0000FF>public</font></b> <b><font color=#0000FF>class</font></b> Treasure <b><font color=#0000FF>extends</font></b> Item <font color=#000000>{</font><a name='line.3'></a>
+04:     <b><font color=#0000FF>private</font></b> <font color=#0000FF>int</font> image<font color=#FF0000>;</font><a name='line.4'></a>
+05:     <a name='line.5'></a>
+06:     <b><font color=#0000FF>private</font></b> <b><font color=#0000FF>static</font></b> Description desc<font color=#FF0000>=</font>Lib<font color=#FF0000>.</font>DESC_TREASURE<font color=#FF0000>;</font><a name='line.6'></a>
+07:     <a name='line.7'></a>
+08:     <b><font color=#0000FF>public</font></b> <b><font color=#000000>Treasure</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.8'></a>
+09:         image<font color=#FF0000>=</font><font color=#9A1900>140</font><font color=#FF0000>+</font>RPG<font color=#FF0000>.</font><b><font color=#000000>r</font></b><font color=#FF0000>(</font><font color=#9A1900>4</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.9'></a>
+10:     <font color=#000000>}</font><a name='line.10'></a>
+11:     <a name='line.11'></a>
+12:     <b><font color=#0000FF>public</font></b> Description <b><font color=#000000>getDescription</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font> <font color=#000000>{</font><b><font color=#0000FF>return</font></b> desc<font color=#FF0000>;</font><font color=#000000>}</font><a name='line.12'></a>
+13:     <a name='line.13'></a>
+14:     <b><font color=#0000FF>public</font></b> <font color=#0000FF>int</font> <b><font color=#000000>damage</font></b><font color=#FF0000>(</font><font color=#0000FF>int</font> dam<font color=#FF0000>,</font> <font color=#0000FF>int</font> damtype<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.14'></a>
+15:       <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>RPG<font color=#FF0000>.</font><b><font color=#000000>r</font></b><font color=#FF0000>(</font><font color=#9A1900>20</font><font color=#FF0000>)</font><font color=#FF0000>&lt;</font><font color=#FF0000>(</font>dam<font color=#FF0000>-</font><font color=#9A1900>8</font><font color=#FF0000>)</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.15'></a>
+16:         <b><font color=#000000>remove</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>;</font>    <a name='line.16'></a>
+17:       <font color=#000000>}</font>    <a name='line.17'></a>
+18:       <b><font color=#0000FF>return</font></b> dam<font color=#FF0000>;</font><a name='line.18'></a>
+19:     <font color=#000000>}</font><a name='line.19'></a>
+20:     <a name='line.20'></a>
+21:     <b><font color=#0000FF>public</font></b> <font color=#0000FF>int</font> <b><font color=#000000>getWeight</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font> <font color=#000000>{</font><b><font color=#0000FF>return</font></b> <font color=#9A1900>500</font><font color=#FF0000>;</font><font color=#000000>}</font><a name='line.21'></a>
+22:     <a name='line.22'></a>
+23:     <b><font color=#0000FF>public</font></b> <font color=#0000FF>int</font> <b><font color=#000000>getImage</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font> <font color=#000000>{</font><b><font color=#0000FF>return</font></b> image<font color=#FF0000>;</font><font color=#000000>}</font><a name='line.23'></a>
+24: <font color=#000000>}</font></tt><a name='line.24'></a>
+</pre><a name='line.25'></a>
+</body><a name='line.26'></a>
+</html><a name='line.27'></a>

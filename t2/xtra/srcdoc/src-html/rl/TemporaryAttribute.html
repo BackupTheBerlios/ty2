@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="GNU source-highlight 1.4
+by Lorenzo Bettini, bettini@gnu.org
+http://w3.newnet.it/bettini
+http://www.gnu.org/software/src-highlite">
+<title>.\rl\TemporaryAttribute.java</title>
+</head>
+<body bgcolor="#FFFFFF" text="#000000" link="#0000EE" vlink="#551A8B" alink="#FF0000">
+<pre>
+<tt>
+01: <b><font color=#0000FF>package</font></b> rl<font color=#FF0000>;</font><a name='line.1'></a>
+02: <a name='line.2'></a>
+03: <b><font color=#0000FF>public</font></b> <b><font color=#0000FF>class</font></b> TemporaryAttribute <b><font color=#0000FF>extends</font></b> ActiveAttribute <font color=#000000>{</font><a name='line.3'></a>
+04:     <b><font color=#0000FF>public</font></b> <font color=#0000FF>int</font> timeleft<font color=#FF0000>;</font><a name='line.4'></a>
+05:   <b><font color=#0000FF>private</font></b> <font color=#0000FF>int</font><font color=#FF0000>[</font><font color=#FF0000>]</font> modifiers<font color=#FF0000>;</font><a name='line.5'></a>
+06:   <b><font color=#0000FF>private</font></b> String attributestring<font color=#FF0000>=</font><font color=#808080>""</font><font color=#FF0000>;</font><a name='line.6'></a>
+07:   <b><font color=#0000FF>private</font></b> String endmessage<font color=#FF0000>;</font><a name='line.7'></a>
+08:   <a name='line.8'></a>
+09:   <b><font color=#0000FF>public</font></b> <b><font color=#000000>TemporaryAttribute</font></b><font color=#FF0000>(</font><font color=#0000FF>int</font> duration<font color=#FF0000>,</font> <font color=#0000FF>int</font> attribute<font color=#FF0000>,</font> <font color=#0000FF>int</font> modifier<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.9'></a>
+10:     timeleft<font color=#FF0000>=</font>duration<font color=#FF0000>;</font><a name='line.10'></a>
+11:     modifiers<font color=#FF0000>=</font><b><font color=#0000FF>new</font></b> <font color=#0000FF>int</font><font color=#FF0000>[</font><font color=#9A1900>2</font><font color=#FF0000>]</font><font color=#FF0000>;</font><a name='line.11'></a>
+12:     modifiers<font color=#FF0000>[</font><font color=#9A1900>0</font><font color=#FF0000>]</font><font color=#FF0000>=</font>attribute<font color=#FF0000>;</font><a name='line.12'></a>
+13:     modifiers<font color=#FF0000>[</font><font color=#9A1900>1</font><font color=#FF0000>]</font><font color=#FF0000>=</font>modifier<font color=#FF0000>;</font><a name='line.13'></a>
+14:   <font color=#000000>}</font><a name='line.14'></a>
+15: <a name='line.15'></a>
+16:   <b><font color=#0000FF>public</font></b> <b><font color=#000000>TemporaryAttribute</font></b><font color=#FF0000>(</font>String name<font color=#FF0000>,</font> <font color=#0000FF>int</font> duration<font color=#FF0000>,</font> <font color=#0000FF>int</font> attribute<font color=#FF0000>,</font> <font color=#0000FF>int</font> modifier<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.16'></a>
+17:     <b><font color=#0000FF>this</font></b><font color=#FF0000>(</font>duration<font color=#FF0000>,</font>attribute<font color=#FF0000>,</font>modifier<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.17'></a>
+18:     attributestring<font color=#FF0000>=</font>name<font color=#FF0000>;</font><a name='line.18'></a>
+19:   <font color=#000000>}</font><a name='line.19'></a>
+20:   <a name='line.20'></a>
+21:   <b><font color=#0000FF>public</font></b> <b><font color=#000000>TemporaryAttribute</font></b><font color=#FF0000>(</font>String name<font color=#FF0000>,</font> <font color=#0000FF>int</font> duration<font color=#FF0000>,</font> <font color=#0000FF>int</font><font color=#FF0000>[</font><font color=#FF0000>]</font> mods<font color=#FF0000>,</font> String end<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.21'></a>
+22:     timeleft<font color=#FF0000>=</font>duration<font color=#FF0000>;</font><a name='line.22'></a>
+23:     attributestring<font color=#FF0000>=</font>name<font color=#FF0000>;</font><a name='line.23'></a>
+24:     modifiers<font color=#FF0000>=</font>mods<font color=#FF0000>;</font><a name='line.24'></a>
+25:     endmessage<font color=#FF0000>=</font>end<font color=#FF0000>;</font><a name='line.25'></a>
+26:   <font color=#000000>}</font><a name='line.26'></a>
+27:   <a name='line.27'></a>
+28:   <b><font color=#009900>// called for each time period</font></b><a name='line.28'></a>
+29:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>void</font> <b><font color=#000000>action</font></b><font color=#FF0000>(</font><font color=#0000FF>int</font> time<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.29'></a>
+30:     <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>time<font color=#FF0000>&gt;</font><font color=#FF0000>=</font>timeleft<font color=#FF0000>)</font> time<font color=#FF0000>=</font>timeleft<font color=#FF0000>;</font><a name='line.30'></a>
+31:     <a name='line.31'></a>
+32:     <b><font color=#000000>doEffect</font></b><font color=#FF0000>(</font>time<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.32'></a>
+33:     <a name='line.33'></a>
+34:     timeleft<font color=#FF0000>-</font><font color=#FF0000>=</font>time<font color=#FF0000>;</font><a name='line.34'></a>
+35:     <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>timeleft<font color=#FF0000>&lt;</font><font color=#FF0000>=</font><font color=#9A1900>0</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.35'></a>
+36:       <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font><font color=#FF0000>(</font>place<font color=#FF0000>=</font><font color=#FF0000>=</font>Game<font color=#FF0000>.</font>hero<font color=#FF0000>)</font><font color=#FF0000>&amp;</font><font color=#FF0000>&amp;</font><font color=#FF0000>(</font>endmessage<font color=#FF0000>!</font><font color=#FF0000>=</font><b><font color=#0000FF>null</font></b><font color=#FF0000>)</font><font color=#FF0000>)</font> Game<font color=#FF0000>.</font><b><font color=#000000>message</font></b><font color=#FF0000>(</font>endmessage<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.36'></a>
+37:       <b><font color=#000000>remove</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.37'></a>
+38:     <font color=#000000>}</font><a name='line.38'></a>
+39:   <font color=#000000>}</font><a name='line.39'></a>
+40: <a name='line.40'></a>
+41:   <b><font color=#009900>// placeholder for effects</font></b><a name='line.41'></a>
+42:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>void</font> <b><font color=#000000>doEffect</font></b><font color=#FF0000>(</font><font color=#0000FF>int</font> time<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.42'></a>
+43:     <a name='line.43'></a>
+44:   <font color=#000000>}</font>    <a name='line.44'></a>
+45:   <a name='line.45'></a>
+46:   <b><font color=#009900>// return stat modifier</font></b><a name='line.46'></a>
+47:   <b><font color=#009900>//   method: loop through modifiers array</font></b><a name='line.47'></a>
+48:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>int</font> <b><font color=#000000>getModifier</font></b><font color=#FF0000>(</font><font color=#0000FF>int</font> s<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.48'></a>
+49:     <font color=#0000FF>int</font> length<font color=#FF0000>=</font>modifiers<font color=#FF0000>.</font>length<font color=#FF0000>;</font><a name='line.49'></a>
+50:     <b><font color=#0000FF>for</font></b> <font color=#FF0000>(</font><font color=#0000FF>int</font> i<font color=#FF0000>=</font><font color=#9A1900>0</font><font color=#FF0000>;</font> i<font color=#FF0000>&lt;</font>length <font color=#FF0000>;</font> i<font color=#FF0000>=</font>i<font color=#FF0000>+</font><font color=#9A1900>2</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.50'></a>
+51:       <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>modifiers<font color=#FF0000>[</font>i<font color=#FF0000>]</font><font color=#FF0000>=</font><font color=#FF0000>=</font>s<font color=#FF0000>)</font> <b><font color=#0000FF>return</font></b> modifiers<font color=#FF0000>[</font>i<font color=#FF0000>+</font><font color=#9A1900>1</font><font color=#FF0000>]</font><font color=#FF0000>;</font><a name='line.51'></a>
+52:     <font color=#000000>}</font> <a name='line.52'></a>
+53:     <b><font color=#0000FF>return</font></b> <font color=#9A1900>0</font><font color=#FF0000>;</font><a name='line.53'></a>
+54:   <font color=#000000>}</font><a name='line.54'></a>
+55:   <a name='line.55'></a>
+56:   <b><font color=#009900>// return attribute description</font></b><a name='line.56'></a>
+57:   <b><font color=#0000FF>public</font></b> String <b><font color=#000000>getAttributeString</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.57'></a>
+58:     <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>QuestApp<font color=#FF0000>.</font>debug<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.58'></a>
+59:       <font color=#0000FF>int</font> s<font color=#FF0000>=</font>modifiers<font color=#FF0000>[</font><font color=#9A1900>1</font><font color=#FF0000>]</font><font color=#FF0000>;</font><a name='line.59'></a>
+60:       <b><font color=#0000FF>return</font></b> attributestring<font color=#FF0000>+</font><font color=#808080>" {"</font><font color=#FF0000>+</font> <font color=#FF0000>(</font><font color=#FF0000>(</font>s<font color=#FF0000>&gt;</font><font color=#9A1900>0</font><font color=#FF0000>)</font> <font color=#FF0000>?</font> <font color=#808080>"+"</font><font color=#FF0000>+</font>s <font color=#FF0000>:</font> <font color=#808080>""</font><font color=#FF0000>+</font>s<font color=#FF0000>)</font> <font color=#FF0000>+</font><font color=#808080>"}"</font><font color=#FF0000>;</font><a name='line.60'></a>
+61:     <font color=#000000>}</font><a name='line.61'></a>
+62:       <a name='line.62'></a>
+63:     <b><font color=#0000FF>return</font></b> attributestring<font color=#FF0000>;</font><a name='line.63'></a>
+64:   <font color=#000000>}</font><a name='line.64'></a>
+65: <font color=#000000>}</font></tt><a name='line.65'></a>
+</pre><a name='line.66'></a>
+</body><a name='line.67'></a>
+</html><a name='line.68'></a>

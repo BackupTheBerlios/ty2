@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="GNU source-highlight 1.4
+by Lorenzo Bettini, bettini@gnu.org
+http://w3.newnet.it/bettini
+http://www.gnu.org/software/src-highlite">
+<title>.\rl\ListItem.java</title>
+</head>
+<body bgcolor="#FFFFFF" text="#000000" link="#0000EE" vlink="#551A8B" alink="#FF0000">
+<pre>
+<tt>
+01: <b><font color=#0000FF>package</font></b> rl<font color=#FF0000>;</font><a name='line.1'></a>
+02: <a name='line.2'></a>
+03: <b><font color=#000080>import</font></b> java<font color=#FF0000>.</font>awt<font color=#FF0000>.</font><font color=#FF0000>*</font><font color=#FF0000>;</font><a name='line.3'></a>
+04: <a name='line.4'></a>
+05: <b><font color=#0000FF>public</font></b> <b><font color=#0000FF>class</font></b> ListItem <b><font color=#0000FF>extends</font></b> Panel <font color=#000000>{</font><a name='line.5'></a>
+06:     <b><font color=#0000FF>private</font></b> <font color=#0000FF>int</font> image<font color=#FF0000>;</font><a name='line.6'></a>
+07:     <b><font color=#0000FF>private</font></b> String text<font color=#FF0000>;</font><a name='line.7'></a>
+08:     <b><font color=#0000FF>private</font></b> Thing thing<font color=#FF0000>;</font><a name='line.8'></a>
+09:     <a name='line.9'></a>
+10:     <b><font color=#0000FF>public</font></b> <b><font color=#000000>ListItem</font></b><font color=#FF0000>(</font>Thing t<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.10'></a>
+11:         <b><font color=#0000FF>super</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.11'></a>
+12:         text<font color=#FF0000>=</font>t<font color=#FF0000>.</font><b><font color=#000000>getName</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.12'></a>
+13:         thing<font color=#FF0000>=</font>t<font color=#FF0000>;</font><a name='line.13'></a>
+14:     <font color=#000000>}</font><a name='line.14'></a>
+15:     <a name='line.15'></a>
+16:     <b><font color=#0000FF>public</font></b> <font color=#0000FF>void</font> <b><font color=#000000>paint</font></b><font color=#FF0000>(</font>Graphics g<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.16'></a>
+17:       <b><font color=#0000FF>super</font></b><font color=#FF0000>.</font><b><font color=#000000>paint</font></b><font color=#FF0000>(</font>g<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.17'></a>
+18:       g<font color=#FF0000>.</font><b><font color=#000000>drawString</font></b><font color=#FF0000>(</font>text<font color=#FF0000>,</font><font color=#9A1900>32</font><font color=#FF0000>,</font><b><font color=#000000>getHeight</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>)</font><font color=#FF0000>;</font>    <a name='line.18'></a>
+19:     <b><font color=#009900>//int sx=(image%20)*MapPanel.TILEWIDTH;</font></b><a name='line.19'></a>
+20:     <b><font color=#009900>//int sy=(image/20)*MapPanel.TILEHEIGHT;    </font></b><a name='line.20'></a>
+21:     <b><font color=#009900>//g.drawImage(QuestApp.items,0,0,16,16,sx,sy,sx+MapPanel.TILEWIDTH,sy+MapPanel.TILEHEIGHT,null);</font></b><a name='line.21'></a>
+22:     <font color=#000000>}</font>    <a name='line.22'></a>
+23: <font color=#000000>}</font></tt><a name='line.23'></a>
+</pre><a name='line.24'></a>
+</body><a name='line.25'></a>
+</html><a name='line.26'></a>

@@ -1,0 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="GNU source-highlight 1.4
+by Lorenzo Bettini, bettini@gnu.org
+http://w3.newnet.it/bettini
+http://www.gnu.org/software/src-highlite">
+<title>.\rl\RuneTrap.java</title>
+</head>
+<body bgcolor="#FFFFFF" text="#000000" link="#0000EE" vlink="#551A8B" alink="#FF0000">
+<pre>
+<tt>
+01: <b><font color=#0000FF>package</font></b> rl<font color=#FF0000>;</font><a name='line.1'></a>
+02: <a name='line.2'></a>
+03: <b><font color=#0000FF>public</font></b> <b><font color=#0000FF>class</font></b> RuneTrap <b><font color=#0000FF>extends</font></b> Trap <font color=#000000>{</font><a name='line.3'></a>
+04:   <b><font color=#0000FF>protected</font></b> <font color=#0000FF>int</font> image<font color=#FF0000>;</font><a name='line.4'></a>
+05:   <b><font color=#0000FF>protected</font></b> <font color=#0000FF>int</font> spell<font color=#FF0000>;</font><a name='line.5'></a>
+06:   <b><font color=#0000FF>protected</font></b> Thing actor<font color=#FF0000>;</font><a name='line.6'></a>
+07:   <a name='line.7'></a>
+08:   <b><font color=#0000FF>private</font></b> <b><font color=#0000FF>static</font></b> <b><font color=#0000FF>final</font></b> Description DESC_RUNETRAP <font color=#FF0000>=</font> <a name='line.8'></a>
+09:         <b><font color=#0000FF>new</font></b> <b><font color=#000000>Describer</font></b><font color=#FF0000>(</font><font color=#808080>"runetrap"</font><font color=#FF0000>,</font><font color=#808080>"A magical runetrap carefully inscribed on the floor."</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.9'></a>
+10:     <a name='line.10'></a>
+11:   <b><font color=#0000FF>public</font></b> <b><font color=#000000>RuneTrap</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.11'></a>
+12:     <b><font color=#009900>// runetraps are clearly visible by default</font></b><a name='line.12'></a>
+13:     discovered<font color=#FF0000>=</font>true<font color=#FF0000>;</font><a name='line.13'></a>
+14:     <a name='line.14'></a>
+15:     actor<font color=#FF0000>=</font><b><font color=#0000FF>null</font></b><font color=#FF0000>;</font><a name='line.15'></a>
+16:     image<font color=#FF0000>=</font><font color=#9A1900>160</font><font color=#FF0000>+</font>RPG<font color=#FF0000>.</font><b><font color=#000000>r</font></b><font color=#FF0000>(</font><font color=#9A1900>3</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.16'></a>
+17:     spell<font color=#FF0000>=</font>Spell<font color=#FF0000>.</font>FIREBALL<font color=#FF0000>;</font><a name='line.17'></a>
+18:     <font color=#000000>}</font><a name='line.18'></a>
+19:     <a name='line.19'></a>
+20:   <b><font color=#0000FF>public</font></b> <b><font color=#000000>RuneTrap</font></b><font color=#FF0000>(</font>Thing owner<font color=#FF0000>,</font> <font color=#0000FF>int</font> thespell<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.20'></a>
+21:     <b><font color=#0000FF>this</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.21'></a>
+22:     actor<font color=#FF0000>=</font>owner<font color=#FF0000>;</font><a name='line.22'></a>
+23:     spell<font color=#FF0000>=</font>thespell<font color=#FF0000>;</font> <a name='line.23'></a>
+24:   <font color=#000000>}</font><a name='line.24'></a>
+25:   <a name='line.25'></a>
+26:   <b><font color=#009900>// target adjacent hero directly if spell is not a ball spell</font></b><a name='line.26'></a>
+27:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>boolean</font> <b><font color=#000000>actAdjacten</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.27'></a>
+28:     <b><font color=#0000FF>return</font></b> Spell<font color=#FF0000>.</font>radii<font color=#FF0000>[</font>spell<font color=#FF0000>]</font><font color=#FF0000>=</font><font color=#FF0000>=</font><font color=#9A1900>0</font><font color=#FF0000>;</font> <a name='line.28'></a>
+29:   <font color=#000000>}</font><a name='line.29'></a>
+30:   <a name='line.30'></a>
+31:     <b><font color=#0000FF>public</font></b> <font color=#0000FF>int</font> <b><font color=#000000>getImage</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font> <font color=#000000>{</font><b><font color=#0000FF>return</font></b> image<font color=#FF0000>;</font><font color=#000000>}</font><a name='line.31'></a>
+32:     <a name='line.32'></a>
+33:     <b><font color=#0000FF>public</font></b> <font color=#0000FF>void</font> <b><font color=#000000>affectSquare</font></b><font color=#FF0000>(</font>Map map<font color=#FF0000>,</font> <font color=#0000FF>int</font> tx<font color=#FF0000>,</font> <font color=#0000FF>int</font> ty<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.33'></a>
+34:     <b><font color=#000000>remove</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.34'></a>
+35:     Thing temp<font color=#FF0000>=</font>Game<font color=#FF0000>.</font>actor<font color=#FF0000>;</font><a name='line.35'></a>
+36:     <a name='line.36'></a>
+37:     <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>map<font color=#FF0000>!</font><font color=#FF0000>=</font><b><font color=#0000FF>null</font></b><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.37'></a>
+38:       Spell sp<font color=#FF0000>=</font><b><font color=#0000FF>new</font></b> <b><font color=#000000>Spell</font></b><font color=#FF0000>(</font>spell<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.38'></a>
+39:       sp<font color=#FF0000>.</font><b><font color=#000000>castAtLocation</font></b><font color=#FF0000>(</font><b><font color=#0000FF>null</font></b><font color=#FF0000>,</font>map<font color=#FF0000>,</font>tx<font color=#FF0000>,</font>ty<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.39'></a>
+40:       <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>actor<font color=#FF0000>!</font><font color=#FF0000>=</font><b><font color=#0000FF>null</font></b><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.40'></a>
+41:         <font color=#FF0000>(</font><font color=#FF0000>(</font>Being<font color=#FF0000>)</font>actor<font color=#FF0000>)</font><font color=#FF0000>.</font>mps<font color=#FF0000>-</font><font color=#FF0000>=</font>sp<font color=#FF0000>.</font>cost<font color=#FF0000>;</font><a name='line.41'></a>
+42:         <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>actor<font color=#FF0000>=</font><font color=#FF0000>=</font>Game<font color=#FF0000>.</font>hero<font color=#FF0000>)</font> Game<font color=#FF0000>.</font><b><font color=#000000>message</font></b><font color=#FF0000>(</font><font color=#808080>"Your power is drained by the runes"</font><font color=#FF0000>)</font><font color=#FF0000>;</font> <a name='line.42'></a>
+43:       <font color=#000000>}</font><a name='line.43'></a>
+44:     <font color=#000000>}</font><a name='line.44'></a>
+45:     <a name='line.45'></a>
+46:     Game<font color=#FF0000>.</font>actor<font color=#FF0000>=</font>temp<font color=#FF0000>;</font><a name='line.46'></a>
+47:   <font color=#000000>}</font><a name='line.47'></a>
+48: <a name='line.48'></a>
+49:   <b><font color=#0000FF>public</font></b> Description <b><font color=#000000>getDescription</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font> <font color=#000000>{</font><b><font color=#0000FF>return</font></b> DESC_RUNETRAP<font color=#FF0000>;</font><font color=#000000>}</font><a name='line.49'></a>
+50: <font color=#000000>}</font></tt><a name='line.50'></a>
+</pre><a name='line.51'></a>
+</body><a name='line.52'></a>
+</html><a name='line.53'></a>

@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="GNU source-highlight 1.4
+by Lorenzo Bettini, bettini@gnu.org
+http://w3.newnet.it/bettini
+http://www.gnu.org/software/src-highlite">
+<title>.\rl\PoisonAttribute.java</title>
+</head>
+<body bgcolor="#FFFFFF" text="#000000" link="#0000EE" vlink="#551A8B" alink="#FF0000">
+<pre>
+<tt>
+01: <b><font color=#0000FF>package</font></b> rl<font color=#FF0000>;</font><a name='line.1'></a>
+02: <a name='line.2'></a>
+03: <b><font color=#0000FF>public</font></b> <b><font color=#0000FF>class</font></b> PoisonAttribute <b><font color=#0000FF>extends</font></b> ActiveAttribute <font color=#000000>{</font><a name='line.3'></a>
+04:     <b><font color=#0000FF>protected</font></b> <font color=#0000FF>int</font> damage<font color=#FF0000>;</font><a name='line.4'></a>
+05:     <b><font color=#0000FF>protected</font></b> <font color=#0000FF>int</font> probability<font color=#FF0000>;</font><a name='line.5'></a>
+06:     <b><font color=#0000FF>protected</font></b> <font color=#0000FF>int</font> duration<font color=#FF0000>;</font> <a name='line.6'></a>
+07:     <b><font color=#0000FF>protected</font></b> <font color=#0000FF>int</font> damtype<font color=#FF0000>;</font><a name='line.7'></a>
+08:     <a name='line.8'></a>
+09:     <b><font color=#0000FF>public</font></b> <b><font color=#000000>PoisonAttribute</font></b><font color=#FF0000>(</font><font color=#0000FF>int</font> d<font color=#FF0000>,</font> <font color=#0000FF>int</font> dt<font color=#FF0000>,</font> <font color=#0000FF>int</font> dur<font color=#FF0000>,</font> <font color=#0000FF>int</font> prob<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.9'></a>
+10:         damage<font color=#FF0000>=</font>d<font color=#FF0000>;</font><a name='line.10'></a>
+11:         damtype<font color=#FF0000>=</font>dt<font color=#FF0000>;</font><a name='line.11'></a>
+12:         duration<font color=#FF0000>=</font>dur<font color=#FF0000>;</font><a name='line.12'></a>
+13:         probability<font color=#FF0000>=</font>prob<font color=#FF0000>;</font><a name='line.13'></a>
+14:     <font color=#000000>}</font><a name='line.14'></a>
+15:     <a name='line.15'></a>
+16:     <b><font color=#0000FF>public</font></b> <font color=#0000FF>void</font> <b><font color=#000000>action</font></b><font color=#FF0000>(</font><font color=#0000FF>int</font> time<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.16'></a>
+17:     <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>duration<font color=#FF0000>&lt;</font><font color=#FF0000>=</font><font color=#9A1900>0</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.17'></a>
+18:       <b><font color=#000000>remove</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>;</font>  <a name='line.18'></a>
+19:       <b><font color=#0000FF>return</font></b><font color=#FF0000>;</font><a name='line.19'></a>
+20:     <font color=#000000>}</font><a name='line.20'></a>
+21:     <a name='line.21'></a>
+22:     duration<font color=#FF0000>=</font>duration<font color=#FF0000>-</font>time<font color=#FF0000>;</font><a name='line.22'></a>
+23: <a name='line.23'></a>
+24:     <b><font color=#0000FF>for</font></b> <font color=#FF0000>(</font><font color=#0000FF>int</font> i<font color=#FF0000>=</font>RPG<font color=#FF0000>.</font><b><font color=#000000>po</font></b><font color=#FF0000>(</font>probability<font color=#FF0000>*</font>time<font color=#FF0000>,</font><font color=#9A1900>10000</font><font color=#FF0000>)</font><font color=#FF0000>;</font> i<font color=#FF0000>&gt;</font><font color=#9A1900>0</font><font color=#FF0000>;</font> i<font color=#FF0000>-</font><font color=#FF0000>-</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.24'></a>
+25:       Mobile m<font color=#FF0000>=</font><b><font color=#000000>getMobile</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.25'></a>
+26:       <font color=#0000FF>int</font> dam<font color=#FF0000>=</font>m<font color=#FF0000>.</font><b><font color=#000000>damage</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font><b><font color=#000000>a</font></b><font color=#FF0000>(</font>damage<font color=#FF0000>)</font><font color=#FF0000>,</font>damtype<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.26'></a>
+27:       <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>m<font color=#FF0000>=</font><font color=#FF0000>=</font>Game<font color=#FF0000>.</font>hero<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.27'></a>
+28:         <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>dam<font color=#FF0000>&gt;</font><font color=#9A1900>0</font><font color=#FF0000>)</font> Game<font color=#FF0000>.</font><b><font color=#000000>message</font></b><font color=#FF0000>(</font><font color=#808080>"You feel poisoned"</font><font color=#FF0000>)</font><font color=#FF0000>;</font>    <a name='line.28'></a>
+29:       <font color=#000000>}</font><a name='line.29'></a>
+30:     <font color=#000000>}</font><a name='line.30'></a>
+31:   <font color=#000000>}</font><a name='line.31'></a>
+32:     <a name='line.32'></a>
+33:     <b><font color=#0000FF>public</font></b> String <b><font color=#000000>getAttributeString</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font> <font color=#000000>{</font><b><font color=#0000FF>return</font></b> <font color=#808080>"Poisoned"</font><font color=#FF0000>;</font><font color=#000000>}</font><a name='line.33'></a>
+34:     <a name='line.34'></a>
+35: <font color=#000000>}</font></tt><a name='line.35'></a>
+</pre><a name='line.36'></a>
+</body><a name='line.37'></a>
+</html><a name='line.38'></a>

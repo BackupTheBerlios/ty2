@@ -1,0 +1,130 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="GNU source-highlight 1.4
+by Lorenzo Bettini, bettini@gnu.org
+http://w3.newnet.it/bettini
+http://www.gnu.org/software/src-highlite">
+<title>.\rl\Trap.java</title>
+</head>
+<body bgcolor="#FFFFFF" text="#000000" link="#0000EE" vlink="#551A8B" alink="#FF0000">
+<pre>
+<tt>
+001: <b><font color=#0000FF>package</font></b> rl<font color=#FF0000>;</font><a name='line.1'></a>
+002: <a name='line.2'></a>
+003: <b><font color=#0000FF>public</font></b> <b><font color=#0000FF>class</font></b> Trap <b><font color=#0000FF>extends</font></b> Special <font color=#000000>{</font><a name='line.3'></a>
+004:   <b><font color=#0000FF>protected</font></b> <font color=#0000FF>boolean</font> discovered<font color=#FF0000>=</font>false<font color=#FF0000>;</font><a name='line.4'></a>
+005:   <b><font color=#0000FF>protected</font></b> <font color=#0000FF>boolean</font> activated<font color=#FF0000>=</font>true<font color=#FF0000>;</font><a name='line.5'></a>
+006:   <b><font color=#0000FF>protected</font></b> <font color=#0000FF>int</font> uses<font color=#FF0000>=</font><font color=#9A1900>1</font><font color=#FF0000>;</font><a name='line.6'></a>
+007:   <b><font color=#0000FF>protected</font></b> <font color=#0000FF>int</font> level<font color=#FF0000>=</font><font color=#9A1900>1</font><font color=#FF0000>;</font><a name='line.7'></a>
+008: <a name='line.8'></a>
+009:   <b><font color=#0000FF>public</font></b> <b><font color=#0000FF>static</font></b> Trap <b><font color=#000000>createTrap</font></b><font color=#FF0000>(</font><font color=#0000FF>int</font> l<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.9'></a>
+010:     <b><font color=#0000FF>switch</font></b> <font color=#FF0000>(</font>RPG<font color=#FF0000>.</font><b><font color=#000000>d</font></b><font color=#FF0000>(</font><font color=#9A1900>3</font><font color=#FF0000>)</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.10'></a>
+011:       <b><font color=#0000FF>case</font></b> <font color=#9A1900>1</font><font color=#FF0000>:</font> <font color=#000000>{</font><a name='line.11'></a>
+012:         <b><font color=#0000FF>return</font></b> <b><font color=#0000FF>new</font></b> <b><font color=#000000>RuneTrap</font></b><font color=#FF0000>(</font><b><font color=#0000FF>null</font></b><font color=#FF0000>,</font>Spell<font color=#FF0000>.</font><b><font color=#000000>randomOffensiveSpell</font></b><font color=#FF0000>(</font>l<font color=#FF0000>)</font><font color=#FF0000>)</font><font color=#FF0000>;</font> <a name='line.12'></a>
+013:       <font color=#000000>}</font><a name='line.13'></a>
+014:       <b><font color=#0000FF>default</font></b><font color=#FF0000>:</font> <b><font color=#0000FF>return</font></b> <b><font color=#0000FF>new</font></b> <b><font color=#000000>HeroTrap</font></b><font color=#FF0000>(</font>l<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.14'></a>
+015:     <font color=#000000>}</font><a name='line.15'></a>
+016:   <font color=#000000>}</font><a name='line.16'></a>
+017:   <a name='line.17'></a>
+018:   <a name='line.18'></a>
+019:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>int</font> <b><font color=#000000>getLevel</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.19'></a>
+020:     <b><font color=#0000FF>return</font></b> level<font color=#FF0000>;</font> <a name='line.20'></a>
+021:   <font color=#000000>}</font><a name='line.21'></a>
+022:   <a name='line.22'></a>
+023:   <b><font color=#009900>// trap is invisible until discovered</font></b><a name='line.23'></a>
+024:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>boolean</font> <b><font color=#000000>isInvisible</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font> <font color=#000000>{</font><b><font color=#0000FF>return</font></b> <font color=#FF0000>!</font>discovered<font color=#FF0000>;</font><font color=#000000>}</font><a name='line.24'></a>
+025:   <a name='line.25'></a>
+026:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>boolean</font> <b><font color=#000000>isDiscovered</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font> <font color=#000000>{</font><b><font color=#0000FF>return</font></b> discovered<font color=#FF0000>;</font><font color=#000000>}</font><a name='line.26'></a>
+027:   <a name='line.27'></a>
+028:   <b><font color=#009900>// returns true if t is "wary" of this trap</font></b><a name='line.28'></a>
+029:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>boolean</font> <b><font color=#000000>isWarning</font></b><font color=#FF0000>(</font>Thing t<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.29'></a>
+030:     <b><font color=#0000FF>return</font></b> <font color=#FF0000>(</font><font color=#FF0000>(</font><font color=#FF0000>!</font>discovered<font color=#FF0000>)</font><font color=#FF0000>&amp;</font><font color=#FF0000>&amp;</font><font color=#FF0000>(</font>t <b><font color=#0000FF>instanceof</font></b> Creature<font color=#FF0000>)</font><font color=#FF0000>)</font><font color=#FF0000>|</font><font color=#FF0000>|</font><font color=#FF0000>(</font>t<font color=#FF0000>.</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_IN<font color=#FF0000>)</font><font color=#FF0000>&gt;</font><font color=#9A1900>5</font><font color=#FF0000>)</font><font color=#FF0000>;</font> <a name='line.30'></a>
+031:   <font color=#000000>}</font><a name='line.31'></a>
+032:   <a name='line.32'></a>
+033:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>boolean</font> <b><font color=#000000>tryDisarm</font></b><font color=#FF0000>(</font>Thing b<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.33'></a>
+034:     <b><font color=#0000FF>return</font></b> RPG<font color=#FF0000>.</font><b><font color=#000000>test</font></b><font color=#FF0000>(</font>b<font color=#FF0000>.</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_CR<font color=#FF0000>)</font><font color=#FF0000>*</font>b<font color=#FF0000>.</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_DISARM<font color=#FF0000>)</font><font color=#FF0000>,</font><font color=#9A1900>15</font><font color=#FF0000>*</font><b><font color=#000000>getLevel</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.34'></a>
+035:   <font color=#000000>}</font><a name='line.35'></a>
+036:   <a name='line.36'></a>
+037:   <b><font color=#009900>// trap is right on the floor</font></b><a name='line.37'></a>
+038:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>int</font> <b><font color=#000000>getZ</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font> <font color=#000000>{</font><b><font color=#0000FF>return</font></b> Z_FLOOR<font color=#FF0000>;</font><font color=#000000>}</font><a name='line.38'></a>
+039: <a name='line.39'></a>
+040:   <b><font color=#009900>// trigger, activated by Thing t</font></b><a name='line.40'></a>
+041:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>void</font> <b><font color=#000000>trigger</font></b><font color=#FF0000>(</font>Thing t<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.41'></a>
+042:     <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>t<font color=#FF0000>!</font><font color=#FF0000>=</font><b><font color=#0000FF>null</font></b><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.42'></a>
+043:       Map map<font color=#FF0000>=</font>t<font color=#FF0000>.</font><b><font color=#000000>getMap</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.43'></a>
+044:       <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>map<font color=#FF0000>!</font><font color=#FF0000>=</font><b><font color=#0000FF>null</font></b><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.44'></a>
+045:         <font color=#0000FF>int</font> tx<font color=#FF0000>=</font>t<font color=#FF0000>.</font><b><font color=#000000>getMapX</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.45'></a>
+046:         <font color=#0000FF>int</font> ty<font color=#FF0000>=</font>t<font color=#FF0000>.</font><b><font color=#000000>getMapY</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.46'></a>
+047:         <b><font color=#000000>trigger</font></b><font color=#FF0000>(</font>map<font color=#FF0000>,</font>tx<font color=#FF0000>,</font>ty<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.47'></a>
+048:         <b><font color=#0000FF>return</font></b><font color=#FF0000>;</font>  <a name='line.48'></a>
+049:       <font color=#000000>}</font> <a name='line.49'></a>
+050:     <font color=#000000>}</font><a name='line.50'></a>
+051:     <a name='line.51'></a>
+052:     Map map<font color=#FF0000>=</font><b><font color=#000000>getMap</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.52'></a>
+053:     <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>map<font color=#FF0000>!</font><font color=#FF0000>=</font><b><font color=#0000FF>null</font></b><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.53'></a>
+054:       <font color=#0000FF>int</font> tx<font color=#FF0000>=</font><b><font color=#000000>getMapX</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.54'></a>
+055:       <font color=#0000FF>int</font> ty<font color=#FF0000>=</font>t<font color=#FF0000>.</font><b><font color=#000000>getMapY</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.55'></a>
+056:       <b><font color=#000000>trigger</font></b><font color=#FF0000>(</font>map<font color=#FF0000>,</font>tx<font color=#FF0000>,</font>ty<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.56'></a>
+057:       <b><font color=#0000FF>return</font></b><font color=#FF0000>;</font><a name='line.57'></a>
+058:     <font color=#000000>}</font><a name='line.58'></a>
+059:     <a name='line.59'></a>
+060:     <b><font color=#0000FF>throw</font></b> <b><font color=#0000FF>new</font></b> <b><font color=#000000>Error</font></b><font color=#FF0000>(</font><font color=#808080>"Trap triggered off-map"</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.60'></a>
+061:   <font color=#000000>}</font><a name='line.61'></a>
+062:   <a name='line.62'></a>
+063:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>void</font> <b><font color=#000000>setActivated</font></b><font color=#FF0000>(</font><font color=#0000FF>boolean</font> b<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.63'></a>
+064:     activated<font color=#FF0000>=</font>b<font color=#FF0000>;</font> <a name='line.64'></a>
+065:   <font color=#000000>}</font><a name='line.65'></a>
+066:   <a name='line.66'></a>
+067:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>boolean</font> <b><font color=#000000>isActivated</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.67'></a>
+068:     <b><font color=#0000FF>return</font></b> activated<font color=#FF0000>;</font> <a name='line.68'></a>
+069:   <font color=#000000>}</font><a name='line.69'></a>
+070:   <a name='line.70'></a>
+071:   <b><font color=#009900>// return true if the trap should target an adjacent actor</font></b><a name='line.71'></a>
+072:   <b><font color=#009900>// that triggers the trap</font></b><a name='line.72'></a>
+073:   <b><font color=#009900>// trap types that should probably return true are:</font></b><a name='line.73'></a>
+074:   <b><font color=#009900>//    pit traps</font></b><a name='line.74'></a>
+075:   <b><font color=#009900>//    dart traps</font></b><a name='line.75'></a>
+076:   <b><font color=#009900>//    single-square spell traps (but not ball spells)</font></b><a name='line.76'></a>
+077:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>boolean</font> <b><font color=#000000>actAdjacent</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.77'></a>
+078:     <b><font color=#0000FF>return</font></b> false<font color=#FF0000>;</font> <a name='line.78'></a>
+079:   <font color=#000000>}</font><a name='line.79'></a>
+080:   <a name='line.80'></a>
+081:   <b><font color=#009900>// trigger in specific location</font></b><a name='line.81'></a>
+082:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>void</font> <b><font color=#000000>trigger</font></b><font color=#FF0000>(</font>Map map<font color=#FF0000>,</font> <font color=#0000FF>int</font> tx<font color=#FF0000>,</font> <font color=#0000FF>int</font> ty<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.82'></a>
+083:     <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>activated<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.83'></a>
+084:       <b><font color=#009900>// turn off trap to prevent self-triggering</font></b><a name='line.84'></a>
+085:       <b><font color=#000000>setActivated</font></b><font color=#FF0000>(</font>false<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.85'></a>
+086:       <b><font color=#000000>affectSquare</font></b><font color=#FF0000>(</font>map<font color=#FF0000>,</font>tx<font color=#FF0000>,</font>ty<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.86'></a>
+087:       <a name='line.87'></a>
+088:       <b><font color=#009900>// turn trap back on</font></b><a name='line.88'></a>
+089:       <b><font color=#000000>setActivated</font></b><font color=#FF0000>(</font>true<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.89'></a>
+090:       <a name='line.90'></a>
+091:       <b><font color=#009900>// deactivate if uses are exhausted</font></b><a name='line.91'></a>
+092:       <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>uses<font color=#FF0000>&gt;</font><font color=#9A1900>0</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.92'></a>
+093:         uses<font color=#FF0000>=</font>uses<font color=#FF0000>-</font><font color=#9A1900>1</font><font color=#FF0000>;</font><a name='line.93'></a>
+094:         <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>uses<font color=#FF0000>=</font><font color=#FF0000>=</font><font color=#9A1900>0</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.94'></a>
+095:           <b><font color=#000000>setActivated</font></b><font color=#FF0000>(</font>false<font color=#FF0000>)</font><font color=#FF0000>;</font> <a name='line.95'></a>
+096:           <b><font color=#000000>remove</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.96'></a>
+097:         <font color=#000000>}</font><a name='line.97'></a>
+098:       <font color=#000000>}</font> <a name='line.98'></a>
+099:     <font color=#000000>}</font><a name='line.99'></a>
+100:   <font color=#000000>}</font><a name='line.100'></a>
+101:   <a name='line.101'></a>
+102:   <b><font color=#009900>// actually do the trap affect</font></b><a name='line.102'></a>
+103:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>void</font> <b><font color=#000000>affectSquare</font></b><font color=#FF0000>(</font>Map map<font color=#FF0000>,</font> <font color=#0000FF>int</font> tx<font color=#FF0000>,</font> <font color=#0000FF>int</font> ty<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.103'></a>
+104:     <a name='line.104'></a>
+105:   <font color=#000000>}</font><a name='line.105'></a>
+106:   <a name='line.106'></a>
+107:   <b><font color=#009900>// make the trap appear</font></b><a name='line.107'></a>
+108:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>boolean</font> <b><font color=#000000>appear</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.108'></a>
+109:     <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>discovered<font color=#FF0000>)</font> <b><font color=#0000FF>return</font></b> false<font color=#FF0000>;</font><a name='line.109'></a>
+110:     discovered<font color=#FF0000>=</font>true<font color=#FF0000>;</font><a name='line.110'></a>
+111:     <b><font color=#0000FF>return</font></b> true<font color=#FF0000>;</font><a name='line.111'></a>
+112:   <font color=#000000>}</font><a name='line.112'></a>
+113: <font color=#000000>}</font></tt><a name='line.113'></a>
+</pre><a name='line.114'></a>
+</body><a name='line.115'></a>
+</html><a name='line.116'></a>

@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="GNU source-highlight 1.4
+by Lorenzo Bettini, bettini@gnu.org
+http://w3.newnet.it/bettini
+http://www.gnu.org/software/src-highlite">
+<title>.\rl\Fire.java</title>
+</head>
+<body bgcolor="#FFFFFF" text="#000000" link="#0000EE" vlink="#551A8B" alink="#FF0000">
+<pre>
+<tt>
+01: <b><font color=#0000FF>package</font></b> rl<font color=#FF0000>;</font><a name='line.1'></a>
+02: <a name='line.2'></a>
+03: <b><font color=#0000FF>public</font></b> <b><font color=#0000FF>class</font></b> Fire <b><font color=#0000FF>extends</font></b> Special <b><font color=#0000FF>implements</font></b> Active <font color=#000000>{</font><a name='line.3'></a>
+04:   <b><font color=#0000FF>protected</font></b> <font color=#0000FF>int</font> strength<font color=#FF0000>;</font><a name='line.4'></a>
+05:   <b><font color=#0000FF>protected</font></b> <font color=#0000FF>int</font> decay<font color=#FF0000>;</font><a name='line.5'></a>
+06:     <a name='line.6'></a>
+07:     <b><font color=#0000FF>public</font></b> <b><font color=#0000FF>static</font></b> <b><font color=#0000FF>final</font></b> Description DESC_FIRE <font color=#FF0000>=</font><a name='line.7'></a>
+08:         <b><font color=#0000FF>new</font></b> <b><font color=#000000>Describer</font></b><font color=#FF0000>(</font><font color=#808080>"fire"</font><font color=#FF0000>,</font><font color=#808080>"A blazing fire"</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.8'></a>
+09:   <b><font color=#0000FF>public</font></b> <b><font color=#0000FF>static</font></b> <b><font color=#0000FF>final</font></b> Description DESC_FIRE1 <font color=#FF0000>=</font><a name='line.9'></a>
+10:     <b><font color=#0000FF>new</font></b> <b><font color=#000000>Describer</font></b><font color=#FF0000>(</font><font color=#808080>"small fire"</font><font color=#FF0000>,</font><font color=#808080>"A small fire"</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.10'></a>
+11:   <b><font color=#0000FF>public</font></b> <b><font color=#0000FF>static</font></b> <b><font color=#0000FF>final</font></b> Description DESC_FIRE2 <font color=#FF0000>=</font><a name='line.11'></a>
+12:     <b><font color=#0000FF>new</font></b> <b><font color=#000000>Describer</font></b><font color=#FF0000>(</font><font color=#808080>"fire"</font><font color=#FF0000>,</font><font color=#808080>"A hot fire"</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.12'></a>
+13:   <b><font color=#0000FF>public</font></b> <b><font color=#0000FF>static</font></b> <b><font color=#0000FF>final</font></b> Description DESC_FIRE3 <font color=#FF0000>=</font><a name='line.13'></a>
+14:     <b><font color=#0000FF>new</font></b> <b><font color=#000000>Describer</font></b><font color=#FF0000>(</font><font color=#808080>"blazing fire"</font><font color=#FF0000>,</font><font color=#808080>"A blazing fire"</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.14'></a>
+15:   <b><font color=#0000FF>public</font></b> <b><font color=#0000FF>static</font></b> <b><font color=#0000FF>final</font></b> Description DESC_FIRE4 <font color=#FF0000>=</font><a name='line.15'></a>
+16:     <b><font color=#0000FF>new</font></b> <b><font color=#000000>Describer</font></b><font color=#FF0000>(</font><font color=#808080>"roaring fire"</font><font color=#FF0000>,</font><font color=#808080>"A large roaring fire"</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.16'></a>
+17:   <b><font color=#0000FF>public</font></b> <b><font color=#0000FF>static</font></b> <b><font color=#0000FF>final</font></b> Description DESC_FIRE5 <font color=#FF0000>=</font><a name='line.17'></a>
+18:     <b><font color=#0000FF>new</font></b> <b><font color=#000000>Describer</font></b><font color=#FF0000>(</font><font color=#808080>"inferno"</font><font color=#FF0000>,</font><font color=#808080>"An inferno of hellish flames"</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.18'></a>
+19:     <a name='line.19'></a>
+20:   <b><font color=#0000FF>public</font></b> <b><font color=#000000>Fire</font></b><font color=#FF0000>(</font><font color=#0000FF>int</font> firestrength<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.20'></a>
+21:       strength<font color=#FF0000>=</font>firestrength<font color=#FF0000>;</font><a name='line.21'></a>
+22:     decay<font color=#FF0000>=</font><font color=#9A1900>2</font><font color=#FF0000>;</font><a name='line.22'></a>
+23:     <font color=#000000>}</font><a name='line.23'></a>
+24:   <a name='line.24'></a>
+25:   <b><font color=#0000FF>public</font></b> <b><font color=#000000>Fire</font></b><font color=#FF0000>(</font><font color=#0000FF>int</font> firestrength<font color=#FF0000>,</font> <font color=#0000FF>int</font> dec<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.25'></a>
+26:     strength<font color=#FF0000>=</font>firestrength<font color=#FF0000>;</font><a name='line.26'></a>
+27:     decay<font color=#FF0000>=</font>dec<font color=#FF0000>;</font><a name='line.27'></a>
+28:   <font color=#000000>}</font><a name='line.28'></a>
+29: <a name='line.29'></a>
+30:   <b><font color=#009900>// create fire at specified map location</font></b><a name='line.30'></a>
+31:   <b><font color=#009900>// add to existing fire if present</font></b><a name='line.31'></a>
+32:   <b><font color=#0000FF>public</font></b> <b><font color=#0000FF>static</font></b> <font color=#0000FF>void</font> <b><font color=#000000>createFire</font></b><font color=#FF0000>(</font>Map m<font color=#FF0000>,</font> <font color=#0000FF>int</font> tx<font color=#FF0000>,</font> <font color=#0000FF>int</font> ty<font color=#FF0000>,</font> <font color=#0000FF>int</font> s<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.32'></a>
+33:     <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>m<font color=#FF0000>=</font><font color=#FF0000>=</font><b><font color=#0000FF>null</font></b><font color=#FF0000>)</font> <b><font color=#0000FF>return</font></b><font color=#FF0000>;</font><a name='line.33'></a>
+34:     Fire f<font color=#FF0000>=</font><font color=#FF0000>(</font>Fire<font color=#FF0000>)</font>m<font color=#FF0000>.</font><b><font color=#000000>getObject</font></b><font color=#FF0000>(</font>tx<font color=#FF0000>,</font>ty<font color=#FF0000>,</font>Fire<font color=#FF0000>.</font><b><font color=#0000FF>class</font></b><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.34'></a>
+35:     <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>f<font color=#FF0000>=</font><font color=#FF0000>=</font><b><font color=#0000FF>null</font></b><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.35'></a>
+36:       m<font color=#FF0000>.</font><b><font color=#000000>addThing</font></b><font color=#FF0000>(</font><b><font color=#0000FF>new</font></b> <b><font color=#000000>Fire</font></b><font color=#FF0000>(</font>s<font color=#FF0000>)</font><font color=#FF0000>,</font>tx<font color=#FF0000>,</font>ty<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.36'></a>
+37:     <font color=#000000>}</font> <b><font color=#0000FF>else</font></b> <font color=#000000>{</font><a name='line.37'></a>
+38:       f<font color=#FF0000>.</font>strength<font color=#FF0000>+</font><font color=#FF0000>=</font>s<font color=#FF0000>;</font> <a name='line.38'></a>
+39:     <font color=#000000>}</font><a name='line.39'></a>
+40:   <font color=#000000>}</font><a name='line.40'></a>
+41:   <a name='line.41'></a>
+42:   <b><font color=#009900>// feared unless creature resists fire</font></b><a name='line.42'></a>
+43:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>boolean</font> <b><font color=#000000>isWarning</font></b><font color=#FF0000>(</font>Thing t<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.43'></a>
+44:     <font color=#0000FF>int</font> arm<font color=#FF0000>=</font>t<font color=#FF0000>.</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_ARMFIRE<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.44'></a>
+45:     <font color=#0000FF>int</font> d<font color=#FF0000>=</font><font color=#FF0000>(</font>strength<font color=#FF0000>*</font>strength<font color=#FF0000>)</font><font color=#FF0000>/</font><font color=#FF0000>(</font>arm<font color=#FF0000>+</font>strength<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.45'></a>
+46:     <b><font color=#0000FF>return</font></b> d <font color=#FF0000>&gt;</font><font color=#FF0000>=</font> RPG<font color=#FF0000>.</font><b><font color=#000000>power</font></b><font color=#FF0000>(</font>t<font color=#FF0000>.</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_RESISTFIRE<font color=#FF0000>)</font><font color=#FF0000>)</font><font color=#FF0000>;</font> <a name='line.46'></a>
+47:   <font color=#000000>}</font><a name='line.47'></a>
+48:   <a name='line.48'></a>
+49:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>void</font> <b><font color=#000000>fireDamage</font></b><font color=#FF0000>(</font>Thing t<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.49'></a>
+50:       <font color=#0000FF>int</font> dam<font color=#FF0000>=</font>t<font color=#FF0000>.</font><b><font color=#000000>damageAll</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font><b><font color=#000000>r</font></b><font color=#FF0000>(</font>strength<font color=#FF0000>+</font><font color=#9A1900>1</font><font color=#FF0000>)</font><font color=#FF0000>,</font>RPG<font color=#FF0000>.</font>DT_FIRE<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.50'></a>
+51:       <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>t<font color=#FF0000>=</font><font color=#FF0000>=</font>Game<font color=#FF0000>.</font>hero<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.51'></a>
+52:         <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>dam<font color=#FF0000>&gt;</font><font color=#9A1900>0</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.52'></a>
+53:             Game<font color=#FF0000>.</font><b><font color=#000000>message</font></b><font color=#FF0000>(</font><font color=#808080>"The fire burns you!"</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.53'></a>
+54:         <font color=#000000>}</font> <b><font color=#0000FF>else</font></b> <font color=#000000>{</font><a name='line.54'></a>
+55:             Game<font color=#FF0000>.</font><b><font color=#000000>message</font></b><font color=#FF0000>(</font><font color=#808080>"You are unharmed by the flames"</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.55'></a>
+56:         <font color=#000000>}</font><a name='line.56'></a>
+57:       <font color=#000000>}</font>    <a name='line.57'></a>
+58:     <font color=#000000>}</font><a name='line.58'></a>
+59:     <a name='line.59'></a>
+60:     <b><font color=#0000FF>public</font></b> <font color=#0000FF>int</font> <b><font color=#000000>damage</font></b><font color=#FF0000>(</font><font color=#0000FF>int</font> dam<font color=#FF0000>,</font> <font color=#0000FF>int</font> damtype<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.60'></a>
+61:       <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>damtype<font color=#FF0000>=</font><font color=#FF0000>=</font>RPG<font color=#FF0000>.</font>DT_ICE<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.61'></a>
+62:         strength<font color=#FF0000>=</font>strength<font color=#FF0000>-</font>dam<font color=#FF0000>;</font><a name='line.62'></a>
+63:         <b><font color=#0000FF>return</font></b> dam<font color=#FF0000>;</font><a name='line.63'></a>
+64:       <font color=#000000>}</font>    <a name='line.64'></a>
+65:       <b><font color=#0000FF>return</font></b> <font color=#9A1900>0</font><font color=#FF0000>;</font><a name='line.65'></a>
+66:     <font color=#000000>}</font><a name='line.66'></a>
+67:     <a name='line.67'></a>
+68:     <b><font color=#0000FF>public</font></b> Description <b><font color=#000000>getDescription</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.68'></a>
+69:     <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>strength<font color=#FF0000>&lt;</font><font color=#FF0000>=</font><font color=#9A1900>2</font><font color=#FF0000>)</font> <b><font color=#0000FF>return</font></b> DESC_FIRE1<font color=#FF0000>;</font><a name='line.69'></a>
+70:     <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>strength<font color=#FF0000>&lt;</font><font color=#FF0000>=</font><font color=#9A1900>5</font><font color=#FF0000>)</font> <b><font color=#0000FF>return</font></b> DESC_FIRE2<font color=#FF0000>;</font><a name='line.70'></a>
+71:     <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>strength<font color=#FF0000>&lt;</font><font color=#FF0000>=</font><font color=#9A1900>15</font><font color=#FF0000>)</font> <b><font color=#0000FF>return</font></b> DESC_FIRE3<font color=#FF0000>;</font><a name='line.71'></a>
+72:     <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>strength<font color=#FF0000>&lt;</font><font color=#FF0000>=</font><font color=#9A1900>40</font><font color=#FF0000>)</font> <b><font color=#0000FF>return</font></b> DESC_FIRE4<font color=#FF0000>;</font><a name='line.72'></a>
+73:     <b><font color=#0000FF>return</font></b> DESC_FIRE5<font color=#FF0000>;</font><a name='line.73'></a>
+74:   <font color=#000000>}</font><a name='line.74'></a>
+75:     <a name='line.75'></a>
+76:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>int</font> <b><font color=#000000>getZ</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font> <font color=#000000>{</font><b><font color=#0000FF>return</font></b> Z_OVERHEAD<font color=#FF0000>;</font><font color=#000000>}</font><a name='line.76'></a>
+77:     <a name='line.77'></a>
+78:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>void</font> <b><font color=#000000>action</font></b><font color=#FF0000>(</font><font color=#0000FF>int</font> time<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.78'></a>
+79:         <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>place <b><font color=#0000FF>instanceof</font></b> Map<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.79'></a>
+80:       Map m <font color=#FF0000>=</font> <font color=#FF0000>(</font>Map<font color=#FF0000>)</font> place<font color=#FF0000>;</font><a name='line.80'></a>
+81:       Thing<font color=#FF0000>[</font><font color=#FF0000>]</font> t<font color=#FF0000>=</font>m<font color=#FF0000>.</font><b><font color=#000000>getThings</font></b><font color=#FF0000>(</font>x<font color=#FF0000>,</font>y<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.81'></a>
+82:       <b><font color=#0000FF>for</font></b> <font color=#FF0000>(</font><font color=#0000FF>int</font> i<font color=#FF0000>=</font><font color=#9A1900>0</font><font color=#FF0000>;</font> i<font color=#FF0000>&lt;</font>t<font color=#FF0000>.</font>length<font color=#FF0000>;</font> i<font color=#FF0000>+</font><font color=#FF0000>+</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.82'></a>
+83:         <b><font color=#000000>fireDamage</font></b><font color=#FF0000>(</font>t<font color=#FF0000>[</font>i<font color=#FF0000>]</font><font color=#FF0000>)</font><font color=#FF0000>;</font>    <a name='line.83'></a>
+84:           <font color=#000000>}</font><a name='line.84'></a>
+85:     <font color=#000000>}</font> <a name='line.85'></a>
+86:     <font color=#0000FF>int</font> dec<font color=#FF0000>=</font>RPG<font color=#FF0000>.</font><b><font color=#000000>po</font></b><font color=#FF0000>(</font>time<font color=#FF0000>*</font>decay<font color=#FF0000>/</font><font color=#9A1900>1000.0</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.86'></a>
+87:     <b><font color=#0000FF>for</font></b> <font color=#FF0000>(</font><font color=#0000FF>int</font> i<font color=#FF0000>=</font><font color=#9A1900>0</font><font color=#FF0000>;</font> i<font color=#FF0000>&lt;</font>dec<font color=#FF0000>;</font> i<font color=#FF0000>+</font><font color=#FF0000>+</font><font color=#FF0000>)</font> strength<font color=#FF0000>=</font><font color=#FF0000>(</font><font color=#9A1900>3</font><font color=#FF0000>*</font>strength<font color=#FF0000>)</font><font color=#FF0000>/</font><font color=#9A1900>4</font><font color=#FF0000>;</font><a name='line.87'></a>
+88:     <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>strength<font color=#FF0000>&lt;</font><font color=#FF0000>=</font><font color=#9A1900>0</font><font color=#FF0000>)</font> <b><font color=#000000>remove</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>;</font>    <a name='line.88'></a>
+89:     <font color=#000000>}</font><a name='line.89'></a>
+90:     <a name='line.90'></a>
+91:     <b><font color=#0000FF>public</font></b> <font color=#0000FF>int</font> <b><font color=#000000>getImage</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font> <font color=#000000>{</font><b><font color=#0000FF>return</font></b> <font color=#9A1900>180</font><font color=#FF0000>+</font>RPG<font color=#FF0000>.</font><b><font color=#000000>r</font></b><font color=#FF0000>(</font><font color=#9A1900>4</font><font color=#FF0000>)</font><font color=#FF0000>;</font><font color=#000000>}</font><a name='line.91'></a>
+92: <font color=#000000>}</font></tt><a name='line.92'></a>
+</pre><a name='line.93'></a>
+</body><a name='line.94'></a>
+</html><a name='line.95'></a>

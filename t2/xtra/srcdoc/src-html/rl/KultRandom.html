@@ -1,0 +1,34 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="GNU source-highlight 1.4
+by Lorenzo Bettini, bettini@gnu.org
+http://w3.newnet.it/bettini
+http://www.gnu.org/software/src-highlite">
+<title>.\rl\KultRandom.java</title>
+</head>
+<body bgcolor="#FFFFFF" text="#000000" link="#0000EE" vlink="#551A8B" alink="#FF0000">
+<pre>
+<tt>
+01: <b><font color=#0000FF>package</font></b> rl<font color=#FF0000>;</font><a name='line.1'></a>
+02: <a name='line.2'></a>
+03: <b><font color=#0000FF>public</font></b> <b><font color=#0000FF>class</font></b> KultRandom <b><font color=#0000FF>extends</font></b> java<font color=#FF0000>.</font>util<font color=#FF0000>.</font>Random <font color=#000000>{</font><a name='line.3'></a>
+04:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>int</font> <b><font color=#000000>nextInt</font></b><font color=#FF0000>(</font><font color=#0000FF>int</font> n<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.4'></a>
+05:     <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>n<font color=#FF0000>&lt;</font><font color=#FF0000>=</font><font color=#9A1900>0</font><font color=#FF0000>)</font> <b><font color=#0000FF>return</font></b> <font color=#9A1900>0</font><font color=#FF0000>;</font><a name='line.5'></a>
+06:     <a name='line.6'></a>
+07:      <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font><font color=#FF0000>(</font>n <font color=#FF0000>&amp;</font> <font color=#FF0000>-</font>n<font color=#FF0000>)</font> <font color=#FF0000>=</font><font color=#FF0000>=</font> n<font color=#FF0000>)</font>  <b><font color=#009900>// i.e., n is a power of 2</font></b><a name='line.7'></a>
+08:          <b><font color=#0000FF>return</font></b> <font color=#FF0000>(</font><font color=#0000FF>int</font><font color=#FF0000>)</font><font color=#FF0000>(</font><font color=#FF0000>(</font>n <font color=#FF0000>*</font> <font color=#FF0000>(</font><font color=#0000FF>long</font><font color=#FF0000>)</font><b><font color=#000000>next</font></b><font color=#FF0000>(</font><font color=#9A1900>31</font><font color=#FF0000>)</font><font color=#FF0000>)</font> <font color=#FF0000>&gt;</font><font color=#FF0000>&gt;</font> <font color=#9A1900>31</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.8'></a>
+09: <a name='line.9'></a>
+10:      <font color=#0000FF>int</font> bits<font color=#FF0000>,</font> val<font color=#FF0000>;</font><a name='line.10'></a>
+11:      <b><font color=#009900>//do {</font></b><a name='line.11'></a>
+12:          bits <font color=#FF0000>=</font> <b><font color=#000000>next</font></b><font color=#FF0000>(</font><font color=#9A1900>31</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.12'></a>
+13:          val <font color=#FF0000>=</font> bits <font color=#FF0000>%</font> n<font color=#FF0000>;</font><a name='line.13'></a>
+14:      <b><font color=#009900>//} while(bits - val + (n-1) 0);</font></b><a name='line.14'></a>
+15:      <b><font color=#0000FF>return</font></b> val<font color=#FF0000>;</font><a name='line.15'></a>
+16:    <font color=#000000>}</font><a name='line.16'></a>
+17:  <font color=#000000>}</font></tt><a name='line.17'></a>
+</pre><a name='line.18'></a>
+</body><a name='line.19'></a>
+</html><a name='line.20'></a>

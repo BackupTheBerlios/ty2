@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="GNU source-highlight 1.4
+by Lorenzo Bettini, bettini@gnu.org
+http://w3.newnet.it/bettini
+http://www.gnu.org/software/src-highlite">
+<title>.\rl\Junk.java</title>
+</head>
+<body bgcolor="#FFFFFF" text="#000000" link="#0000EE" vlink="#551A8B" alink="#FF0000">
+<pre>
+<tt>
+01: <b><font color=#0000FF>package</font></b> rl<font color=#FF0000>;</font><a name='line.1'></a>
+02: <a name='line.2'></a>
+03: <b><font color=#0000FF>public</font></b> <b><font color=#0000FF>class</font></b> Junk <b><font color=#0000FF>extends</font></b> ItemType <font color=#000000>{</font><a name='line.3'></a>
+04:   <b><font color=#0000FF>private</font></b> <font color=#0000FF>int</font> image<font color=#FF0000>;</font><a name='line.4'></a>
+05:   <b><font color=#0000FF>private</font></b> <font color=#0000FF>int</font> weight<font color=#FF0000>;</font><a name='line.5'></a>
+06:   <b><font color=#0000FF>private</font></b> <font color=#0000FF>int</font> fragility<font color=#FF0000>;</font><a name='line.6'></a>
+07:   <b><font color=#0000FF>private</font></b> Description idesc<font color=#FF0000>;</font><a name='line.7'></a>
+08:   <b><font color=#0000FF>private</font></b> Description udesc<font color=#FF0000>;</font><a name='line.8'></a>
+09:   <a name='line.9'></a>
+10:   <b><font color=#0000FF>public</font></b> <b><font color=#0000FF>static</font></b> <b><font color=#0000FF>final</font></b> Description DESC_JUNK<font color=#FF0000>=</font><a name='line.10'></a>
+11:      <b><font color=#0000FF>new</font></b> <b><font color=#000000>Describer</font></b><font color=#FF0000>(</font><font color=#808080>"junk"</font><font color=#FF0000>,</font><font color=#808080>"pieces of junk"</font><font color=#FF0000>,</font><font color=#808080>"some old junk."</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.11'></a>
+12:   <a name='line.12'></a>
+13:   <b><font color=#0000FF>public</font></b> <b><font color=#0000FF>static</font></b> <b><font color=#0000FF>final</font></b> Junk STONE<font color=#FF0000>=</font><b><font color=#0000FF>new</font></b> <b><font color=#000000>Junk</font></b><font color=#FF0000>(</font><font color=#9A1900>102</font><font color=#FF0000>,</font><font color=#9A1900>50</font><font color=#FF0000>,</font><font color=#9A1900>3</font><font color=#FF0000>,</font>DESC_JUNK<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.13'></a>
+14:   <a name='line.14'></a>
+15:   <b><font color=#0000FF>public</font></b> <b><font color=#000000>Junk</font></b><font color=#FF0000>(</font><font color=#0000FF>int</font> i<font color=#FF0000>,</font> <font color=#0000FF>int</font> w<font color=#FF0000>,</font> <font color=#0000FF>int</font> f<font color=#FF0000>,</font> Description id<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.15'></a>
+16:     <b><font color=#0000FF>super</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.16'></a>
+17:     image <font color=#FF0000>=</font> i<font color=#FF0000>;</font>    <a name='line.17'></a>
+18:     weight <font color=#FF0000>=</font> w<font color=#FF0000>;</font><a name='line.18'></a>
+19:     idesc<font color=#FF0000>=</font>id<font color=#FF0000>;</font><a name='line.19'></a>
+20:     udesc<font color=#FF0000>=</font>id<font color=#FF0000>;</font><a name='line.20'></a>
+21:   <font color=#000000>}</font>    <a name='line.21'></a>
+22:   <a name='line.22'></a>
+23:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>int</font> <b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>Stack  s<font color=#FF0000>,</font> <font color=#0000FF>int</font> stat<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.23'></a>
+24:     <b><font color=#0000FF>switch</font></b> <font color=#FF0000>(</font>stat<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.24'></a>
+25:       <b><font color=#0000FF>case</font></b> RPG<font color=#FF0000>.</font>ST_ITEMFRAGILITY<font color=#FF0000>:</font> <b><font color=#0000FF>return</font></b> fragility<font color=#FF0000>;</font><a name='line.25'></a>
+26:       <b><font color=#0000FF>default</font></b><font color=#FF0000>:</font> <b><font color=#0000FF>return</font></b> <font color=#9A1900>0</font><font color=#FF0000>;</font><a name='line.26'></a>
+27:     <font color=#000000>}</font><a name='line.27'></a>
+28:   <font color=#000000>}</font><a name='line.28'></a>
+29: <a name='line.29'></a>
+30:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>int</font> <b><font color=#000000>getImage</font></b><font color=#FF0000>(</font>Stack s<font color=#FF0000>)</font> <font color=#000000>{</font><b><font color=#0000FF>return</font></b> image<font color=#FF0000>;</font><font color=#000000>}</font><a name='line.30'></a>
+31: <a name='line.31'></a>
+32:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>int</font> <b><font color=#000000>getWeight</font></b><font color=#FF0000>(</font>Stack s<font color=#FF0000>)</font> <font color=#000000>{</font><b><font color=#0000FF>return</font></b> weight<font color=#FF0000>;</font><font color=#000000>}</font><a name='line.32'></a>
+33:   <a name='line.33'></a>
+34:   <b><font color=#0000FF>public</font></b> Description <b><font color=#000000>getDescription</font></b><font color=#FF0000>(</font>Stack s<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.34'></a>
+35:     <b><font color=#0000FF>return</font></b> s<font color=#FF0000>.</font><b><font color=#000000>isIdentified</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>?</font>idesc<font color=#FF0000>:</font>udesc<font color=#FF0000>;</font><a name='line.35'></a>
+36:   <font color=#000000>}</font><a name='line.36'></a>
+37: <font color=#000000>}</font></tt><a name='line.37'></a>
+</pre><a name='line.38'></a>
+</body><a name='line.39'></a>
+</html><a name='line.40'></a>

@@ -1,0 +1,23 @@
+@echo Tyrant2 build script
+@echo by tdemuyt, may 2002
+@echo Building tyrant2...
+
+@echo Compiling class files...
+@call xtra/bat/make-tyrant2
+@echo Creation of jar file... 
+@call xtra/bat/make-tyrant2-jar
+@echo Clean up...
+@del *.class /s >log.del
+@del log.del
+
+@echo Making source jar...
+@call xtra/bat/make-tyrant2-src-jar
+@echo Making source zip...
+@call xtra/bat/make-tyrant2-src-zip
+@echo Making resource zip...
+@call xtra/bat/make-tyrant2-zip
+@REM @callxtra/bat/ make-web-dist
+
+@echo Copying zip files to /xtra/zip/
+@move /Y tyrant.zip ./xtra/zip/tyrant.zip
+@move /Y tyrantsource.zip ./xtra/zip/tyrantsource.zip

@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="GNU source-highlight 1.4
+by Lorenzo Bettini, bettini@gnu.org
+http://w3.newnet.it/bettini
+http://www.gnu.org/software/src-highlite">
+<title>.\rl\QuestApplication.java</title>
+</head>
+<body bgcolor="#FFFFFF" text="#000000" link="#0000EE" vlink="#551A8B" alink="#FF0000">
+<pre>
+<tt>
+01: <b><font color=#009900>// This is the application version of tyrant</font></b><a name='line.1'></a>
+02: <b><font color=#009900>// runs in special 'debug' mode by default</font></b><a name='line.2'></a>
+03: <a name='line.3'></a>
+04: <b><font color=#0000FF>package</font></b> rl<font color=#FF0000>;</font><a name='line.4'></a>
+05: <a name='line.5'></a>
+06: <b><font color=#000080>import</font></b> java<font color=#FF0000>.</font>applet<font color=#FF0000>.</font><font color=#FF0000>*</font><font color=#FF0000>;</font><a name='line.6'></a>
+07: <b><font color=#000080>import</font></b> java<font color=#FF0000>.</font>awt<font color=#FF0000>.</font><font color=#FF0000>*</font><font color=#FF0000>;</font><a name='line.7'></a>
+08: <b><font color=#000080>import</font></b> java<font color=#FF0000>.</font>awt<font color=#FF0000>.</font>event<font color=#FF0000>.</font><font color=#FF0000>*</font><font color=#FF0000>;</font><a name='line.8'></a>
+09: <a name='line.9'></a>
+10: <b><font color=#0000FF>public</font></b> <b><font color=#0000FF>class</font></b> QuestApplication <font color=#000000>{</font>    <a name='line.10'></a>
+11:     <b><font color=#0000FF>public</font></b> <b><font color=#0000FF>static</font></b> <font color=#0000FF>void</font> <b><font color=#000000>main</font></b><font color=#FF0000>(</font>String args<font color=#FF0000>[</font><font color=#FF0000>]</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.11'></a>
+12:       Frame f <font color=#FF0000>=</font> <b><font color=#0000FF>new</font></b> <b><font color=#000000>Frame</font></b><font color=#FF0000>(</font><font color=#808080>"Tyrant - The Adventure"</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.12'></a>
+13:       f<font color=#FF0000>.</font><b><font color=#000000>addWindowListener</font></b><font color=#FF0000>(</font><b><font color=#0000FF>new</font></b> <b><font color=#000000>WindowAdapter</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.13'></a>
+14:           <b><font color=#0000FF>public</font></b> <font color=#0000FF>void</font> <b><font color=#000000>windowClosing</font></b><font color=#FF0000>(</font>WindowEvent e<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.14'></a>
+15:           System<font color=#FF0000>.</font><b><font color=#000000>exit</font></b><font color=#FF0000>(</font><font color=#9A1900>0</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.15'></a>
+16:         <font color=#000000>}</font><a name='line.16'></a>
+17:     <font color=#000000>}</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.17'></a>
+18:         <a name='line.18'></a>
+19:     f<font color=#FF0000>.</font><b><font color=#000000>setLayout</font></b><font color=#FF0000>(</font><b><font color=#0000FF>new</font></b> <b><font color=#000000>BorderLayout</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.19'></a>
+20:     QuestApp q<font color=#FF0000>=</font><b><font color=#0000FF>new</font></b> <b><font color=#000000>QuestApp</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.20'></a>
+21:     q<font color=#FF0000>.</font>isapplet<font color=#FF0000>=</font>false<font color=#FF0000>;</font><a name='line.21'></a>
+22:     <a name='line.22'></a>
+23:     <b><font color=#009900>// do we have a script to execute?</font></b><a name='line.23'></a>
+24:     <b><font color=#009900>// activate debug mode if we do....</font></b><a name='line.24'></a>
+25:     java<font color=#FF0000>.</font>io<font color=#FF0000>.</font>File script<font color=#FF0000>=</font><b><font color=#0000FF>new</font></b> java<font color=#FF0000>.</font>io<font color=#FF0000>.</font><b><font color=#000000>File</font></b><font color=#FF0000>(</font><font color=#808080>"mikeradebug"</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.25'></a>
+26:     <a name='line.26'></a>
+27:     <b><font color=#009900>// old method to activate debug cheat</font></b><a name='line.27'></a>
+28:     <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>script<font color=#FF0000>.</font><b><font color=#000000>exists</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>)</font> QuestApp<font color=#FF0000>.</font>debug<font color=#FF0000>=</font>true<font color=#FF0000>;</font><a name='line.28'></a>
+29:     <a name='line.29'></a>
+30:     <a name='line.30'></a>
+31:         f<font color=#FF0000>.</font><b><font color=#000000>add</font></b><font color=#FF0000>(</font>q<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.31'></a>
+32:         q<font color=#FF0000>.</font><b><font color=#000000>init</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.32'></a>
+33:         f<font color=#FF0000>.</font><b><font color=#000000>setSize</font></b><font color=#FF0000>(</font><font color=#9A1900>640</font><font color=#FF0000>+</font><font color=#9A1900>10</font><font color=#FF0000>,</font><font color=#9A1900>480</font><font color=#FF0000>+</font><font color=#9A1900>50</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.33'></a>
+34:         f<font color=#FF0000>.</font><b><font color=#000000>show</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>;</font>    <a name='line.34'></a>
+35:     <a name='line.35'></a>
+36:     <font color=#000000>}</font>    <a name='line.36'></a>
+37: <a name='line.37'></a>
+38: <font color=#000000>}</font></tt><a name='line.38'></a>
+</pre><a name='line.39'></a>
+</body><a name='line.40'></a>
+</html><a name='line.41'></a>

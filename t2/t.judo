@@ -1,0 +1,24 @@
+list '*.html' in 'xtra/srcdoc/src-html/rl';
+for $x in $$fs_result
+{
+  . $x;
+  $f = openTextFile($x);
+  $temp = openTextFile('temp','w');
+  $go = false;
+  for $lineNum=1; ($line=$f.readLine()) != eof; ++$lineNum
+  {
+    if(!$go)
+    {
+      $go = ( $line.left(1).matches("\\d") );
+      if($go) { $lineNum = 1; }
+    }
+    if($go)
+    { . <$temp> $line , "<a name='line." , $lineNum , "'></a>"; }
+    else
+    { . <$temp> $line; }
+  }
+  $f.close();
+  $temp.close();
+  remove $x;
+  move 'temp' to $x;
+}

@@ -1,0 +1,751 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="GNU source-highlight 1.4
+by Lorenzo Bettini, bettini@gnu.org
+http://w3.newnet.it/bettini
+http://www.gnu.org/software/src-highlite">
+<title>.\rl\Being.java</title>
+</head>
+<body bgcolor="#FFFFFF" text="#000000" link="#0000EE" vlink="#551A8B" alink="#FF0000">
+<pre>
+<tt>
+001: <b><font color=#0000FF>package</font></b> rl<font color=#FF0000>;</font><a name='line.1'></a>
+002: <a name='line.2'></a>
+003: <b><font color=#000080>import</font></b> java<font color=#FF0000>.</font>awt<font color=#FF0000>.</font><font color=#FF0000>*</font><font color=#FF0000>;</font><a name='line.3'></a>
+004: <a name='line.4'></a>
+005: <b><font color=#0000FF>public</font></b> <b><font color=#0000FF>class</font></b> Being <b><font color=#0000FF>extends</font></b> Mobile <b><font color=#0000FF>implements</font></b> ThingOwner<font color=#FF0000>,</font> Talkable  <font color=#000000>{</font><a name='line.5'></a>
+006:     <b><font color=#0000FF>public</font></b> <font color=#0000FF>int</font> image<font color=#FF0000>;</font><a name='line.6'></a>
+007:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>int</font> seed<font color=#FF0000>;</font><a name='line.7'></a>
+008:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>int</font> hps<font color=#FF0000>;</font><a name='line.8'></a>
+009:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>int</font> mps<font color=#FF0000>;</font><a name='line.9'></a>
+010:   <a name='line.10'></a>
+011:   <b><font color=#0000FF>public</font></b> Inventory inv<font color=#FF0000>=</font><b><font color=#0000FF>new</font></b> <b><font color=#000000>Inventory</font></b><font color=#FF0000>(</font><b><font color=#0000FF>this</font></b><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.11'></a>
+012:   <b><font color=#0000FF>public</font></b> Stats stats<font color=#FF0000>;</font><a name='line.12'></a>
+013:   <b><font color=#0000FF>public</font></b> ArtList arts<font color=#FF0000>=</font><b><font color=#0000FF>new</font></b> <b><font color=#000000>ArtList</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.13'></a>
+014:   <b><font color=#0000FF>public</font></b> Talkable personality<font color=#FF0000>=</font><b><font color=#0000FF>null</font></b><font color=#FF0000>;</font><a name='line.14'></a>
+015:   <b><font color=#0000FF>public</font></b> Name name<font color=#FF0000>=</font><b><font color=#0000FF>null</font></b><font color=#FF0000>;</font><a name='line.15'></a>
+016:   <a name='line.16'></a>
+017:   <a name='line.17'></a>
+018:   <b><font color=#0000FF>public</font></b> <b><font color=#000000>Being</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.18'></a>
+019:     <b><font color=#0000FF>super</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.19'></a>
+020:     seed<font color=#FF0000>=</font>RPG<font color=#FF0000>.</font><b><font color=#000000>r</font></b><font color=#FF0000>(</font><font color=#9A1900>1000000000</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.20'></a>
+021:       <a name='line.21'></a>
+022:     <b><font color=#009900>// random aps to stagger movement points</font></b><a name='line.22'></a>
+023:     aps<font color=#FF0000>=</font>RPG<font color=#FF0000>.</font><b><font color=#000000>r</font></b><font color=#FF0000>(</font><font color=#9A1900>100</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.23'></a>
+024:   <font color=#000000>}</font><a name='line.24'></a>
+025:   <a name='line.25'></a>
+026:   <b><font color=#009900>// for Talkable interface</font></b><a name='line.26'></a>
+027:   <b><font color=#009900>// t == this </font></b><a name='line.27'></a>
+028:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>void</font> <b><font color=#000000>talk</font></b><font color=#FF0000>(</font>Thing t<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.28'></a>
+029:     Talkable p<font color=#FF0000>=</font><b><font color=#000000>getPersonality</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.29'></a>
+030:     <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>p<font color=#FF0000>!</font><font color=#FF0000>=</font><b><font color=#0000FF>null</font></b><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.30'></a>
+031:       p<font color=#FF0000>.</font><b><font color=#000000>talk</font></b><font color=#FF0000>(</font>t<font color=#FF0000>)</font><font color=#FF0000>;</font> <a name='line.31'></a>
+032:     <font color=#000000>}</font> <b><font color=#0000FF>else</font></b> <font color=#000000>{</font><a name='line.32'></a>
+033:       Game<font color=#FF0000>.</font><b><font color=#000000>message</font></b><font color=#FF0000>(</font><font color=#808080>"You get no response"</font><font color=#FF0000>)</font><font color=#FF0000>;</font> <a name='line.33'></a>
+034:     <font color=#000000>}</font> <a name='line.34'></a>
+035:   <font color=#000000>}</font><a name='line.35'></a>
+036:   <a name='line.36'></a>
+037:   <b><font color=#009900>// gain multiple levels to a given target</font></b><a name='line.37'></a>
+038:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>void</font> <b><font color=#000000>gainLevel</font></b><font color=#FF0000>(</font><font color=#0000FF>int</font> targetlevel<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.38'></a>
+039:     <b><font color=#0000FF>while</font></b> <font color=#FF0000>(</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_LEVEL<font color=#FF0000>)</font><font color=#FF0000>&lt;</font>targetlevel<font color=#FF0000>)</font> <b><font color=#000000>gainLevel</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>;</font> <a name='line.39'></a>
+040:   <font color=#000000>}</font><a name='line.40'></a>
+041:   <a name='line.41'></a>
+042:   <b><font color=#009900>// gain a level</font></b><a name='line.42'></a>
+043:   <b><font color=#009900>// enhance stats / skills as needed</font></b><a name='line.43'></a>
+044:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>void</font> <b><font color=#000000>gainLevel</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.44'></a>
+045:     <font color=#0000FF>int</font> oldmpsmax<font color=#FF0000>=</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_MPSMAX<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.45'></a>
+046:     <font color=#0000FF>int</font> oldhpsmax<font color=#FF0000>=</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_HPSMAX<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.46'></a>
+047: <a name='line.47'></a>
+048:     <font color=#0000FF>int</font> level<font color=#FF0000>=</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_LEVEL<font color=#FF0000>)</font><font color=#FF0000>+</font><font color=#9A1900>1</font><font color=#FF0000>;</font><a name='line.48'></a>
+049:     stats<font color=#FF0000>.</font><b><font color=#000000>setStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_LEVEL<font color=#FF0000>,</font>level<font color=#FF0000>)</font><font color=#FF0000>;</font> <a name='line.49'></a>
+050:     stats<font color=#FF0000>.</font><b><font color=#000000>setStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_SKILLPOINTS<font color=#FF0000>,</font>stats<font color=#FF0000>.</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_SKILLPOINTS<font color=#FF0000>)</font><font color=#FF0000>+</font><font color=#9A1900>60</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.50'></a>
+051:     <a name='line.51'></a>
+052:     <a name='line.52'></a>
+053:     <b><font color=#0000FF>for</font></b> <font color=#FF0000>(</font><font color=#0000FF>int</font> i<font color=#FF0000>=</font><font color=#9A1900>1</font><font color=#FF0000>;</font> i<font color=#FF0000>&lt;</font><font color=#FF0000>=</font><font color=#9A1900>8</font><font color=#FF0000>;</font> i<font color=#FF0000>+</font><font color=#FF0000>+</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.53'></a>
+054:       <font color=#0000FF>int</font> stat<font color=#FF0000>=</font><b><font color=#000000>getBaseStat</font></b><font color=#FF0000>(</font>i<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.54'></a>
+055:       stat<font color=#FF0000>+</font><font color=#FF0000>=</font>RPG<font color=#FF0000>.</font><b><font color=#000000>po</font></b><font color=#FF0000>(</font>stat<font color=#FF0000>,</font><font color=#9A1900>10</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.55'></a>
+056:       stats<font color=#FF0000>.</font><b><font color=#000000>setStat</font></b><font color=#FF0000>(</font>i<font color=#FF0000>,</font>stat<font color=#FF0000>)</font><font color=#FF0000>;</font>   <a name='line.56'></a>
+057:     <font color=#000000>}</font><a name='line.57'></a>
+058:     <a name='line.58'></a>
+059:     hps<font color=#FF0000>=</font><font color=#FF0000>(</font>hps<font color=#FF0000>*</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_HPSMAX<font color=#FF0000>)</font><font color=#FF0000>)</font><font color=#FF0000>/</font>oldhpsmax<font color=#FF0000>;</font><a name='line.59'></a>
+060:     mps<font color=#FF0000>=</font><font color=#FF0000>(</font>hps<font color=#FF0000>*</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_MPSMAX<font color=#FF0000>)</font><font color=#FF0000>)</font><font color=#FF0000>/</font>oldmpsmax<font color=#FF0000>;</font><a name='line.60'></a>
+061:     <a name='line.61'></a>
+062:     <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font><b><font color=#0000FF>this</font></b><font color=#FF0000>=</font><font color=#FF0000>=</font>Game<font color=#FF0000>.</font>hero<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.62'></a>
+063:       Game<font color=#FF0000>.</font><b><font color=#000000>message</font></b><font color=#FF0000>(</font><font color=#808080>"You have achieved level "</font><font color=#FF0000>+</font>level<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.63'></a>
+064:     <font color=#000000>}</font> <b><font color=#0000FF>else</font></b> <font color=#000000>{</font><a name='line.64'></a>
+065:       <b><font color=#009900>// add skills automatically for creatures/NPCs</font></b><a name='line.65'></a>
+066:       <b><font color=#000000>autoLearnSkills</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>;</font> <a name='line.66'></a>
+067:     <font color=#000000>}</font><a name='line.67'></a>
+068:   <font color=#000000>}</font><a name='line.68'></a>
+069:   <a name='line.69'></a>
+070:   <b><font color=#0000FF>public</font></b> Talkable <b><font color=#000000>getPersonality</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.70'></a>
+071:     <b><font color=#0000FF>return</font></b> personality<font color=#FF0000>;</font><a name='line.71'></a>
+072:   <font color=#000000>}</font> <a name='line.72'></a>
+073:   <a name='line.73'></a>
+074:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>void</font> <b><font color=#000000>setPersonality</font></b><font color=#FF0000>(</font>Talkable t<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.74'></a>
+075:     personality<font color=#FF0000>=</font>t<font color=#FF0000>;</font><a name='line.75'></a>
+076:   <font color=#000000>}</font><a name='line.76'></a>
+077:   <a name='line.77'></a>
+078:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>int</font> <b><font color=#000000>getLevel</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.78'></a>
+079:     <b><font color=#0000FF>return</font></b> <b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_LEVEL<font color=#FF0000>)</font><font color=#FF0000>;</font> <a name='line.79'></a>
+080:   <font color=#000000>}</font><a name='line.80'></a>
+081:   <a name='line.81'></a>
+082:   <b><font color=#0000FF>public</font></b> Object <b><font color=#000000>clone</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.82'></a>
+083:     Being b<font color=#FF0000>=</font><font color=#FF0000>(</font>Being<font color=#FF0000>)</font><b><font color=#0000FF>super</font></b><font color=#FF0000>.</font><b><font color=#000000>clone</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.83'></a>
+084:     <a name='line.84'></a>
+085:     <b><font color=#009900>// build inventory clone with b as owner</font></b><a name='line.85'></a>
+086:     b<font color=#FF0000>.</font>inv<font color=#FF0000>=</font>b<font color=#FF0000>.</font>inv<font color=#FF0000>.</font><b><font color=#000000>buildcopy</font></b><font color=#FF0000>(</font>b<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.86'></a>
+087:     <a name='line.87'></a>
+088:     <b><font color=#009900>// deep clone stats and arts</font></b><a name='line.88'></a>
+089:     b<font color=#FF0000>.</font>stats<font color=#FF0000>=</font><font color=#FF0000>(</font>Stats<font color=#FF0000>)</font>b<font color=#FF0000>.</font>stats<font color=#FF0000>.</font><b><font color=#000000>clone</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>;</font> <a name='line.89'></a>
+090:     b<font color=#FF0000>.</font>arts<font color=#FF0000>=</font><font color=#FF0000>(</font>ArtList<font color=#FF0000>)</font>b<font color=#FF0000>.</font>arts<font color=#FF0000>.</font><b><font color=#000000>clone</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.90'></a>
+091:     <a name='line.91'></a>
+092:     <b><font color=#0000FF>return</font></b> b<font color=#FF0000>;</font> <a name='line.92'></a>
+093:   <font color=#000000>}</font>  <a name='line.93'></a>
+094:     <a name='line.94'></a>
+095:     <b><font color=#0000FF>public</font></b> <font color=#0000FF>void</font> <b><font color=#000000>action</font></b><font color=#FF0000>(</font><font color=#0000FF>int</font> t<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.95'></a>
+096:     <b><font color=#009900>// check if dead</font></b><a name='line.96'></a>
+097:     <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>hps<font color=#FF0000>&lt;</font><font color=#9A1900>0</font><font color=#FF0000>)</font> <b><font color=#000000>die</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.97'></a>
+098:     <a name='line.98'></a>
+099:     Hero h<font color=#FF0000>=</font>Game<font color=#FF0000>.</font>hero<font color=#FF0000>;</font><a name='line.99'></a>
+100:     <font color=#0000FF>boolean</font> ishero<font color=#FF0000>=</font><font color=#FF0000>(</font><b><font color=#0000FF>this</font></b><font color=#FF0000>=</font><font color=#FF0000>=</font>h<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.100'></a>
+101:     <a name='line.101'></a>
+102:     <font color=#0000FF>int</font> hunger<font color=#FF0000>=</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_HUNGER<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.102'></a>
+103:     <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>hunger<font color=#FF0000>&lt;</font>Hero<font color=#FF0000>.</font>HUNGERLEVEL<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.103'></a>
+104:       <b><font color=#009900>// recharge magic points</font></b><a name='line.104'></a>
+105:       <font color=#0000FF>int</font> recharge<font color=#FF0000>=</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_RECHARGE<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.105'></a>
+106:       <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>ishero<font color=#FF0000>&amp;</font><font color=#FF0000>&amp;</font><font color=#FF0000>(</font><font color=#FF0000>!</font>h<font color=#FF0000>.</font>recharging<font color=#FF0000>)</font><font color=#FF0000>)</font> recharge<font color=#FF0000>=</font><font color=#9A1900>0</font><font color=#FF0000>;</font><a name='line.106'></a>
+107:       <a name='line.107'></a>
+108:       <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>recharge<font color=#FF0000>&gt;</font><font color=#9A1900>0</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.108'></a>
+109:         <font color=#0000FF>int</font> mpsmax<font color=#FF0000>=</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_MPSMAX<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.109'></a>
+110:         mps<font color=#FF0000>=</font>RPG<font color=#FF0000>.</font><b><font color=#000000>middle</font></b><font color=#FF0000>(</font>mps<font color=#FF0000>,</font>mps<font color=#FF0000>+</font>RPG<font color=#FF0000>.</font><b><font color=#000000>po</font></b><font color=#FF0000>(</font><font color=#FF0000>(</font><font color=#FF0000>(</font><font color=#0000FF>float</font><font color=#FF0000>)</font>t<font color=#FF0000>*</font>recharge<font color=#FF0000>*</font>mpsmax<font color=#FF0000>)</font><font color=#FF0000>/</font><font color=#9A1900>100000</font><font color=#FF0000>)</font><font color=#FF0000>,</font>mpsmax<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.110'></a>
+111:       <font color=#000000>}</font><a name='line.111'></a>
+112:     <a name='line.112'></a>
+113:       <b><font color=#009900>// regenerate hit points</font></b><a name='line.113'></a>
+114:       <font color=#0000FF>int</font> regenerate<font color=#FF0000>=</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_REGENERATE<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.114'></a>
+115:       <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>ishero<font color=#FF0000>&amp;</font><font color=#FF0000>&amp;</font><font color=#FF0000>(</font><font color=#FF0000>!</font>h<font color=#FF0000>.</font>recharging<font color=#FF0000>)</font><font color=#FF0000>)</font> regenerate<font color=#FF0000>=</font><font color=#9A1900>0</font><font color=#FF0000>;</font><a name='line.115'></a>
+116: <a name='line.116'></a>
+117:       <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>regenerate<font color=#FF0000>&gt;</font><font color=#9A1900>0</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.117'></a>
+118:         <font color=#0000FF>int</font> hpsmax<font color=#FF0000>=</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_HPSMAX<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.118'></a>
+119:         hps<font color=#FF0000>=</font>RPG<font color=#FF0000>.</font><b><font color=#000000>middle</font></b><font color=#FF0000>(</font>hps<font color=#FF0000>,</font>hps<font color=#FF0000>+</font>RPG<font color=#FF0000>.</font><b><font color=#000000>po</font></b><font color=#FF0000>(</font><font color=#FF0000>(</font><font color=#FF0000>(</font><font color=#0000FF>float</font><font color=#FF0000>)</font>t<font color=#FF0000>*</font>regenerate<font color=#FF0000>*</font>hpsmax<font color=#FF0000>)</font><font color=#FF0000>/</font><font color=#9A1900>100000</font><font color=#FF0000>)</font><font color=#FF0000>,</font>hpsmax<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.119'></a>
+120:       <font color=#000000>}</font><a name='line.120'></a>
+121:     <font color=#000000>}</font><a name='line.121'></a>
+122: <a name='line.122'></a>
+123:     <b><font color=#009900>// map effects</font></b><a name='line.123'></a>
+124:     Map map<font color=#FF0000>=</font><b><font color=#000000>getMap</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.124'></a>
+125:     <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>map<font color=#FF0000>!</font><font color=#FF0000>=</font><b><font color=#0000FF>null</font></b><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.125'></a>
+126:       <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>map<font color=#FF0000>.</font><b><font color=#000000>isAngry</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>&amp;</font><font color=#FF0000>&amp;</font><font color=#FF0000>(</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_STATE<font color=#FF0000>)</font><font color=#FF0000>=</font><font color=#FF0000>=</font>AI<font color=#FF0000>.</font>STATE_INHABITANT<font color=#FF0000>)</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.126'></a>
+127:         <b><font color=#000000>setStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_STATE<font color=#FF0000>,</font>AI<font color=#FF0000>.</font>STATE_HOSTILE<font color=#FF0000>)</font><font color=#FF0000>;</font> <a name='line.127'></a>
+128:       <font color=#000000>}</font> <a name='line.128'></a>
+129:     <font color=#000000>}</font><a name='line.129'></a>
+130:     <a name='line.130'></a>
+131:     <b><font color=#0000FF>super</font></b><font color=#FF0000>.</font><b><font color=#000000>action</font></b><font color=#FF0000>(</font>t<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.131'></a>
+132:     <a name='line.132'></a>
+133:     <b><font color=#009900>// action for inventory</font></b><a name='line.133'></a>
+134:     inv<font color=#FF0000>.</font><b><font color=#000000>action</font></b><font color=#FF0000>(</font>t<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.134'></a>
+135:     <font color=#000000>}</font><a name='line.135'></a>
+136: <a name='line.136'></a>
+137:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>void</font> <b><font color=#000000>setStat</font></b><font color=#FF0000>(</font><font color=#0000FF>int</font> s<font color=#FF0000>,</font> <font color=#0000FF>int</font> v<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.137'></a>
+138:     stats<font color=#FF0000>.</font><b><font color=#000000>setStat</font></b><font color=#FF0000>(</font>s<font color=#FF0000>,</font>v<font color=#FF0000>)</font><font color=#FF0000>;</font>    <a name='line.138'></a>
+139:   <font color=#000000>}</font><a name='line.139'></a>
+140: <a name='line.140'></a>
+141:     <b><font color=#009900>// return raw attribute</font></b><a name='line.141'></a>
+142:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>int</font> <b><font color=#000000>getBaseStat</font></b><font color=#FF0000>(</font><font color=#0000FF>int</font> s<font color=#FF0000>)</font> <font color=#000000>{</font><b><font color=#0000FF>return</font></b> stats<font color=#FF0000>.</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>s<font color=#FF0000>)</font><font color=#FF0000>;</font><font color=#000000>}</font><a name='line.142'></a>
+143: <a name='line.143'></a>
+144:   <b><font color=#009900>// return attribute fully modified</font></b><a name='line.144'></a>
+145:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>int</font> <b><font color=#000000>getStat</font></b><font color=#FF0000>(</font><font color=#0000FF>int</font> s<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.145'></a>
+146:     <b><font color=#0000FF>switch</font></b> <font color=#FF0000>(</font>s<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.146'></a>
+147:         <b><font color=#0000FF>case</font></b> RPG<font color=#FF0000>.</font>ST_HPS<font color=#FF0000>:</font><a name='line.147'></a>
+148:             <b><font color=#0000FF>return</font></b> hps<font color=#FF0000>;</font><a name='line.148'></a>
+149:         <b><font color=#0000FF>case</font></b> RPG<font color=#FF0000>.</font>ST_MPS<font color=#FF0000>:</font><a name='line.149'></a>
+150:             <b><font color=#0000FF>return</font></b> mps<font color=#FF0000>;</font><a name='line.150'></a>
+151:         <b><font color=#0000FF>case</font></b> RPG<font color=#FF0000>.</font>ST_APS<font color=#FF0000>:</font><a name='line.151'></a>
+152:             <b><font color=#0000FF>return</font></b> aps<font color=#FF0000>;</font><a name='line.152'></a>
+153:         <a name='line.153'></a>
+154:         <b><font color=#0000FF>case</font></b> RPG<font color=#FF0000>.</font>ST_HPSMAX<font color=#FF0000>:</font><a name='line.154'></a>
+155:             <b><font color=#0000FF>return</font></b> <font color=#FF0000>(</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_TG<font color=#FF0000>)</font><font color=#FF0000>*</font><font color=#FF0000>(</font><font color=#9A1900>5</font><font color=#FF0000>+</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_LEVEL<font color=#FF0000>)</font><font color=#FF0000>)</font><font color=#FF0000>)</font><font color=#FF0000>/</font><font color=#9A1900>5</font><font color=#FF0000>+</font><b><font color=#000000>getModifiers</font></b><font color=#FF0000>(</font>s<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.155'></a>
+156:         <b><font color=#0000FF>case</font></b> RPG<font color=#FF0000>.</font>ST_MPSMAX<font color=#FF0000>:</font><a name='line.156'></a>
+157:             <b><font color=#0000FF>return</font></b> <font color=#FF0000>(</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_WP<font color=#FF0000>)</font><font color=#FF0000>*</font><font color=#FF0000>(</font><font color=#9A1900>5</font><font color=#FF0000>+</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_LEVEL<font color=#FF0000>)</font><font color=#FF0000>)</font><font color=#FF0000>)</font><font color=#FF0000>/</font><font color=#9A1900>5</font><font color=#FF0000>+</font><b><font color=#000000>getModifiers</font></b><font color=#FF0000>(</font>s<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.157'></a>
+158:         <a name='line.158'></a>
+159:         <a name='line.159'></a>
+160:         <b><font color=#0000FF>case</font></b> RPG<font color=#FF0000>.</font>ST_AST<font color=#FF0000>:</font><a name='line.160'></a>
+161:             <b><font color=#0000FF>return</font></b> <b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_ST<font color=#FF0000>)</font><font color=#FF0000>+</font><b><font color=#000000>getModifiers</font></b><font color=#FF0000>(</font>s<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.161'></a>
+162:         <b><font color=#0000FF>case</font></b> RPG<font color=#FF0000>.</font>ST_ASK<font color=#FF0000>:</font><a name='line.162'></a>
+163:             <b><font color=#0000FF>return</font></b> <b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_SK<font color=#FF0000>)</font><font color=#FF0000>+</font><b><font color=#000000>getModifiers</font></b><font color=#FF0000>(</font>s<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.163'></a>
+164:       <b><font color=#0000FF>case</font></b> RPG<font color=#FF0000>.</font>ST_DSK<font color=#FF0000>:</font> <font color=#000000>{</font><a name='line.164'></a>
+165:         <b><font color=#009900>// DSK = weapon dsk + dodge ability</font></b><a name='line.165'></a>
+166:         <font color=#0000FF>int</font> def<font color=#FF0000>=</font><font color=#FF0000>(</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_SK<font color=#FF0000>)</font><font color=#FF0000>*</font><b><font color=#000000>getModifiers</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_DSKMULTIPLIER<font color=#FF0000>)</font><font color=#FF0000>)</font><font color=#FF0000>/</font><font color=#9A1900>100</font><font color=#FF0000>+</font><b><font color=#000000>getModifiers</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_DSKBONUS<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.166'></a>
+167:         def<font color=#FF0000>+</font><font color=#FF0000>=</font><font color=#FF0000>(</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_AG<font color=#FF0000>)</font><font color=#FF0000>*</font><font color=#FF0000>(</font><font color=#9A1900>100</font><font color=#FF0000>+</font><b><font color=#000000>getModifiers</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_DODGEMULTIPLIER<font color=#FF0000>)</font><font color=#FF0000>)</font><font color=#FF0000>)</font><font color=#FF0000>/</font><font color=#9A1900>100</font><font color=#FF0000>;</font><a name='line.167'></a>
+168:         <b><font color=#0000FF>return</font></b> def<font color=#FF0000>+</font><b><font color=#000000>getModifiers</font></b><font color=#FF0000>(</font>s<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.168'></a>
+169:       <font color=#000000>}</font> <a name='line.169'></a>
+170:        <a name='line.170'></a>
+171:         <b><font color=#009900>// combat abilities</font></b><a name='line.171'></a>
+172:         <b><font color=#009900>//ase RPG.ST_ATTACK:</font></b><a name='line.172'></a>
+173:       <b><font color=#009900>//return getBaseStat(RPG.ST_ATTACK)+getStat(RPG.ST_SK)+inv.getModifier(s);</font></b><a name='line.173'></a>
+174:         <b><font color=#009900>//case RPG.ST_DEFEND:</font></b><a name='line.174'></a>
+175:         <b><font color=#009900>//    return getBaseStat(RPG.ST_DEFEND)+getStat(RPG.ST_SK)+inv.getModifier(s);</font></b><a name='line.175'></a>
+176:         <b><font color=#009900>//case RPG.ST_DODGE:</font></b><a name='line.176'></a>
+177:         <b><font color=#009900>//    return getBaseStat(RPG.ST_DODGE)+getStat(RPG.ST_AG)+inv.getModifier(s);</font></b><a name='line.177'></a>
+178:               <a name='line.178'></a>
+179:         <b><font color=#009900>// with skill, want to allow for encumberance of items</font></b><a name='line.179'></a>
+180:         <b><font color=#0000FF>case</font></b> RPG<font color=#FF0000>.</font>ST_SK<font color=#FF0000>:</font> <font color=#000000>{</font><a name='line.180'></a>
+181:           <font color=#0000FF>int</font> sk<font color=#FF0000>=</font><b><font color=#000000>getBaseStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_SK<font color=#FF0000>)</font><font color=#FF0000>+</font><b><font color=#000000>getModifiers</font></b><font color=#FF0000>(</font>s<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.181'></a>
+182:           <font color=#0000FF>int</font> enc<font color=#FF0000>=</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_ENCUMBERANCE<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.182'></a>
+183:              <b><font color=#0000FF>return</font></b> <font color=#FF0000>(</font>sk<font color=#FF0000>*</font>RPG<font color=#FF0000>.</font><b><font color=#000000>middle</font></b><font color=#FF0000>(</font><font color=#9A1900>100</font><font color=#FF0000>,</font><font color=#9A1900>100</font><font color=#FF0000>-</font>enc<font color=#FF0000>,</font><font color=#9A1900>0</font><font color=#FF0000>)</font><font color=#FF0000>)</font><font color=#FF0000>/</font><font color=#9A1900>100</font><font color=#FF0000>;</font><a name='line.183'></a>
+184:         <font color=#000000>}</font><a name='line.184'></a>
+185: <a name='line.185'></a>
+186:         <b><font color=#009900>// with agility, want to allow for encumberance of items</font></b><a name='line.186'></a>
+187:         <b><font color=#0000FF>case</font></b> RPG<font color=#FF0000>.</font>ST_AG<font color=#FF0000>:</font> <font color=#000000>{</font><a name='line.187'></a>
+188:           <font color=#0000FF>int</font> ag<font color=#FF0000>=</font><b><font color=#000000>getBaseStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_AG<font color=#FF0000>)</font><font color=#FF0000>+</font><b><font color=#000000>getModifiers</font></b><font color=#FF0000>(</font>s<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.188'></a>
+189:           <font color=#0000FF>int</font> enc<font color=#FF0000>=</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_ENCUMBERANCE<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.189'></a>
+190:              <b><font color=#0000FF>return</font></b> <font color=#FF0000>(</font>ag<font color=#FF0000>*</font>RPG<font color=#FF0000>.</font><b><font color=#000000>middle</font></b><font color=#FF0000>(</font><font color=#9A1900>100</font><font color=#FF0000>,</font><font color=#9A1900>100</font><font color=#FF0000>-</font><font color=#9A1900>2</font><font color=#FF0000>*</font>enc<font color=#FF0000>,</font><font color=#9A1900>0</font><font color=#FF0000>)</font><font color=#FF0000>)</font><font color=#FF0000>/</font><font color=#9A1900>100</font><font color=#FF0000>;</font><a name='line.190'></a>
+191:         <font color=#000000>}</font><a name='line.191'></a>
+192:         <a name='line.192'></a>
+193:         <b><font color=#009900>// armour modified by protection value</font></b><a name='line.193'></a>
+194:         <b><font color=#0000FF>case</font></b> RPG<font color=#FF0000>.</font>ST_ARMUNARMED<font color=#FF0000>:</font><a name='line.194'></a>
+195:           <b><font color=#0000FF>return</font></b> <b><font color=#000000>getBaseStat</font></b><font color=#FF0000>(</font>s<font color=#FF0000>)</font><font color=#FF0000>+</font><b><font color=#000000>getModifiers</font></b><font color=#FF0000>(</font>s<font color=#FF0000>)</font><font color=#FF0000>+</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_PROTECTION<font color=#FF0000>)</font><font color=#FF0000>*</font><font color=#9A1900>2</font><font color=#FF0000>;</font><a name='line.195'></a>
+196: <a name='line.196'></a>
+197:         <b><font color=#0000FF>case</font></b> RPG<font color=#FF0000>.</font>ST_ARMNORMAL<font color=#FF0000>:</font> <b><font color=#0000FF>case</font></b> RPG<font color=#FF0000>.</font>ST_ARMIMPACT<font color=#FF0000>:</font><a name='line.197'></a>
+198:           <b><font color=#0000FF>return</font></b> <b><font color=#000000>getBaseStat</font></b><font color=#FF0000>(</font>s<font color=#FF0000>)</font><font color=#FF0000>+</font><b><font color=#000000>getModifiers</font></b><font color=#FF0000>(</font>s<font color=#FF0000>)</font><font color=#FF0000>+</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_PROTECTION<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.198'></a>
+199:             <a name='line.199'></a>
+200:         <b><font color=#0000FF>case</font></b> RPG<font color=#FF0000>.</font>ST_ARMPIERCING<font color=#FF0000>:</font> <b><font color=#0000FF>case</font></b> RPG<font color=#FF0000>.</font>ST_ARMFIRE<font color=#FF0000>:</font> <b><font color=#0000FF>case</font></b> RPG<font color=#FF0000>.</font>ST_ARMICE<font color=#FF0000>:</font> <b><font color=#0000FF>case</font></b> RPG<font color=#FF0000>.</font>ST_ARMACID<font color=#FF0000>:</font><a name='line.200'></a>
+201:           <b><font color=#0000FF>return</font></b> <b><font color=#000000>getBaseStat</font></b><font color=#FF0000>(</font>s<font color=#FF0000>)</font><font color=#FF0000>+</font><b><font color=#000000>getModifiers</font></b><font color=#FF0000>(</font>s<font color=#FF0000>)</font><font color=#FF0000>+</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_PROTECTION<font color=#FF0000>)</font><font color=#FF0000>/</font><font color=#9A1900>2</font><font color=#FF0000>;</font><a name='line.201'></a>
+202:              <a name='line.202'></a>
+203:         <b><font color=#009900>// don't faff around with AI stats</font></b><a name='line.203'></a>
+204:         <b><font color=#0000FF>case</font></b> RPG<font color=#FF0000>.</font>ST_STATE<font color=#FF0000>:</font> <b><font color=#0000FF>case</font></b> RPG<font color=#FF0000>.</font>ST_TARGETX<font color=#FF0000>:</font> <b><font color=#0000FF>case</font></b> RPG<font color=#FF0000>.</font>ST_TARGETY<font color=#FF0000>:</font><a name='line.204'></a>
+205:         <b><font color=#0000FF>return</font></b> stats<font color=#FF0000>.</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>s<font color=#FF0000>)</font><font color=#FF0000>;</font> <a name='line.205'></a>
+206:             <a name='line.206'></a>
+207:       <b><font color=#0000FF>case</font></b> RPG<font color=#FF0000>.</font>ST_MAXWEIGHT<font color=#FF0000>:</font> <font color=#000000>{</font><a name='line.207'></a>
+208:           <font color=#0000FF>int</font> st<font color=#FF0000>=</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_ST<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.208'></a>
+209:           <b><font color=#0000FF>return</font></b> st<font color=#FF0000>*</font><font color=#9A1900>5000</font><font color=#FF0000>;</font><a name='line.209'></a>
+210:       <font color=#000000>}</font><a name='line.210'></a>
+211:       <a name='line.211'></a>
+212:       <b><font color=#0000FF>case</font></b> RPG<font color=#FF0000>.</font>ST_MOVESPEED<font color=#FF0000>:</font> <font color=#000000>{</font><a name='line.212'></a>
+213:         <font color=#0000FF>int</font> base<font color=#FF0000>=</font><b><font color=#000000>getBaseStat</font></b><font color=#FF0000>(</font>s<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.213'></a>
+214:         <b><font color=#0000FF>return</font></b> RPG<font color=#FF0000>.</font><b><font color=#000000>max</font></b><font color=#FF0000>(</font><font color=#9A1900>0</font><font color=#FF0000>,</font>base<font color=#FF0000>+</font><b><font color=#000000>getModifiers</font></b><font color=#FF0000>(</font>s<font color=#FF0000>)</font><font color=#FF0000>-</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_ENCUMBERANCE<font color=#FF0000>)</font><font color=#FF0000>/</font><font color=#9A1900>2</font><font color=#FF0000>)</font><font color=#FF0000>;</font> <a name='line.214'></a>
+215:       <font color=#000000>}</font><a name='line.215'></a>
+216:       <a name='line.216'></a>
+217:       <b><font color=#0000FF>case</font></b> RPG<font color=#FF0000>.</font>ST_MOVECOST<font color=#FF0000>:</font> <font color=#000000>{</font><a name='line.217'></a>
+218:         <font color=#0000FF>int</font> base<font color=#FF0000>=</font><b><font color=#000000>getBaseStat</font></b><font color=#FF0000>(</font>s<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.218'></a>
+219:         <b><font color=#0000FF>return</font></b> <font color=#9A1900>100</font><font color=#FF0000>+</font>base<font color=#FF0000>+</font><b><font color=#000000>getModifiers</font></b><font color=#FF0000>(</font>s<font color=#FF0000>)</font><font color=#FF0000>;</font> <a name='line.219'></a>
+220:       <font color=#000000>}</font><a name='line.220'></a>
+221:       <a name='line.221'></a>
+222:       <b><font color=#009900>// return encumberance as a percentage</font></b><a name='line.222'></a>
+223:       <b><font color=#0000FF>case</font></b> RPG<font color=#FF0000>.</font>ST_ENCUMBERANCE<font color=#FF0000>:</font> <font color=#000000>{</font><a name='line.223'></a>
+224:         <font color=#0000FF>int</font> weight<font color=#FF0000>=</font><font color=#FF0000>(</font>inv<font color=#FF0000>.</font><b><font color=#000000>getWeight</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>*</font><font color=#9A1900>100</font><font color=#FF0000>)</font><font color=#FF0000>/</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_MAXWEIGHT<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.224'></a>
+225:         <b><font color=#0000FF>return</font></b> weight<font color=#FF0000>+</font><b><font color=#000000>getBaseStat</font></b><font color=#FF0000>(</font>s<font color=#FF0000>)</font><font color=#FF0000>+</font><b><font color=#000000>getModifiers</font></b><font color=#FF0000>(</font>s<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.225'></a>
+226:       <font color=#000000>}</font><a name='line.226'></a>
+227:       <a name='line.227'></a>
+228:       <b><font color=#0000FF>case</font></b> RPG<font color=#FF0000>.</font>ST_ANTIMAGIC<font color=#FF0000>:</font> <font color=#000000>{</font><a name='line.228'></a>
+229:         <b><font color=#0000FF>return</font></b> <font color=#FF0000>(</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_WP<font color=#FF0000>)</font><font color=#FF0000>*</font><font color=#FF0000>(</font><font color=#9A1900>1</font><font color=#FF0000>+</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_MAGICRESISTANCE<font color=#FF0000>)</font><font color=#FF0000>)</font><font color=#FF0000>)</font><font color=#FF0000>/</font><font color=#9A1900>2</font><font color=#FF0000>+</font><b><font color=#000000>getBaseStat</font></b><font color=#FF0000>(</font>s<font color=#FF0000>)</font><font color=#FF0000>+</font><b><font color=#000000>getModifiers</font></b><font color=#FF0000>(</font>s<font color=#FF0000>)</font><font color=#FF0000>;</font> <a name='line.229'></a>
+230:         <a name='line.230'></a>
+231:       <font color=#000000>}</font><a name='line.231'></a>
+232:       <a name='line.232'></a>
+233:       <b><font color=#0000FF>default</font></b><font color=#FF0000>:</font><a name='line.233'></a>
+234:           <b><font color=#009900>// return stored stat + item/effect modifiers</font></b><a name='line.234'></a>
+235:         <b><font color=#0000FF>return</font></b> <b><font color=#000000>getBaseStat</font></b><font color=#FF0000>(</font>s<font color=#FF0000>)</font><font color=#FF0000>+</font><b><font color=#000000>getModifiers</font></b><font color=#FF0000>(</font>s<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.235'></a>
+236:     <font color=#000000>}</font><a name='line.236'></a>
+237:   <font color=#000000>}</font><a name='line.237'></a>
+238:     <a name='line.238'></a>
+239:     <b><font color=#0000FF>public</font></b> <font color=#0000FF>int</font> <b><font color=#000000>getModifiers</font></b><font color=#FF0000>(</font><font color=#0000FF>int</font> s<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.239'></a>
+240:     <b><font color=#0000FF>return</font></b> inv<font color=#FF0000>.</font><b><font color=#000000>getModifier</font></b><font color=#FF0000>(</font>s<font color=#FF0000>)</font><font color=#FF0000>+</font>arts<font color=#FF0000>.</font><b><font color=#000000>getModifier</font></b><font color=#FF0000>(</font>s<font color=#FF0000>)</font><font color=#FF0000>;</font>    <a name='line.240'></a>
+241:   <font color=#000000>}</font><a name='line.241'></a>
+242:   <a name='line.242'></a>
+243:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>boolean</font> <b><font color=#000000>isDead</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font> <font color=#000000>{</font><b><font color=#0000FF>return</font></b> hps<font color=#FF0000>&lt;</font><font color=#9A1900>0</font><font color=#FF0000>;</font><font color=#000000>}</font><a name='line.243'></a>
+244:     <a name='line.244'></a>
+245:   <a name='line.245'></a>
+246:   <b><font color=#009900>// damage all items in inventory</font></b><a name='line.246'></a>
+247:   <b><font color=#009900>// todo: modification for item protection (ST_PROTECT*)</font></b><a name='line.247'></a>
+248:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>int</font> <b><font color=#000000>damageAll</font></b><font color=#FF0000>(</font><font color=#0000FF>int</font> dam<font color=#FF0000>,</font> <font color=#0000FF>int</font> damtype<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.248'></a>
+249:     <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>dam<font color=#FF0000>&lt;</font><font color=#FF0000>=</font><font color=#9A1900>0</font><font color=#FF0000>)</font> <b><font color=#0000FF>return</font></b> <font color=#9A1900>0</font><font color=#FF0000>;</font><a name='line.249'></a>
+250:     Thing<font color=#FF0000>[</font><font color=#FF0000>]</font> stuff<font color=#FF0000>=</font>inv<font color=#FF0000>.</font><b><font color=#000000>getContents</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.250'></a>
+251:     <font color=#0000FF>int</font> arm<font color=#FF0000>=</font><b><font color=#000000>getArmour</font></b><font color=#FF0000>(</font>damtype<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.251'></a>
+252:     <font color=#0000FF>int</font> kitdamage<font color=#FF0000>=</font><font color=#FF0000>(</font>dam<font color=#FF0000>*</font>dam<font color=#FF0000>)</font><font color=#FF0000>/</font><font color=#FF0000>(</font>arm<font color=#FF0000>+</font>dam<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.252'></a>
+253:     <b><font color=#0000FF>for</font></b> <font color=#FF0000>(</font><font color=#0000FF>int</font> i<font color=#FF0000>=</font><font color=#9A1900>0</font><font color=#FF0000>;</font> i<font color=#FF0000>&lt;</font>stuff<font color=#FF0000>.</font>length<font color=#FF0000>;</font> i<font color=#FF0000>+</font><font color=#FF0000>+</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.253'></a>
+254:       stuff<font color=#FF0000>[</font>i<font color=#FF0000>]</font><font color=#FF0000>.</font><b><font color=#000000>damageAll</font></b><font color=#FF0000>(</font>kitdamage<font color=#FF0000>,</font>damtype<font color=#FF0000>)</font><font color=#FF0000>;</font> <a name='line.254'></a>
+255:     <font color=#000000>}</font><a name='line.255'></a>
+256:     <b><font color=#0000FF>return</font></b> <b><font color=#000000>damage</font></b><font color=#FF0000>(</font>dam<font color=#FF0000>,</font>damtype<font color=#FF0000>)</font><font color=#FF0000>;</font>  <a name='line.256'></a>
+257:   <font color=#000000>}</font><a name='line.257'></a>
+258:   <a name='line.258'></a>
+259:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>void</font> <b><font color=#000000>addSkill</font></b><font color=#FF0000>(</font><font color=#0000FF>int</font> s<font color=#FF0000>,</font><font color=#0000FF>int</font> l<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.259'></a>
+260:     <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>l<font color=#FF0000>=</font><font color=#FF0000>=</font><font color=#9A1900>0</font><font color=#FF0000>)</font> <b><font color=#0000FF>return</font></b><font color=#FF0000>;</font><a name='line.260'></a>
+261:     Art a<font color=#FF0000>=</font>arts<font color=#FF0000>.</font><b><font color=#000000>getSkill</font></b><font color=#FF0000>(</font>s<font color=#FF0000>)</font><font color=#FF0000>;</font> <a name='line.261'></a>
+262:     <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>a<font color=#FF0000>=</font><font color=#FF0000>=</font><b><font color=#0000FF>null</font></b><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.262'></a>
+263:       arts<font color=#FF0000>.</font><b><font color=#000000>addArt</font></b><font color=#FF0000>(</font><b><font color=#0000FF>new</font></b> <b><font color=#000000>Skill</font></b><font color=#FF0000>(</font>s<font color=#FF0000>,</font>l<font color=#FF0000>)</font><font color=#FF0000>)</font><font color=#FF0000>;</font> <a name='line.263'></a>
+264:     <font color=#000000>}</font> <b><font color=#0000FF>else</font></b> <font color=#000000>{</font><a name='line.264'></a>
+265:       a<font color=#FF0000>.</font><b><font color=#000000>setLevel</font></b><font color=#FF0000>(</font>a<font color=#FF0000>.</font><b><font color=#000000>getLevel</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>+</font>l<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.265'></a>
+266:     <font color=#000000>}</font><a name='line.266'></a>
+267:   <font color=#000000>}</font><a name='line.267'></a>
+268:   <a name='line.268'></a>
+269:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>void</font> <b><font color=#000000>addSkill</font></b><font color=#FF0000>(</font>String s<font color=#FF0000>,</font> <font color=#0000FF>int</font> l<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.269'></a>
+270:     <b><font color=#000000>addSkill</font></b><font color=#FF0000>(</font>Skill<font color=#FF0000>.</font><b><font color=#000000>number</font></b><font color=#FF0000>(</font>s<font color=#FF0000>)</font><font color=#FF0000>,</font>l<font color=#FF0000>)</font><font color=#FF0000>;</font> <a name='line.270'></a>
+271:   <font color=#000000>}</font><a name='line.271'></a>
+272:   <a name='line.272'></a>
+273:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>int</font> <b><font color=#000000>damageLocation</font></b><font color=#FF0000>(</font><font color=#0000FF>int</font> dam<font color=#FF0000>,</font> <font color=#0000FF>int</font> damtype<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.273'></a>
+274:     <b><font color=#000000>armourDamage</font></b><font color=#FF0000>(</font>dam<font color=#FF0000>,</font>damtype<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.274'></a>
+275:     <b><font color=#0000FF>return</font></b> <b><font color=#000000>damage</font></b><font color=#FF0000>(</font>dam<font color=#FF0000>,</font>damtype<font color=#FF0000>)</font><font color=#FF0000>;</font>    <a name='line.275'></a>
+276:   <font color=#000000>}</font><a name='line.276'></a>
+277:   <a name='line.277'></a>
+278:   <b><font color=#009900>// suffer damage</font></b><a name='line.278'></a>
+279:     <b><font color=#0000FF>public</font></b> <font color=#0000FF>int</font> <b><font color=#000000>damage</font></b><font color=#FF0000>(</font><font color=#0000FF>int</font> dam<font color=#FF0000>,</font> <font color=#0000FF>int</font> damtype<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.279'></a>
+280:     <b><font color=#009900>// react to a surprise attack</font></b><a name='line.280'></a>
+281:     <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font><font color=#FF0000>(</font>Game<font color=#FF0000>.</font>actor<font color=#FF0000>!</font><font color=#FF0000>=</font><b><font color=#0000FF>null</font></b><font color=#FF0000>)</font><font color=#FF0000>&amp;</font><font color=#FF0000>&amp;</font><font color=#FF0000>(</font><font color=#FF0000>!</font><b><font color=#000000>isHostile</font></b><font color=#FF0000>(</font><font color=#FF0000>(</font>Mobile<font color=#FF0000>)</font>Game<font color=#FF0000>.</font>actor<font color=#FF0000>)</font><font color=#FF0000>)</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.281'></a>
+282:       <b><font color=#000000>getAI</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>.</font><b><font color=#000000>notify</font></b><font color=#FF0000>(</font><b><font color=#0000FF>this</font></b><font color=#FF0000>,</font>AI<font color=#FF0000>.</font>EVENT_ATTACKED<font color=#FF0000>,</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_SIDE<font color=#FF0000>)</font><font color=#FF0000>,</font>Game<font color=#FF0000>.</font>actor<font color=#FF0000>)</font><font color=#FF0000>;</font> <a name='line.282'></a>
+283:     <font color=#000000>}</font><a name='line.283'></a>
+284:     <a name='line.284'></a>
+285:       <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>dam<font color=#FF0000>&lt;</font><font color=#FF0000>=</font><font color=#9A1900>0</font><font color=#FF0000>)</font> <b><font color=#0000FF>return</font></b> <font color=#9A1900>0</font><font color=#FF0000>;</font><a name='line.285'></a>
+286:     <font color=#0000FF>int</font> arm<font color=#FF0000>=</font><b><font color=#000000>getArmour</font></b><font color=#FF0000>(</font>damtype<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.286'></a>
+287:     <a name='line.287'></a>
+288:       <font color=#0000FF>int</font> res<font color=#FF0000>=</font><b><font color=#000000>getResistance</font></b><font color=#FF0000>(</font>damtype<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.288'></a>
+289:       <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>res<font color=#FF0000>=</font><font color=#FF0000>=</font><font color=#9A1900>0</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.289'></a>
+290:       <b><font color=#009900>// commonest-case optimised</font></b><a name='line.290'></a>
+291:         dam<font color=#FF0000>=</font><font color=#FF0000>(</font>dam<font color=#FF0000>*</font>dam<font color=#FF0000>)</font><font color=#FF0000>/</font><font color=#FF0000>(</font>arm<font color=#FF0000>+</font>dam<font color=#FF0000>)</font><font color=#FF0000>;</font> <a name='line.291'></a>
+292:     <font color=#000000>}</font> <b><font color=#0000FF>else</font></b> <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>res<font color=#FF0000>&gt;</font><font color=#FF0000>-</font><font color=#9A1900>4</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.292'></a>
+293:       dam<font color=#FF0000>=</font><font color=#FF0000>(</font>dam<font color=#FF0000>*</font>dam<font color=#FF0000>*</font><font color=#9A1900>4</font><font color=#FF0000>)</font><font color=#FF0000>/</font><font color=#FF0000>(</font><font color=#FF0000>(</font>arm<font color=#FF0000>+</font>dam<font color=#FF0000>)</font><font color=#FF0000>*</font><font color=#FF0000>(</font><font color=#9A1900>4</font><font color=#FF0000>+</font>res<font color=#FF0000>)</font><font color=#FF0000>)</font><font color=#FF0000>;</font>    <a name='line.293'></a>
+294:       <font color=#000000>}</font> <b><font color=#0000FF>else</font></b> <font color=#000000>{</font><a name='line.294'></a>
+295:       dam<font color=#FF0000>=</font>dam<font color=#FF0000>*</font><font color=#9A1900>10</font><font color=#FF0000>;</font> <a name='line.295'></a>
+296:     <font color=#000000>}</font><a name='line.296'></a>
+297:       <a name='line.297'></a>
+298:       <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>damtype<font color=#FF0000>=</font><font color=#FF0000>=</font>RPG<font color=#FF0000>.</font>DT_DRAIN<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.298'></a>
+299:         mps<font color=#FF0000>=</font>mps<font color=#FF0000>-</font>dam<font color=#FF0000>;</font><a name='line.299'></a>
+300:         <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>mps<font color=#FF0000>&lt;</font><font color=#9A1900>0</font><font color=#FF0000>)</font> <font color=#000000>{</font>hps<font color=#FF0000>=</font>hps<font color=#FF0000>+</font>mps<font color=#FF0000>;</font> mps<font color=#FF0000>=</font><font color=#9A1900>0</font><font color=#FF0000>;</font><font color=#000000>}</font><a name='line.300'></a>
+301:       <font color=#000000>}</font> <b><font color=#0000FF>else</font></b> <font color=#000000>{</font><a name='line.301'></a>
+302:           hps<font color=#FF0000>=</font>hps<font color=#FF0000>-</font>dam<font color=#FF0000>;</font><a name='line.302'></a>
+303:       <font color=#000000>}</font>    <a name='line.303'></a>
+304:       <a name='line.304'></a>
+305:     <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>hps<font color=#FF0000>&lt;</font><font color=#9A1900>0</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.305'></a>
+306:       <font color=#0000FF>int</font> fate<font color=#FF0000>=</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_FATE<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.306'></a>
+307:       <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>fate<font color=#FF0000>&gt;</font><font color=#9A1900>0</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.307'></a>
+308:         <b><font color=#000000>setStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_FATE<font color=#FF0000>,</font>fate<font color=#FF0000>-</font><font color=#9A1900>1</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.308'></a>
+309:         dam<font color=#FF0000>=</font>dam<font color=#FF0000>+</font>hps<font color=#FF0000>;</font> <b><font color=#009900>// cheat damage</font></b><a name='line.309'></a>
+310:         hps<font color=#FF0000>=</font><font color=#9A1900>0</font><font color=#FF0000>;</font>       <b><font color=#009900>// survive         </font></b><a name='line.310'></a>
+311:         <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font><b><font color=#0000FF>this</font></b><font color=#FF0000>=</font><font color=#FF0000>=</font>Game<font color=#FF0000>.</font>hero<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.311'></a>
+312:           Game<font color=#FF0000>.</font><b><font color=#000000>message</font></b><font color=#FF0000>(</font>fate<font color=#FF0000>=</font><font color=#FF0000>=</font><font color=#9A1900>1</font><font color=#FF0000>?</font><font color=#808080>"You feel your luck is running out..."</font><font color=#FF0000>:</font><font color=#808080>"That was too close for comfort..."</font><font color=#FF0000>)</font><font color=#FF0000>;</font> <a name='line.312'></a>
+313:         <font color=#000000>}</font><a name='line.313'></a>
+314:       <font color=#000000>}</font> <b><font color=#0000FF>else</font></b> <font color=#000000>{</font><a name='line.314'></a>
+315:         <b><font color=#000000>die</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.315'></a>
+316:       <font color=#000000>}</font><a name='line.316'></a>
+317:     <font color=#000000>}</font><a name='line.317'></a>
+318:     <a name='line.318'></a>
+319:     <b><font color=#0000FF>return</font></b> dam<font color=#FF0000>;</font>    <a name='line.319'></a>
+320:     <font color=#000000>}</font><a name='line.320'></a>
+321:     <a name='line.321'></a>
+322:     <b><font color=#009900>// return armour value vs particular damage</font></b><a name='line.322'></a>
+323:     <b><font color=#0000FF>public</font></b> <font color=#0000FF>int</font> <b><font color=#000000>getArmour</font></b><font color=#FF0000>(</font><font color=#0000FF>int</font> damtype<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.323'></a>
+324:         <b><font color=#0000FF>return</font></b> <b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_ARM_BASE<font color=#FF0000>+</font>damtype<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.324'></a>
+325:     <font color=#000000>}</font><a name='line.325'></a>
+326:     <a name='line.326'></a>
+327:     <b><font color=#0000FF>public</font></b> <font color=#0000FF>int</font> <b><font color=#000000>getResistance</font></b><font color=#FF0000>(</font><font color=#0000FF>int</font> damtype<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.327'></a>
+328:         <b><font color=#0000FF>return</font></b> <b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_RESIST_BASE<font color=#FF0000>+</font>damtype<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.328'></a>
+329:     <font color=#000000>}</font><a name='line.329'></a>
+330: <a name='line.330'></a>
+331:   <b><font color=#009900>// checks if being has item in possession</font></b><a name='line.331'></a>
+332:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>boolean</font> <b><font color=#000000>hasItem</font></b><font color=#FF0000>(</font>String s<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.332'></a>
+333:     Thing<font color=#FF0000>[</font><font color=#FF0000>]</font> stuff<font color=#FF0000>=</font>inv<font color=#FF0000>.</font><b><font color=#000000>getContents</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.333'></a>
+334:     <b><font color=#0000FF>for</font></b> <font color=#FF0000>(</font><font color=#0000FF>int</font> i<font color=#FF0000>=</font><font color=#9A1900>0</font><font color=#FF0000>;</font> i<font color=#FF0000>&lt;</font>stuff<font color=#FF0000>.</font>length<font color=#FF0000>;</font> i<font color=#FF0000>+</font><font color=#FF0000>+</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.334'></a>
+335:       <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font><font color=#FF0000>(</font>stuff<font color=#FF0000>[</font>i<font color=#FF0000>]</font><font color=#FF0000>.</font><b><font color=#000000>getName</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>=</font><font color=#FF0000>=</font>s<font color=#FF0000>)</font><font color=#FF0000>)</font> <b><font color=#0000FF>return</font></b> true<font color=#FF0000>;</font><a name='line.335'></a>
+336:     <font color=#000000>}</font><a name='line.336'></a>
+337:     <b><font color=#0000FF>return</font></b> false<font color=#FF0000>;</font><a name='line.337'></a>
+338:   <font color=#000000>}</font><a name='line.338'></a>
+339:   <a name='line.339'></a>
+340:   <b><font color=#009900>// creature dies horribly</font></b><a name='line.340'></a>
+341:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>void</font> <b><font color=#000000>die</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.341'></a>
+342:       <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>place <b><font color=#0000FF>instanceof</font></b> Map<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.342'></a>
+343:         Map m<font color=#FF0000>=</font><b><font color=#000000>getMap</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.343'></a>
+344:         Thing<font color=#FF0000>[</font><font color=#FF0000>]</font> stuff <font color=#FF0000>=</font> inv<font color=#FF0000>.</font><b><font color=#000000>getContents</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.344'></a>
+345:         <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>stuff<font color=#FF0000>!</font><font color=#FF0000>=</font><b><font color=#0000FF>null</font></b><font color=#FF0000>)</font> <b><font color=#0000FF>for</font></b> <font color=#FF0000>(</font><font color=#0000FF>int</font> i<font color=#FF0000>=</font><font color=#9A1900>0</font><font color=#FF0000>;</font> i<font color=#FF0000>&lt;</font>stuff<font color=#FF0000>.</font>length<font color=#FF0000>;</font> i<font color=#FF0000>+</font><font color=#FF0000>+</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.345'></a>
+346:           m<font color=#FF0000>.</font><b><font color=#000000>addThing</font></b><font color=#FF0000>(</font>stuff<font color=#FF0000>[</font>i<font color=#FF0000>]</font><font color=#FF0000>,</font>x<font color=#FF0000>,</font>y<font color=#FF0000>)</font><font color=#FF0000>;</font>    <a name='line.346'></a>
+347:         <font color=#000000>}</font>    <a name='line.347'></a>
+348:     <font color=#000000>}</font><a name='line.348'></a>
+349:     aps <font color=#FF0000>=</font> <font color=#FF0000>-</font><font color=#9A1900>1000</font><font color=#FF0000>;</font><b><font color=#009900>// stop it from doing anything else</font></b><a name='line.349'></a>
+350:     <b><font color=#0000FF>super</font></b><font color=#FF0000>.</font><b><font color=#000000>die</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>;</font>    <b><font color=#009900>// delete from map</font></b><a name='line.350'></a>
+351:   <font color=#000000>}</font><a name='line.351'></a>
+352: <a name='line.352'></a>
+353:   <b><font color=#009900>// damage a single random piece of armour</font></b><a name='line.353'></a>
+354:   <b><font color=#009900>// (NYI) or inventory item if not available</font></b><a name='line.354'></a>
+355:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>void</font> <b><font color=#000000>armourDamage</font></b><font color=#FF0000>(</font><font color=#0000FF>int</font> d<font color=#FF0000>,</font><font color=#0000FF>int</font> dt<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.355'></a>
+356:     <font color=#0000FF>int</font> l<font color=#FF0000>=</font>Lib<font color=#FF0000>.</font><b><font color=#000000>hitLocation</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.356'></a>
+357:     Thing t<font color=#FF0000>=</font><b><font color=#000000>getWielded</font></b><font color=#FF0000>(</font>l<font color=#FF0000>)</font><font color=#FF0000>;</font> <a name='line.357'></a>
+358:     <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>t<font color=#FF0000>!</font><font color=#FF0000>=</font><b><font color=#0000FF>null</font></b><font color=#FF0000>)</font> t<font color=#FF0000>.</font><b><font color=#000000>damage</font></b><font color=#FF0000>(</font>d<font color=#FF0000>,</font>dt<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.358'></a>
+359:   <font color=#000000>}</font><a name='line.359'></a>
+360: <a name='line.360'></a>
+361: <a name='line.361'></a>
+362:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>int</font> <b><font color=#000000>getImage</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font> <font color=#000000>{</font><b><font color=#0000FF>return</font></b> image<font color=#FF0000>;</font><font color=#000000>}</font><a name='line.362'></a>
+363:   <a name='line.363'></a>
+364:   <b><font color=#0000FF>public</font></b> String <b><font color=#000000>getName</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font> <font color=#000000>{</font> <b><font color=#0000FF>return</font></b> <font color=#808080>"generic being"</font><font color=#FF0000>;</font><font color=#000000>}</font><a name='line.364'></a>
+365:   <a name='line.365'></a>
+366:   <b><font color=#009900>// Mobile properties, override Thing</font></b><a name='line.366'></a>
+367:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>boolean</font> <b><font color=#000000>isBlocking</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font> <font color=#000000>{</font><b><font color=#0000FF>return</font></b> true<font color=#FF0000>;</font><font color=#000000>}</font><a name='line.367'></a>
+368:   <a name='line.368'></a>
+369:   <b><font color=#009900>// Calculate funds available</font></b><a name='line.369'></a>
+370:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>int</font> <b><font color=#000000>getMoney</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.370'></a>
+371:     Thing<font color=#FF0000>[</font><font color=#FF0000>]</font> cash <font color=#FF0000>=</font> inv<font color=#FF0000>.</font><b><font color=#000000>getContents</font></b><font color=#FF0000>(</font>Coin<font color=#FF0000>.</font><b><font color=#0000FF>class</font></b><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.371'></a>
+372:     <font color=#0000FF>int</font> tot<font color=#FF0000>=</font><font color=#9A1900>0</font><font color=#FF0000>;</font><a name='line.372'></a>
+373:     <b><font color=#0000FF>for</font></b> <font color=#FF0000>(</font><font color=#0000FF>int</font> i<font color=#FF0000>=</font><font color=#9A1900>0</font><font color=#FF0000>;</font> i<font color=#FF0000>&lt;</font>cash<font color=#FF0000>.</font>length<font color=#FF0000>;</font> i<font color=#FF0000>+</font><font color=#FF0000>+</font><font color=#FF0000>)</font> tot<font color=#FF0000>+</font><font color=#FF0000>=</font>cash<font color=#FF0000>[</font>i<font color=#FF0000>]</font><font color=#FF0000>.</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_ITEMVALUE<font color=#FF0000>)</font><font color=#FF0000>*</font>cash<font color=#FF0000>[</font>i<font color=#FF0000>]</font><font color=#FF0000>.</font><b><font color=#000000>getNumber</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.373'></a>
+374:     <b><font color=#0000FF>return</font></b> tot<font color=#FF0000>;</font><a name='line.374'></a>
+375:   <font color=#000000>}</font><a name='line.375'></a>
+376:   <a name='line.376'></a>
+377:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>void</font> <b><font color=#000000>addMoney</font></b><font color=#FF0000>(</font><font color=#0000FF>int</font> v<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.377'></a>
+378:     <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>v<font color=#FF0000>&lt;</font><font color=#9A1900>0</font><font color=#FF0000>)</font> <b><font color=#000000>removeMoney</font></b><font color=#FF0000>(</font><font color=#FF0000>-</font>v<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.378'></a>
+379:     <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font><font color=#FF0000>(</font>v<font color=#FF0000>/</font><font color=#9A1900>100</font><font color=#FF0000>)</font><font color=#FF0000>&gt;</font><font color=#9A1900>0</font><font color=#FF0000>)</font> <b><font color=#000000>addThing</font></b><font color=#FF0000>(</font><b><font color=#0000FF>new</font></b> <b><font color=#000000>Coin</font></b><font color=#FF0000>(</font><font color=#9A1900>2</font><font color=#FF0000>,</font>v<font color=#FF0000>/</font><font color=#9A1900>100</font><font color=#FF0000>)</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.379'></a>
+380:     <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font><font color=#FF0000>(</font><font color=#FF0000>(</font>v<font color=#FF0000>/</font><font color=#9A1900>10</font><font color=#FF0000>)</font><font color=#FF0000>%</font><font color=#9A1900>10</font><font color=#FF0000>)</font><font color=#FF0000>&gt;</font><font color=#9A1900>0</font><font color=#FF0000>)</font> <b><font color=#000000>addThing</font></b><font color=#FF0000>(</font><b><font color=#0000FF>new</font></b> <b><font color=#000000>Coin</font></b><font color=#FF0000>(</font><font color=#9A1900>1</font><font color=#FF0000>,</font><font color=#FF0000>(</font>v<font color=#FF0000>/</font><font color=#9A1900>10</font><font color=#FF0000>)</font><font color=#FF0000>%</font><font color=#9A1900>10</font><font color=#FF0000>)</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.380'></a>
+381:     <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font><font color=#FF0000>(</font>v<font color=#FF0000>%</font><font color=#9A1900>10</font><font color=#FF0000>)</font><font color=#FF0000>&gt;</font><font color=#9A1900>0</font><font color=#FF0000>)</font> <b><font color=#000000>addThing</font></b><font color=#FF0000>(</font><b><font color=#0000FF>new</font></b> <b><font color=#000000>Coin</font></b><font color=#FF0000>(</font><font color=#9A1900>0</font><font color=#FF0000>,</font>v<font color=#FF0000>%</font><font color=#9A1900>10</font><font color=#FF0000>)</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.381'></a>
+382:   <font color=#000000>}</font><a name='line.382'></a>
+383:   <a name='line.383'></a>
+384:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>void</font> <b><font color=#000000>removeMoney</font></b><font color=#FF0000>(</font><font color=#0000FF>int</font> v<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.384'></a>
+385:     <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>v<font color=#FF0000>&lt;</font><font color=#FF0000>=</font><font color=#9A1900>0</font><font color=#FF0000>)</font> <font color=#000000>{</font><b><font color=#000000>addMoney</font></b><font color=#FF0000>(</font><font color=#FF0000>-</font>v<font color=#FF0000>)</font><font color=#FF0000>;</font> <b><font color=#0000FF>return</font></b><font color=#FF0000>;</font><font color=#000000>}</font><a name='line.385'></a>
+386:     <font color=#0000FF>int</font> funds<font color=#FF0000>=</font><b><font color=#000000>getMoney</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>-</font>v<font color=#FF0000>;</font><a name='line.386'></a>
+387:     Thing<font color=#FF0000>[</font><font color=#FF0000>]</font> cash <font color=#FF0000>=</font> inv<font color=#FF0000>.</font><b><font color=#000000>getContents</font></b><font color=#FF0000>(</font>Coin<font color=#FF0000>.</font><b><font color=#0000FF>class</font></b><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.387'></a>
+388:     <b><font color=#0000FF>for</font></b> <font color=#FF0000>(</font><font color=#0000FF>int</font> i<font color=#FF0000>=</font><font color=#9A1900>0</font><font color=#FF0000>;</font> i<font color=#FF0000>&lt;</font>cash<font color=#FF0000>.</font>length<font color=#FF0000>;</font> i<font color=#FF0000>+</font><font color=#FF0000>+</font><font color=#FF0000>)</font> cash<font color=#FF0000>[</font>i<font color=#FF0000>]</font><font color=#FF0000>.</font><b><font color=#000000>remove</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.388'></a>
+389:     <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>funds<font color=#FF0000>&gt;</font><font color=#9A1900>0</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.389'></a>
+390:       <b><font color=#000000>addMoney</font></b><font color=#FF0000>(</font>funds<font color=#FF0000>)</font><font color=#FF0000>;</font> <a name='line.390'></a>
+391:     <font color=#000000>}</font><a name='line.391'></a>
+392:   <font color=#000000>}</font><a name='line.392'></a>
+393:   <a name='line.393'></a>
+394:   <b><font color=#009900>// remove thing from inventory</font></b><a name='line.394'></a>
+395:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>void</font> <b><font color=#000000>removeThing</font></b><font color=#FF0000>(</font>Thing thing<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.395'></a>
+396:     inv<font color=#FF0000>.</font><b><font color=#000000>removeThing</font></b><font color=#FF0000>(</font>thing<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.396'></a>
+397:   <font color=#000000>}</font><a name='line.397'></a>
+398:   <a name='line.398'></a>
+399:     <b><font color=#009900>// add thing to inventory</font></b><a name='line.399'></a>
+400:     <b><font color=#0000FF>public</font></b> <font color=#0000FF>void</font> <b><font color=#000000>addThing</font></b><font color=#FF0000>(</font>Thing thing<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.400'></a>
+401:       inv<font color=#FF0000>.</font><b><font color=#000000>addThing</font></b><font color=#FF0000>(</font>thing<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.401'></a>
+402:     <font color=#000000>}</font><a name='line.402'></a>
+403: <a name='line.403'></a>
+404:   <b><font color=#009900>// add attribute and activate</font></b><a name='line.404'></a>
+405:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>void</font> <b><font color=#000000>addAttribute</font></b><font color=#FF0000>(</font>Attribute a<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.405'></a>
+406:     inv<font color=#FF0000>.</font><b><font color=#000000>addThing</font></b><font color=#FF0000>(</font>a<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.406'></a>
+407:     a<font color=#FF0000>.</font>y<font color=#FF0000>=</font>RPG<font color=#FF0000>.</font>WT_EFFECT<font color=#FF0000>;</font><a name='line.407'></a>
+408:   <font color=#000000>}</font><a name='line.408'></a>
+409: <a name='line.409'></a>
+410:     <b><font color=#0000FF>public</font></b> <font color=#0000FF>void</font> <b><font color=#000000>dropThing</font></b><font color=#FF0000>(</font>Thing thing<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.410'></a>
+411:       thing<font color=#FF0000>.</font><b><font color=#000000>remove</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.411'></a>
+412:       <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>place <b><font color=#0000FF>instanceof</font></b> Map<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.412'></a>
+413:         <font color=#FF0000>(</font><font color=#FF0000>(</font>Map<font color=#FF0000>)</font>place<font color=#FF0000>)</font><font color=#FF0000>.</font><b><font color=#000000>addThing</font></b><font color=#FF0000>(</font>thing<font color=#FF0000>,</font>x<font color=#FF0000>,</font>y<font color=#FF0000>)</font><font color=#FF0000>;</font>    <a name='line.413'></a>
+414:       <font color=#000000>}</font><a name='line.414'></a>
+415:     <font color=#000000>}</font><a name='line.415'></a>
+416:     <a name='line.416'></a>
+417:   <b><font color=#009900>// pick up item</font></b><a name='line.417'></a>
+418:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>void</font> <b><font color=#000000>pickUp</font></b><font color=#FF0000>(</font>Thing t<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.418'></a>
+419:     <b><font color=#000000>addThing</font></b><font color=#FF0000>(</font>t<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.419'></a>
+420:   <font color=#000000>}</font><a name='line.420'></a>
+421:   <a name='line.421'></a>
+422:     <b><font color=#0000FF>public</font></b> <font color=#0000FF>void</font> <b><font color=#000000>throwThing</font></b><font color=#FF0000>(</font>Thing t<font color=#FF0000>,</font> <font color=#0000FF>int</font> tx<font color=#FF0000>,</font> <font color=#0000FF>int</font> ty<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.422'></a>
+423:     Map m<font color=#FF0000>=</font><b><font color=#000000>getMap</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.423'></a>
+424:     <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>m<font color=#FF0000>=</font><font color=#FF0000>=</font><b><font color=#0000FF>null</font></b><font color=#FF0000>)</font> <b><font color=#0000FF>return</font></b><font color=#FF0000>;</font><a name='line.424'></a>
+425:     <a name='line.425'></a>
+426:     <b><font color=#009900>// find where thing hits</font></b><a name='line.426'></a>
+427:     Point p<font color=#FF0000>=</font>m<font color=#FF0000>.</font><b><font color=#000000>tracePath</font></b><font color=#FF0000>(</font>x<font color=#FF0000>,</font>y<font color=#FF0000>,</font>tx<font color=#FF0000>,</font>ty<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.427'></a>
+428:     <a name='line.428'></a>
+429:     <b><font color=#009900>// check for current location</font></b><a name='line.429'></a>
+430:     <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font><font color=#FF0000>(</font>p<font color=#FF0000>.</font>x<font color=#FF0000>=</font><font color=#FF0000>=</font>x<font color=#FF0000>)</font><font color=#FF0000>&amp;</font><font color=#FF0000>&amp;</font><font color=#FF0000>(</font>p<font color=#FF0000>.</font>y<font color=#FF0000>=</font><font color=#FF0000>=</font>y<font color=#FF0000>)</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.430'></a>
+431:       <b><font color=#000000>dropThing</font></b><font color=#FF0000>(</font>t<font color=#FF0000>)</font><font color=#FF0000>;</font> <a name='line.431'></a>
+432:       <b><font color=#0000FF>return</font></b><font color=#FF0000>;</font><a name='line.432'></a>
+433:     <font color=#000000>}</font> <b><font color=#0000FF>else</font></b> <font color=#000000>{</font><a name='line.433'></a>
+434:       t<font color=#FF0000>.</font><b><font color=#000000>throwAt</font></b><font color=#FF0000>(</font><b><font color=#0000FF>this</font></b><font color=#FF0000>,</font>m<font color=#FF0000>,</font>p<font color=#FF0000>.</font>x<font color=#FF0000>,</font>p<font color=#FF0000>.</font>y<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.434'></a>
+435:     <font color=#000000>}</font><a name='line.435'></a>
+436:   <font color=#000000>}</font><a name='line.436'></a>
+437:   <a name='line.437'></a>
+438:   <a name='line.438'></a>
+439:   <b><font color=#009900>// wields the item in appropriate slot</font></b><a name='line.439'></a>
+440:     <b><font color=#009900>// unwields other items to allow this</font></b><a name='line.440'></a>
+441:     <a name='line.441'></a>
+442:     <b><font color=#0000FF>public</font></b> <font color=#0000FF>boolean</font> <b><font color=#000000>wield</font></b><font color=#FF0000>(</font>Item t<font color=#FF0000>,</font> <font color=#0000FF>int</font> wt<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.442'></a>
+443:       <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font><font color=#FF0000>!</font>inv<font color=#FF0000>.</font><b><font color=#000000>clearUsage</font></b><font color=#FF0000>(</font>wt<font color=#FF0000>)</font><font color=#FF0000>)</font> <b><font color=#0000FF>return</font></b> false<font color=#FF0000>;</font><a name='line.443'></a>
+444:         <a name='line.444'></a>
+445:       <b><font color=#009900>// remove other items if cannot be wielded together</font></b><a name='line.445'></a>
+446:     <b><font color=#009900>// remeber to avoid quick boolean evaluation!</font></b><a name='line.446'></a>
+447:       <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>wt<font color=#FF0000>=</font><font color=#FF0000>=</font>RPG<font color=#FF0000>.</font>WT_TWOHANDS<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.447'></a>
+448:         <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font><font color=#FF0000>!</font>inv<font color=#FF0000>.</font><b><font color=#000000>clearUsage</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>WT_MAINHAND<font color=#FF0000>)</font><font color=#FF0000>|</font><font color=#FF0000>!</font>inv<font color=#FF0000>.</font><b><font color=#000000>clearUsage</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>WT_SECONDHAND<font color=#FF0000>)</font><font color=#FF0000>)</font> <b><font color=#0000FF>return</font></b> false<font color=#FF0000>;</font><a name='line.448'></a>
+449:       <font color=#000000>}</font><a name='line.449'></a>
+450:       <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>wt<font color=#FF0000>=</font><font color=#FF0000>=</font>RPG<font color=#FF0000>.</font>WT_MAINHAND<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.450'></a>
+451:         <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font><font color=#FF0000>!</font>inv<font color=#FF0000>.</font><b><font color=#000000>clearUsage</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>WT_TWOHANDS<font color=#FF0000>)</font><font color=#FF0000>)</font> <b><font color=#0000FF>return</font></b> false<font color=#FF0000>;</font><a name='line.451'></a>
+452:       <font color=#000000>}</font><a name='line.452'></a>
+453:       <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>wt<font color=#FF0000>=</font><font color=#FF0000>=</font>RPG<font color=#FF0000>.</font>WT_SECONDHAND<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.453'></a>
+454:           <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font><font color=#FF0000>!</font>inv<font color=#FF0000>.</font><b><font color=#000000>clearUsage</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>WT_TWOHANDS<font color=#FF0000>)</font><font color=#FF0000>)</font> <b><font color=#0000FF>return</font></b> false<font color=#FF0000>;</font><a name='line.454'></a>
+455:         <font color=#000000>}</font><a name='line.455'></a>
+456:         <a name='line.456'></a>
+457:       <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>wt<font color=#FF0000>=</font><font color=#FF0000>=</font>RPG<font color=#FF0000>.</font>WT_FULLBODY<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.457'></a>
+458:       <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font><font color=#FF0000>!</font>inv<font color=#FF0000>.</font><b><font color=#000000>clearUsage</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>WT_TORSO<font color=#FF0000>)</font><font color=#FF0000>|</font><font color=#FF0000>!</font>inv<font color=#FF0000>.</font><b><font color=#000000>clearUsage</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>WT_LEGS<font color=#FF0000>)</font><font color=#FF0000>)</font> <b><font color=#0000FF>return</font></b> false<font color=#FF0000>;</font><a name='line.458'></a>
+459:       <font color=#000000>}</font><a name='line.459'></a>
+460:       <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>wt<font color=#FF0000>=</font><font color=#FF0000>=</font>RPG<font color=#FF0000>.</font>WT_TORSO<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.460'></a>
+461:       <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font><font color=#FF0000>!</font>inv<font color=#FF0000>.</font><b><font color=#000000>clearUsage</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>WT_FULLBODY<font color=#FF0000>)</font><font color=#FF0000>)</font> <b><font color=#0000FF>return</font></b> false<font color=#FF0000>;</font><a name='line.461'></a>
+462:       <font color=#000000>}</font><a name='line.462'></a>
+463:       <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>wt<font color=#FF0000>=</font><font color=#FF0000>=</font>RPG<font color=#FF0000>.</font>WT_LEGS<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.463'></a>
+464:       <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font><font color=#FF0000>!</font>inv<font color=#FF0000>.</font><b><font color=#000000>clearUsage</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>WT_FULLBODY<font color=#FF0000>)</font><font color=#FF0000>)</font> <b><font color=#0000FF>return</font></b> false<font color=#FF0000>;</font><a name='line.464'></a>
+465:       <font color=#000000>}</font><a name='line.465'></a>
+466:         <a name='line.466'></a>
+467:     t<font color=#FF0000>.</font>y<font color=#FF0000>=</font>wt<font color=#FF0000>;</font><a name='line.467'></a>
+468:     <b><font color=#0000FF>return</font></b> true<font color=#FF0000>;</font><a name='line.468'></a>
+469:     <font color=#000000>}</font><a name='line.469'></a>
+470: <a name='line.470'></a>
+471:   <b><font color=#009900>// placeholder function for special hit effects</font></b><a name='line.471'></a>
+472:   <b><font color=#009900>//</font></b><a name='line.472'></a>
+473:   <b><font color=#009900>// returns additional damage, if any</font></b><a name='line.473'></a>
+474:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>int</font> <b><font color=#000000>hit</font></b><font color=#FF0000>(</font>Thing t<font color=#FF0000>,</font> <font color=#0000FF>int</font> dam<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.474'></a>
+475:     <b><font color=#0000FF>return</font></b> <font color=#9A1900>0</font><font color=#FF0000>;</font><a name='line.475'></a>
+476:   <font color=#000000>}</font><a name='line.476'></a>
+477: <a name='line.477'></a>
+478:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>int</font> <b><font color=#000000>attackWith</font></b><font color=#FF0000>(</font>Thing target<font color=#FF0000>,</font> Thing weapon<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.478'></a>
+479:     <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>target<font color=#FF0000>=</font><font color=#FF0000>=</font><b><font color=#0000FF>null</font></b><font color=#FF0000>)</font> <b><font color=#0000FF>return</font></b> <font color=#9A1900>0</font><font color=#FF0000>;</font><a name='line.479'></a>
+480:     <font color=#0000FF>boolean</font> isvisible<font color=#FF0000>=</font>target<font color=#FF0000>.</font><b><font color=#000000>isVisible</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.480'></a>
+481:     <font color=#0000FF>boolean</font> ishero<font color=#FF0000>=</font><font color=#FF0000>(</font><b><font color=#0000FF>this</font></b><font color=#FF0000>=</font><font color=#FF0000>=</font>Game<font color=#FF0000>.</font>hero<font color=#FF0000>)</font><font color=#FF0000>;</font>    <a name='line.481'></a>
+482:     <font color=#0000FF>int</font> result<font color=#FF0000>=</font><font color=#9A1900>0</font><font color=#FF0000>;</font><a name='line.482'></a>
+483:     <a name='line.483'></a>
+484:     <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>weapon <b><font color=#0000FF>instanceof</font></b> Weapon<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.484'></a>
+485:       Weapon w <font color=#FF0000>=</font> <font color=#FF0000>(</font>Weapon<font color=#FF0000>)</font>weapon<font color=#FF0000>;</font><a name='line.485'></a>
+486:       <a name='line.486'></a>
+487:       Map map<font color=#FF0000>=</font>target<font color=#FF0000>.</font><b><font color=#000000>getMap</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.487'></a>
+488:       <a name='line.488'></a>
+489:       <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>w<font color=#FF0000>.</font><b><font color=#000000>use</font></b><font color=#FF0000>(</font><b><font color=#0000FF>this</font></b><font color=#FF0000>,</font>target<font color=#FF0000>,</font>USE_ATTACK<font color=#FF0000>)</font><font color=#FF0000>&gt;</font><font color=#9A1900>0</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.489'></a>
+490:         <a name='line.490'></a>
+491:         <b><font color=#009900>// get result from hitting with weapon</font></b><a name='line.491'></a>
+492:         <b><font color=#009900>// result = hps damage inflicted</font></b><a name='line.492'></a>
+493:         result<font color=#FF0000>=</font>w<font color=#FF0000>.</font><b><font color=#000000>use</font></b><font color=#FF0000>(</font><b><font color=#0000FF>this</font></b><font color=#FF0000>,</font>target<font color=#FF0000>,</font>USE_HIT<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.493'></a>
+494:         <a name='line.494'></a>
+495:         <b><font color=#009900>// any special hit effects?</font></b><a name='line.495'></a>
+496:         result<font color=#FF0000>+</font><font color=#FF0000>=</font><b><font color=#000000>hit</font></b><font color=#FF0000>(</font>target<font color=#FF0000>,</font>result<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.496'></a>
+497:         <a name='line.497'></a>
+498:         <b><font color=#009900>// message to hero</font></b><a name='line.498'></a>
+499:         Mobile mob<font color=#FF0000>=</font><font color=#FF0000>(</font>Mobile<font color=#FF0000>)</font> target<font color=#FF0000>;</font><a name='line.499'></a>
+500:         <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>mob<font color=#FF0000>.</font><b><font color=#000000>isDead</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>&amp;</font><font color=#FF0000>&amp;</font>isvisible<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.500'></a>
+501:           Game<font color=#FF0000>.</font><b><font color=#000000>message</font></b><font color=#FF0000>(</font>Text<font color=#FF0000>.</font><b><font color=#000000>capitalise</font></b><font color=#FF0000>(</font><b><font color=#0000FF>this</font></b><font color=#FF0000>.</font><b><font color=#000000>getTheName</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>+</font> <font color=#FF0000>(</font>ishero<font color=#FF0000>?</font><font color=#808080>" have slain "</font><font color=#FF0000>:</font><font color=#808080>" has slain "</font><font color=#FF0000>)</font><font color=#FF0000>+</font>target<font color=#FF0000>.</font><b><font color=#000000>getTheName</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>)</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.501'></a>
+502:         <font color=#000000>}</font><a name='line.502'></a>
+503:       <font color=#000000>}</font><a name='line.503'></a>
+504:       <a name='line.504'></a>
+505:       <b><font color=#009900>// notify nearby creatures of attack</font></b><a name='line.505'></a>
+506:       <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>map<font color=#FF0000>!</font><font color=#FF0000>=</font><b><font color=#0000FF>null</font></b><font color=#FF0000>)</font> map<font color=#FF0000>.</font><b><font color=#000000>areaNotify</font></b><font color=#FF0000>(</font>x<font color=#FF0000>,</font>y<font color=#FF0000>,</font><font color=#9A1900>8</font><font color=#FF0000>,</font>AI<font color=#FF0000>.</font>EVENT_ALARM<font color=#FF0000>,</font>target<font color=#FF0000>.</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_SIDE<font color=#FF0000>)</font><font color=#FF0000>,</font><b><font color=#0000FF>this</font></b><font color=#FF0000>)</font><font color=#FF0000>;</font> <a name='line.506'></a>
+507:     <font color=#000000>}</font><a name='line.507'></a>
+508:     <b><font color=#0000FF>return</font></b> result<font color=#FF0000>;</font><a name='line.508'></a>
+509:   <font color=#000000>}</font><a name='line.509'></a>
+510: <a name='line.510'></a>
+511:   <a name='line.511'></a>
+512:   <b><font color=#009900>// get unarmed weapon object</font></b><a name='line.512'></a>
+513:   <b><font color=#009900>// pretty important for most monsters</font></b><a name='line.513'></a>
+514:   <b><font color=#0000FF>public</font></b> Weapon <b><font color=#000000>getUnarmedWeapon</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.514'></a>
+515:     <font color=#0000FF>int</font> unarmed<font color=#FF0000>=</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_UNARMED<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.515'></a>
+516:     <a name='line.516'></a>
+517:     <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>unarmed<font color=#FF0000>&lt;</font><font color=#FF0000>=</font><font color=#9A1900>0</font><font color=#FF0000>)</font> unarmed<font color=#FF0000>=</font><font color=#9A1900>0</font><font color=#FF0000>;</font><a name='line.517'></a>
+518:     <a name='line.518'></a>
+519:     <b><font color=#0000FF>return</font></b> Lib<font color=#FF0000>.</font>WEAPON_MAUL<font color=#FF0000>;</font><a name='line.519'></a>
+520:   <font color=#000000>}</font><a name='line.520'></a>
+521:   <a name='line.521'></a>
+522:   <b><font color=#009900>// check if a given mobile is hostile to this being</font></b><a name='line.522'></a>
+523:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>boolean</font> <b><font color=#000000>isHostile</font></b><font color=#FF0000>(</font>Mobile b<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.523'></a>
+524:     <b><font color=#0000FF>return</font></b> <b><font color=#000000>getAI</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>.</font><b><font color=#000000>isHostile</font></b><font color=#FF0000>(</font><b><font color=#0000FF>this</font></b><font color=#FF0000>,</font>b<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.524'></a>
+525:   <font color=#000000>}</font><a name='line.525'></a>
+526:   <a name='line.526'></a>
+527:   <b><font color=#009900>// return the wielded / worn item in particular location</font></b><a name='line.527'></a>
+528:   <b><font color=#0000FF>public</font></b> Thing <b><font color=#000000>getWielded</font></b><font color=#FF0000>(</font><font color=#0000FF>int</font> wt<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.528'></a>
+529:     Thing w<font color=#FF0000>=</font>inv<font color=#FF0000>.</font><b><font color=#000000>getWeapon</font></b><font color=#FF0000>(</font>wt<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.529'></a>
+530:     <a name='line.530'></a>
+531:     <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>w<font color=#FF0000>=</font><font color=#FF0000>=</font><b><font color=#0000FF>null</font></b><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.531'></a>
+532:       <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>wt<font color=#FF0000>=</font><font color=#FF0000>=</font>RPG<font color=#FF0000>.</font>WT_MAINHAND<font color=#FF0000>)</font> w<font color=#FF0000>=</font>inv<font color=#FF0000>.</font><b><font color=#000000>getWeapon</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>WT_TWOHANDS<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.532'></a>
+533:       <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font><font color=#FF0000>(</font>wt<font color=#FF0000>=</font><font color=#FF0000>=</font>RPG<font color=#FF0000>.</font>WT_TORSO<font color=#FF0000>)</font><font color=#FF0000>|</font><font color=#FF0000>|</font><font color=#FF0000>(</font>wt<font color=#FF0000>=</font><font color=#FF0000>=</font>RPG<font color=#FF0000>.</font>WT_LEGS<font color=#FF0000>)</font><font color=#FF0000>)</font> w<font color=#FF0000>=</font>inv<font color=#FF0000>.</font><b><font color=#000000>getWeapon</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>WT_FULLBODY<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.533'></a>
+534:     <font color=#000000>}</font><a name='line.534'></a>
+535:     <b><font color=#0000FF>return</font></b> w<font color=#FF0000>;</font><a name='line.535'></a>
+536:   <font color=#000000>}</font><a name='line.536'></a>
+537:   <a name='line.537'></a>
+538:   <b><font color=#009900>// use initially gifted items</font></b><a name='line.538'></a>
+539:   <b><font color=#009900>// not very discerning</font></b><a name='line.539'></a>
+540:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>void</font> <b><font color=#000000>utiliseItems</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.540'></a>
+541:     <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_IN<font color=#FF0000>)</font><font color=#FF0000>&lt;</font><font color=#9A1900>4</font><font color=#FF0000>)</font> <b><font color=#0000FF>return</font></b><font color=#FF0000>;</font><a name='line.541'></a>
+542:     Item<font color=#FF0000>[</font><font color=#FF0000>]</font> stuff <font color=#FF0000>=</font> inv<font color=#FF0000>.</font><b><font color=#000000>getWieldableContents</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.542'></a>
+543:     <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>stuff<font color=#FF0000>!</font><font color=#FF0000>=</font><b><font color=#0000FF>null</font></b><font color=#FF0000>)</font> <b><font color=#0000FF>for</font></b> <font color=#FF0000>(</font><font color=#0000FF>int</font> i<font color=#FF0000>=</font><font color=#9A1900>0</font><font color=#FF0000>;</font> i<font color=#FF0000>&lt;</font>stuff<font color=#FF0000>.</font>length<font color=#FF0000>;</font> i<font color=#FF0000>+</font><font color=#FF0000>+</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.543'></a>
+544:       <b><font color=#000000>wield</font></b><font color=#FF0000>(</font>stuff<font color=#FF0000>[</font>i<font color=#FF0000>]</font><font color=#FF0000>,</font>stuff<font color=#FF0000>[</font>i<font color=#FF0000>]</font><font color=#FF0000>.</font><b><font color=#000000>wieldType</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.544'></a>
+545:     <font color=#000000>}</font> <a name='line.545'></a>
+546:   <font color=#000000>}</font><a name='line.546'></a>
+547: <a name='line.547'></a>
+548:   <b><font color=#009900>// try moving to specified square</font></b><a name='line.548'></a>
+549:   <b><font color=#009900>// - attempt to attack hostle creature</font></b><a name='line.549'></a>
+550:   <b><font color=#009900>// - chat/displace fiendly creature</font></b><a name='line.550'></a>
+551:   <b><font color=#009900>// - attempt default action on blocking object</font></b><a name='line.551'></a>
+552:   <b><font color=#009900>// - trigger square events while moving</font></b><a name='line.552'></a>
+553:   <b><font color=#009900>// returns true if move successful </font></b><a name='line.553'></a>
+554:   <b><font color=#0000FF>private</font></b> <b><font color=#0000FF>static</font></b> <b><font color=#0000FF>final</font></b> String<font color=#FF0000>[</font><font color=#FF0000>]</font> confusionstrings<font color=#FF0000>=</font><font color=#000000>{</font><font color=#808080>"What?"</font><font color=#FF0000>,</font><font color=#808080>"How?"</font><font color=#FF0000>,</font><font color=#808080>"Who?"</font><font color=#FF0000>,</font><font color=#808080>"Where?"</font><font color=#FF0000>,</font><font color=#808080>"Which?"</font><font color=#000000>}</font><font color=#FF0000>;</font><a name='line.554'></a>
+555:   <a name='line.555'></a>
+556:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>boolean</font> <b><font color=#000000>tryMove</font></b><font color=#FF0000>(</font>Map map<font color=#FF0000>,</font> <font color=#0000FF>int</font> tx<font color=#FF0000>,</font> <font color=#0000FF>int</font> ty<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.556'></a>
+557:     Mobile m<font color=#FF0000>=</font>map<font color=#FF0000>.</font><b><font color=#000000>getMobile</font></b><font color=#FF0000>(</font>tx<font color=#FF0000>,</font>ty<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.557'></a>
+558:     <font color=#0000FF>boolean</font> ishero<font color=#FF0000>=</font><font color=#FF0000>(</font><b><font color=#0000FF>this</font></b><font color=#FF0000>=</font><font color=#FF0000>=</font>Game<font color=#FF0000>.</font>hero<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.558'></a>
+559:     <font color=#0000FF>boolean</font> moving<font color=#FF0000>=</font>false<font color=#FF0000>;</font><a name='line.559'></a>
+560:     <a name='line.560'></a>
+561:     <font color=#0000FF>int</font> dx<font color=#FF0000>=</font>RPG<font color=#FF0000>.</font><b><font color=#000000>sign</font></b><font color=#FF0000>(</font>tx<font color=#FF0000>-</font>x<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.561'></a>
+562:     <font color=#0000FF>int</font> dy<font color=#FF0000>=</font>RPG<font color=#FF0000>.</font><b><font color=#000000>sign</font></b><font color=#FF0000>(</font>ty<font color=#FF0000>-</font>y<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.562'></a>
+563:     <a name='line.563'></a>
+564:     <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font><font color=#FF0000>(</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_CONFUSED<font color=#FF0000>)</font><font color=#FF0000>&gt;</font><font color=#9A1900>0</font><font color=#FF0000>)</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.564'></a>
+565:       <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>RPG<font color=#FF0000>.</font><b><font color=#000000>test</font></b><font color=#FF0000>(</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_CONFUSED<font color=#FF0000>)</font><font color=#FF0000>,</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_WP<font color=#FF0000>)</font><font color=#FF0000>)</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.565'></a>
+566:         <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>ishero<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.566'></a>
+567:           Game<font color=#FF0000>.</font><b><font color=#000000>message</font></b><font color=#FF0000>(</font>confusionstrings<font color=#FF0000>[</font>RPG<font color=#FF0000>.</font><b><font color=#000000>r</font></b><font color=#FF0000>(</font>confusionstrings<font color=#FF0000>.</font>length<font color=#FF0000>)</font><font color=#FF0000>]</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.567'></a>
+568:         <font color=#000000>}</font><a name='line.568'></a>
+569:         <b><font color=#0000FF>do</font></b> <font color=#000000>{</font><a name='line.569'></a>
+570:           tx<font color=#FF0000>=</font>x<font color=#FF0000>+</font>RPG<font color=#FF0000>.</font><b><font color=#000000>r</font></b><font color=#FF0000>(</font><font color=#9A1900>3</font><font color=#FF0000>)</font><font color=#FF0000>-</font><font color=#9A1900>1</font><font color=#FF0000>;</font><a name='line.570'></a>
+571:           ty<font color=#FF0000>=</font>y<font color=#FF0000>+</font>RPG<font color=#FF0000>.</font><b><font color=#000000>r</font></b><font color=#FF0000>(</font><font color=#9A1900>3</font><font color=#FF0000>)</font><font color=#FF0000>-</font><font color=#9A1900>1</font><font color=#FF0000>;</font><a name='line.571'></a>
+572:         <font color=#000000>}</font> <b><font color=#0000FF>while</font></b> <font color=#FF0000>(</font><font color=#FF0000>(</font>tx<font color=#FF0000>=</font><font color=#FF0000>=</font><font color=#9A1900>0</font><font color=#FF0000>)</font><font color=#FF0000>&amp;</font><font color=#FF0000>&amp;</font><font color=#FF0000>(</font>ty<font color=#FF0000>=</font><font color=#FF0000>=</font><font color=#9A1900>0</font><font color=#FF0000>)</font><font color=#FF0000>)</font><font color=#FF0000>;</font> <a name='line.572'></a>
+573:       <font color=#000000>}</font> <a name='line.573'></a>
+574:     <font color=#000000>}</font><a name='line.574'></a>
+575: <a name='line.575'></a>
+576:     <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>m<font color=#FF0000>!</font><font color=#FF0000>=</font><b><font color=#0000FF>null</font></b><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.576'></a>
+577:       <b><font color=#009900>// we have a mobile in the way!</font></b><a name='line.577'></a>
+578:       <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font><b><font color=#000000>isHostile</font></b><font color=#FF0000>(</font>m<font color=#FF0000>)</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.578'></a>
+579:         <b><font color=#009900>// it's hostile, so attack</font></b><a name='line.579'></a>
+580:         <b><font color=#000000>attack</font></b><font color=#FF0000>(</font>m<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.580'></a>
+581:         <b><font color=#0000FF>return</font></b> true<font color=#FF0000>;</font><a name='line.581'></a>
+582:       <font color=#000000>}</font> <b><font color=#0000FF>else</font></b> <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font><font color=#FF0000>!</font><font color=#FF0000>(</font>m <b><font color=#0000FF>instanceof</font></b> Hero<font color=#FF0000>)</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.582'></a>
+583:         <b><font color=#009900>// try to push past somebody friendly</font></b><a name='line.583'></a>
+584:         <b><font color=#009900>// test relative strength</font></b><a name='line.584'></a>
+585:         <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font><font color=#FF0000>(</font>m<font color=#FF0000>.</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_NON_DISPLACEABLE<font color=#FF0000>)</font><font color=#FF0000>&lt;</font><font color=#FF0000>=</font><font color=#9A1900>0</font><font color=#FF0000>)</font><font color=#FF0000>&amp;</font><font color=#FF0000>&amp;</font><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font><b><font color=#000000>test</font></b><font color=#FF0000>(</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_ST<font color=#FF0000>)</font><font color=#FF0000>,</font>m<font color=#FF0000>.</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_ST<font color=#FF0000>)</font><font color=#FF0000>)</font><font color=#FF0000>)</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.585'></a>
+586:           <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>ishero<font color=#FF0000>)</font> Game<font color=#FF0000>.</font><b><font color=#000000>message</font></b><font color=#FF0000>(</font><font color=#808080>"You push past "</font><font color=#FF0000>+</font>m<font color=#FF0000>.</font><b><font color=#000000>getTheName</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>)</font><font color=#FF0000>;</font> <a name='line.586'></a>
+587:           map<font color=#FF0000>.</font><b><font color=#000000>addThing</font></b><font color=#FF0000>(</font>m<font color=#FF0000>,</font>x<font color=#FF0000>,</font>y<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.587'></a>
+588:           <b><font color=#000000>moveTo</font></b><font color=#FF0000>(</font>map<font color=#FF0000>,</font>tx<font color=#FF0000>,</font>ty<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.588'></a>
+589:           m<font color=#FF0000>.</font>aps<font color=#FF0000>-</font><font color=#FF0000>=</font><font color=#9A1900>100</font><font color=#FF0000>;</font><a name='line.589'></a>
+590:           moving<font color=#FF0000>=</font>true<font color=#FF0000>;</font><a name='line.590'></a>
+591:         <font color=#000000>}</font> <b><font color=#0000FF>else</font></b> <font color=#000000>{</font><a name='line.591'></a>
+592:           <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>ishero<font color=#FF0000>)</font> Game<font color=#FF0000>.</font><b><font color=#000000>message</font></b><font color=#FF0000>(</font><font color=#808080>"You can't get past "</font><font color=#FF0000>+</font>m<font color=#FF0000>.</font><b><font color=#000000>getTheName</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>)</font><font color=#FF0000>;</font> <a name='line.592'></a>
+593:           <b><font color=#0000FF>return</font></b> false<font color=#FF0000>;</font><a name='line.593'></a>
+594:         <font color=#000000>}</font> <a name='line.594'></a>
+595:       <font color=#000000>}</font> <b><font color=#0000FF>else</font></b> <font color=#000000>{</font><a name='line.595'></a>
+596:         <b><font color=#009900>// it's the hero, so don't push past</font></b><a name='line.596'></a>
+597:         <b><font color=#0000FF>return</font></b> false<font color=#FF0000>;</font> <a name='line.597'></a>
+598:       <font color=#000000>}</font><a name='line.598'></a>
+599:     <font color=#000000>}</font><a name='line.599'></a>
+600:     <a name='line.600'></a>
+601:     <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font><b><font color=#000000>canMove</font></b><font color=#FF0000>(</font>map<font color=#FF0000>,</font>tx<font color=#FF0000>,</font>ty<font color=#FF0000>)</font><font color=#FF0000>)</font> moving<font color=#FF0000>=</font>true<font color=#FF0000>;</font><a name='line.601'></a>
+602:     <a name='line.602'></a>
+603:     <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font><font color=#FF0000>(</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_IMMOBILIZED<font color=#FF0000>)</font><font color=#FF0000>&gt;</font><font color=#9A1900>0</font><font color=#FF0000>)</font><font color=#FF0000>|</font><font color=#FF0000>|</font><font color=#FF0000>(</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_MOVESPEED<font color=#FF0000>)</font><font color=#FF0000>&lt;</font><font color=#FF0000>=</font><font color=#9A1900>0</font><font color=#FF0000>)</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.603'></a>
+604:       <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>ishero<font color=#FF0000>)</font> Game<font color=#FF0000>.</font><b><font color=#000000>message</font></b><font color=#FF0000>(</font><font color=#808080>"You cannot move!"</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.604'></a>
+605:       <b><font color=#0000FF>return</font></b> false<font color=#FF0000>;</font> <a name='line.605'></a>
+606:     <font color=#000000>}</font><a name='line.606'></a>
+607:     <a name='line.607'></a>
+608:     <a name='line.608'></a>
+609:     <b><font color=#009900>// use doors etc.</font></b><a name='line.609'></a>
+610:     Thing head<font color=#FF0000>=</font>map<font color=#FF0000>.</font><b><font color=#000000>getObjects</font></b><font color=#FF0000>(</font>tx<font color=#FF0000>,</font>ty<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.610'></a>
+611:     <b><font color=#0000FF>while</font></b> <font color=#FF0000>(</font>head<font color=#FF0000>!</font><font color=#FF0000>=</font><b><font color=#0000FF>null</font></b><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.611'></a>
+612:       <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>head<font color=#FF0000>.</font><b><font color=#000000>isBlocking</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.612'></a>
+613:         <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font> <font color=#FF0000>(</font>head <b><font color=#0000FF>instanceof</font></b> Scenery<font color=#FF0000>)</font> <font color=#FF0000>&amp;</font><font color=#FF0000>&amp;</font> <font color=#FF0000>(</font><font color=#FF0000>(</font><font color=#FF0000>(</font>Scenery<font color=#FF0000>)</font>head<font color=#FF0000>)</font><font color=#FF0000>.</font><b><font color=#000000>getPushability</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>&gt;</font><font color=#9A1900>0</font><font color=#FF0000>)</font> <font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.613'></a>
+614:           <b><font color=#009900>// try to push the scenery around</font></b><a name='line.614'></a>
+615:           Scenery sc<font color=#FF0000>=</font><font color=#FF0000>(</font>Scenery<font color=#FF0000>)</font>head<font color=#FF0000>;</font><a name='line.615'></a>
+616:           <font color=#0000FF>int</font> push_difficulty <font color=#FF0000>=</font> sc<font color=#FF0000>.</font><b><font color=#000000>getPushability</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.616'></a>
+617:           <a name='line.617'></a>
+618:           aps<font color=#FF0000>-</font><font color=#FF0000>=</font><font color=#9A1900>100</font><font color=#FF0000>;</font><a name='line.618'></a>
+619:           <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>RPG<font color=#FF0000>.</font><b><font color=#000000>test</font></b><font color=#FF0000>(</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_ST<font color=#FF0000>)</font><font color=#FF0000>,</font>push_difficulty<font color=#FF0000>)</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.619'></a>
+620:             <b><font color=#009900>// success</font></b><a name='line.620'></a>
+621:             <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font><font color=#FF0000>!</font>map<font color=#FF0000>.</font><b><font color=#000000>isBlocked</font></b><font color=#FF0000>(</font>tx<font color=#FF0000>+</font>dx<font color=#FF0000>,</font>ty<font color=#FF0000>+</font>dy<font color=#FF0000>)</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.621'></a>
+622:               <b><font color=#009900>// push forwards  </font></b><a name='line.622'></a>
+623:               head<font color=#FF0000>.</font><b><font color=#000000>moveTo</font></b><font color=#FF0000>(</font>map<font color=#FF0000>,</font>tx<font color=#FF0000>+</font>dx<font color=#FF0000>,</font>ty<font color=#FF0000>+</font>dy<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.623'></a>
+624:             <font color=#000000>}</font> <b><font color=#0000FF>else</font></b> <font color=#000000>{</font><a name='line.624'></a>
+625:               <b><font color=#009900>// swap places</font></b><a name='line.625'></a>
+626:               head<font color=#FF0000>.</font><b><font color=#000000>moveTo</font></b><font color=#FF0000>(</font>map<font color=#FF0000>,</font>x<font color=#FF0000>,</font>y<font color=#FF0000>)</font><font color=#FF0000>;</font> <a name='line.626'></a>
+627:             <font color=#000000>}</font><a name='line.627'></a>
+628:             <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font><font color=#FF0000>!</font>map<font color=#FF0000>.</font><b><font color=#000000>isBlocked</font></b><font color=#FF0000>(</font>tx<font color=#FF0000>,</font>ty<font color=#FF0000>)</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.628'></a>
+629:               <b><font color=#009900>// we can now move in to the target square</font></b><a name='line.629'></a>
+630:               moving <font color=#FF0000>=</font> true<font color=#FF0000>;</font><a name='line.630'></a>
+631:               <b><font color=#0000FF>break</font></b><font color=#FF0000>;</font> <b><font color=#009900>// exit this while loop </font></b><a name='line.631'></a>
+632:             <font color=#000000>}</font><a name='line.632'></a>
+633:           <font color=#000000>}</font> <b><font color=#0000FF>else</font></b> <font color=#000000>{</font><a name='line.633'></a>
+634:             <b><font color=#009900>// failed to push objeck</font></b><a name='line.634'></a>
+635:             <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>ishero<font color=#FF0000>)</font> Game<font color=#FF0000>.</font><b><font color=#000000>message</font></b><font color=#FF0000>(</font><font color=#808080>"You fail to move "</font><font color=#FF0000>+</font>head<font color=#FF0000>.</font><b><font color=#000000>getTheName</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.635'></a>
+636:             <b><font color=#0000FF>return</font></b> false<font color=#FF0000>;</font><a name='line.636'></a>
+637:           <font color=#000000>}</font>  <a name='line.637'></a>
+638:         <font color=#000000>}</font> <b><font color=#0000FF>else</font></b> <font color=#000000>{</font><a name='line.638'></a>
+639:           <b><font color=#009900>// use it to se if we can do anything</font></b><a name='line.639'></a>
+640:           head<font color=#FF0000>.</font><b><font color=#000000>use</font></b><font color=#FF0000>(</font><b><font color=#0000FF>this</font></b><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.640'></a>
+641:           aps<font color=#FF0000>-</font><font color=#FF0000>=</font><font color=#9A1900>10</font><font color=#FF0000>;</font><a name='line.641'></a>
+642:           <b><font color=#0000FF>return</font></b> false<font color=#FF0000>;</font>       <a name='line.642'></a>
+643:         <font color=#000000>}</font><a name='line.643'></a>
+644:       <font color=#000000>}</font><a name='line.644'></a>
+645:       <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font><font color=#FF0000>(</font><font color=#FF0000>!</font>ishero<font color=#FF0000>)</font><font color=#FF0000>&amp;</font><font color=#FF0000>&amp;</font>head<font color=#FF0000>.</font><b><font color=#000000>isWarning</font></b><font color=#FF0000>(</font><b><font color=#0000FF>this</font></b><font color=#FF0000>)</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.645'></a>
+646:         aps<font color=#FF0000>-</font><font color=#FF0000>=</font><font color=#9A1900>10</font><font color=#FF0000>;</font><a name='line.646'></a>
+647:         <b><font color=#0000FF>return</font></b> false<font color=#FF0000>;</font><a name='line.647'></a>
+648:       <font color=#000000>}</font><a name='line.648'></a>
+649:       head<font color=#FF0000>=</font>head<font color=#FF0000>.</font>next<font color=#FF0000>;</font><a name='line.649'></a>
+650:     <font color=#000000>}</font><a name='line.650'></a>
+651:     <a name='line.651'></a>
+652:     <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>moving<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.652'></a>
+653:       aps<font color=#FF0000>=</font>aps<font color=#FF0000>-</font><font color=#FF0000>(</font>map<font color=#FF0000>.</font><b><font color=#000000>getMoveCost</font></b><font color=#FF0000>(</font><b><font color=#0000FF>this</font></b><font color=#FF0000>,</font>tx<font color=#FF0000>,</font>ty<font color=#FF0000>)</font><font color=#FF0000>*</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_MOVECOST<font color=#FF0000>)</font><font color=#FF0000>)</font><font color=#FF0000>/</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_MOVESPEED<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.653'></a>
+654:       <b><font color=#000000>moveTo</font></b><font color=#FF0000>(</font>map<font color=#FF0000>,</font>tx<font color=#FF0000>,</font>ty<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.654'></a>
+655:       <b><font color=#0000FF>return</font></b> true<font color=#FF0000>;</font><a name='line.655'></a>
+656:     <font color=#000000>}</font><a name='line.656'></a>
+657:     <a name='line.657'></a>
+658:     <b><font color=#009900>// can't do this move, will have to try something else!</font></b><a name='line.658'></a>
+659:     <b><font color=#0000FF>return</font></b> false<font color=#FF0000>;</font><a name='line.659'></a>
+660:   <font color=#000000>}</font><a name='line.660'></a>
+661: <a name='line.661'></a>
+662:   <b><font color=#009900>// attack a given target with HtH weapon</font></b><a name='line.662'></a>
+663:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>int</font> <b><font color=#000000>attack</font></b><font color=#FF0000>(</font>Thing target<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.663'></a>
+664:     <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>target<font color=#FF0000>=</font><font color=#FF0000>=</font><b><font color=#0000FF>null</font></b><font color=#FF0000>)</font> <b><font color=#0000FF>return</font></b> <font color=#9A1900>0</font><font color=#FF0000>;</font><a name='line.664'></a>
+665: <a name='line.665'></a>
+666:     <font color=#0000FF>int</font> result<font color=#FF0000>=</font><font color=#9A1900>0</font><font color=#FF0000>;</font><a name='line.666'></a>
+667:     <font color=#0000FF>int</font> acost<font color=#FF0000>=</font><font color=#9A1900>0</font><font color=#FF0000>;</font><a name='line.667'></a>
+668:  <a name='line.668'></a>
+669:     <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_PANICKED<font color=#FF0000>)</font><font color=#FF0000>&gt;</font><font color=#9A1900>0</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.669'></a>
+670:       <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>RPG<font color=#FF0000>.</font><b><font color=#000000>test</font></b><font color=#FF0000>(</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_PANICKED<font color=#FF0000>)</font><font color=#FF0000>,</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_WP<font color=#FF0000>)</font><font color=#FF0000>)</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.670'></a>
+671:         <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font><b><font color=#000000>isVisible</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>)</font> Game<font color=#FF0000>.</font><b><font color=#000000>message</font></b><font color=#FF0000>(</font><b><font color=#000000>getTheName</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>+</font><font color=#808080>" freeze"</font><font color=#FF0000>+</font><font color=#FF0000>(</font><font color=#FF0000>(</font><b><font color=#0000FF>this</font></b><font color=#FF0000>=</font><font color=#FF0000>=</font>Game<font color=#FF0000>.</font>hero<font color=#FF0000>)</font><font color=#FF0000>?</font><font color=#808080>""</font><font color=#FF0000>:</font><font color=#808080>"s"</font><font color=#FF0000>)</font><font color=#FF0000>+</font><font color=#808080>" in terror"</font><font color=#FF0000>)</font><font color=#FF0000>;</font> <a name='line.671'></a>
+672:         <b><font color=#0000FF>return</font></b> <font color=#9A1900>0</font><font color=#FF0000>;</font><a name='line.672'></a>
+673:       <font color=#000000>}</font><a name='line.673'></a>
+674:     <font color=#000000>}</font><a name='line.674'></a>
+675:     <a name='line.675'></a>
+676:     <font color=#0000FF>int</font> aspeed<font color=#FF0000>=</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_ATTACKSPEED<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.676'></a>
+677:     <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>aspeed<font color=#FF0000>&lt;</font><font color=#FF0000>=</font><font color=#9A1900>0</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.677'></a>
+678:       aps<font color=#FF0000>=</font><font color=#FF0000>-</font><font color=#9A1900>1</font><font color=#FF0000>;</font><a name='line.678'></a>
+679:       <b><font color=#0000FF>return</font></b> <font color=#9A1900>0</font><font color=#FF0000>;</font><a name='line.679'></a>
+680:     <font color=#000000>}</font><a name='line.680'></a>
+681:     <a name='line.681'></a>
+682:     <b><font color=#009900>// get main weapon</font></b><a name='line.682'></a>
+683:     Thing w<font color=#FF0000>=</font><b><font color=#000000>getWielded</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>WT_MAINHAND<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.683'></a>
+684:     <a name='line.684'></a>
+685:     <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>w <b><font color=#0000FF>instanceof</font></b> Weapon<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.685'></a>
+686:       <b><font color=#009900>// main attack</font></b><a name='line.686'></a>
+687:       result<font color=#FF0000>+</font><font color=#FF0000>=</font><b><font color=#000000>attackWith</font></b><font color=#FF0000>(</font>target<font color=#FF0000>,</font>w<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.687'></a>
+688:       acost <font color=#FF0000>+</font><font color=#FF0000>=</font> w<font color=#FF0000>.</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_ATTACKCOST<font color=#FF0000>)</font><font color=#FF0000>+</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_ATTACKCOST<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.688'></a>
+689:   <a name='line.689'></a>
+690:       <b><font color=#009900>// attack with second weapon if available</font></b><a name='line.690'></a>
+691:       w<font color=#FF0000>=</font><b><font color=#000000>getWielded</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>WT_SECONDHAND<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.691'></a>
+692:       <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>w <b><font color=#0000FF>instanceof</font></b> Weapon<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.692'></a>
+693:         result<font color=#FF0000>+</font><font color=#FF0000>=</font><b><font color=#000000>attackWith</font></b><font color=#FF0000>(</font>target<font color=#FF0000>,</font>w<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.693'></a>
+694:         acost <font color=#FF0000>+</font><font color=#FF0000>=</font> w<font color=#FF0000>.</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_ATTACKCOST<font color=#FF0000>)</font><font color=#FF0000>+</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_ATTACKCOST<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.694'></a>
+695:       <font color=#000000>}</font><a name='line.695'></a>
+696:     <font color=#000000>}</font> <b><font color=#0000FF>else</font></b> <font color=#000000>{</font><a name='line.696'></a>
+697:       <b><font color=#009900>// use default weapon for unarmed creatures</font></b><a name='line.697'></a>
+698:       w<font color=#FF0000>=</font>Lib<font color=#FF0000>.</font>WEAPON_MAUL<font color=#FF0000>;</font> <a name='line.698'></a>
+699:       result<font color=#FF0000>+</font><font color=#FF0000>=</font><b><font color=#000000>attackWith</font></b><font color=#FF0000>(</font>target<font color=#FF0000>,</font>w<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.699'></a>
+700:       acost <font color=#FF0000>+</font><font color=#FF0000>=</font> w<font color=#FF0000>.</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_ATTACKCOST<font color=#FF0000>)</font><font color=#FF0000>+</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_ATTACKCOST<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.700'></a>
+701:     <font color=#000000>}</font><a name='line.701'></a>
+702: <a name='line.702'></a>
+703:     <b><font color=#009900>// spend action points on attack</font></b><a name='line.703'></a>
+704:     aps<font color=#FF0000>=</font>aps<font color=#FF0000>-</font><font color=#FF0000>(</font><font color=#9A1900>100</font><font color=#FF0000>*</font>acost<font color=#FF0000>)</font><font color=#FF0000>/</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_ATTACKSPEED<font color=#FF0000>)</font><font color=#FF0000>;</font>  <a name='line.704'></a>
+705:     <a name='line.705'></a>
+706:     <b><font color=#0000FF>return</font></b> result<font color=#FF0000>;</font><a name='line.706'></a>
+707:   <font color=#000000>}</font><a name='line.707'></a>
+708:   <a name='line.708'></a>
+709:   <b><font color=#009900>// automatic skill gains for creatures/NPCs</font></b><a name='line.709'></a>
+710:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>void</font> <b><font color=#000000>autoLearnSkills</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.710'></a>
+711:     <b><font color=#0000FF>while</font></b><font color=#FF0000>(</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_SKILLPOINTS<font color=#FF0000>)</font><font color=#FF0000>&gt;</font><font color=#9A1900>0</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.711'></a>
+712:       <font color=#0000FF>int</font> s<font color=#FF0000>=</font>Skill<font color=#FF0000>.</font><b><font color=#000000>randomSkill</font></b><font color=#FF0000>(</font><b><font color=#0000FF>this</font></b><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.712'></a>
+713:       <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>Skill<font color=#FF0000>.</font><b><font color=#000000>canLearnSkill</font></b><font color=#FF0000>(</font><b><font color=#0000FF>this</font></b><font color=#FF0000>,</font>Skill<font color=#FF0000>.</font><b><font color=#000000>name</font></b><font color=#FF0000>(</font>s<font color=#FF0000>)</font><font color=#FF0000>)</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.713'></a>
+714:         Skill<font color=#FF0000>.</font><b><font color=#000000>increaseSkill</font></b><font color=#FF0000>(</font><b><font color=#0000FF>this</font></b><font color=#FF0000>,</font>Skill<font color=#FF0000>.</font><b><font color=#000000>name</font></b><font color=#FF0000>(</font>s<font color=#FF0000>)</font><font color=#FF0000>,</font><font color=#9A1900>1</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.714'></a>
+715:       <font color=#000000>}</font><a name='line.715'></a>
+716:     <font color=#000000>}</font> <a name='line.716'></a>
+717:   <font color=#000000>}</font><a name='line.717'></a>
+718:   <a name='line.718'></a>
+719:   <b><font color=#009900>// turn creature into a follower</font></b><a name='line.719'></a>
+720:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>void</font> <b><font color=#000000>makeFollower</font></b><font color=#FF0000>(</font>Being leader<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.720'></a>
+721:     <b><font color=#000000>setAI</font></b><font color=#FF0000>(</font><b><font color=#0000FF>new</font></b> <b><font color=#000000>FollowerAI</font></b><font color=#FF0000>(</font>leader<font color=#FF0000>)</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.721'></a>
+722:     <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>leader<font color=#FF0000>=</font><font color=#FF0000>=</font>Game<font color=#FF0000>.</font>hero<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.722'></a>
+723:         <b><font color=#000000>setStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_STATE<font color=#FF0000>,</font>AI<font color=#FF0000>.</font>STATE_FOLLOWER<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.723'></a>
+724:     <font color=#000000>}</font><a name='line.724'></a>
+725:     <b><font color=#000000>setStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_SIDE<font color=#FF0000>,</font>leader<font color=#FF0000>.</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_SIDE<font color=#FF0000>)</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.725'></a>
+726:   <font color=#000000>}</font><a name='line.726'></a>
+727:   <a name='line.727'></a>
+728:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>void</font> <b><font color=#000000>makeGuard</font></b><font color=#FF0000>(</font>Map map<font color=#FF0000>,</font> <font color=#0000FF>int</font> x1<font color=#FF0000>,</font> <font color=#0000FF>int</font> y1<font color=#FF0000>,</font> <font color=#0000FF>int</font> x2<font color=#FF0000>,</font> <font color=#0000FF>int</font> y2<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.728'></a>
+729:     Thing b1<font color=#FF0000>=</font><b><font color=#0000FF>new</font></b> <b><font color=#000000>Secret</font></b><font color=#FF0000>(</font>Secret<font color=#FF0000>.</font>MARKER<font color=#FF0000>)</font><font color=#FF0000>;</font> map<font color=#FF0000>.</font><b><font color=#000000>addThing</font></b><font color=#FF0000>(</font>b1<font color=#FF0000>,</font>x1<font color=#FF0000>,</font>y1<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.729'></a>
+730:     Thing b2<font color=#FF0000>=</font><b><font color=#0000FF>new</font></b> <b><font color=#000000>Secret</font></b><font color=#FF0000>(</font>Secret<font color=#FF0000>.</font>MARKER<font color=#FF0000>)</font><font color=#FF0000>;</font> map<font color=#FF0000>.</font><b><font color=#000000>addThing</font></b><font color=#FF0000>(</font>b2<font color=#FF0000>,</font>x2<font color=#FF0000>,</font>y2<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.730'></a>
+731:     <b><font color=#000000>setAI</font></b><font color=#FF0000>(</font><b><font color=#0000FF>new</font></b> <b><font color=#000000>GuardAI</font></b><font color=#FF0000>(</font>b1<font color=#FF0000>,</font>b2<font color=#FF0000>)</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.731'></a>
+732:     map<font color=#FF0000>.</font><b><font color=#000000>addThing</font></b><font color=#FF0000>(</font><b><font color=#0000FF>this</font></b><font color=#FF0000>,</font><font color=#FF0000>(</font>x1<font color=#FF0000>+</font>x2<font color=#FF0000>)</font><font color=#FF0000>/</font><font color=#9A1900>2</font><font color=#FF0000>,</font><font color=#FF0000>(</font>y1<font color=#FF0000>+</font>y2<font color=#FF0000>)</font><font color=#FF0000>/</font><font color=#9A1900>2</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.732'></a>
+733:   <font color=#000000>}</font><a name='line.733'></a>
+734: <font color=#000000>}</font></tt><a name='line.734'></a>
+</pre><a name='line.735'></a>
+</body><a name='line.736'></a>
+</html><a name='line.737'></a>

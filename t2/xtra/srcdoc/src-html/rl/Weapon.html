@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="GNU source-highlight 1.4
+by Lorenzo Bettini, bettini@gnu.org
+http://w3.newnet.it/bettini
+http://www.gnu.org/software/src-highlite">
+<title>.\rl\Weapon.java</title>
+</head>
+<body bgcolor="#FFFFFF" text="#000000" link="#0000EE" vlink="#551A8B" alink="#FF0000">
+<pre>
+<tt>
+001: <b><font color=#0000FF>package</font></b> rl<font color=#FF0000>;</font><a name='line.1'></a>
+002: <a name='line.2'></a>
+003: <b><font color=#0000FF>public</font></b> <b><font color=#0000FF>class</font></b> Weapon <b><font color=#0000FF>extends</font></b> Item <font color=#000000>{</font><a name='line.3'></a>
+004:   <b><font color=#009900>// use to hit target</font></b><a name='line.4'></a>
+005:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>int</font> <b><font color=#000000>use</font></b><font color=#FF0000>(</font>Thing wielder<font color=#FF0000>,</font> Thing target<font color=#FF0000>,</font> <font color=#0000FF>int</font> action<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.5'></a>
+006:     <b><font color=#0000FF>switch</font></b> <font color=#FF0000>(</font>action<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.6'></a>
+007:       <b><font color=#009900>// Weapon used to attack</font></b><a name='line.7'></a>
+008:       <b><font color=#009900>// return &gt;0 if hit is successful</font></b><a name='line.8'></a>
+009:       <b><font color=#0000FF>case</font></b> USE_ATTACK<font color=#FF0000>:</font> <font color=#000000>{</font><a name='line.9'></a>
+010:         <font color=#0000FF>int</font> attack<font color=#FF0000>=</font><b><font color=#000000>getASK</font></b><font color=#FF0000>(</font>wielder<font color=#FF0000>,</font>target<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.10'></a>
+011:         <font color=#0000FF>int</font> defence<font color=#FF0000>=</font>target<font color=#FF0000>.</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_DSK<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.11'></a>
+012: <a name='line.12'></a>
+013:         <font color=#0000FF>int</font> result<font color=#FF0000>=</font>RPG<font color=#FF0000>.</font><b><font color=#000000>test</font></b><font color=#FF0000>(</font>attack<font color=#FF0000>,</font>defence<font color=#FF0000>)</font><font color=#FF0000>?</font><font color=#9A1900>1</font><font color=#FF0000>:</font><font color=#9A1900>0</font><font color=#FF0000>;</font><a name='line.13'></a>
+014:         <a name='line.14'></a>
+015:         <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font><font color=#FF0000>(</font>result<font color=#FF0000>=</font><font color=#FF0000>=</font><font color=#9A1900>0</font><font color=#FF0000>)</font><font color=#FF0000>&amp;</font><font color=#FF0000>&amp;</font><font color=#FF0000>(</font>target<font color=#FF0000>.</font><b><font color=#000000>isVisible</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>)</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.15'></a>
+016:           <font color=#0000FF>boolean</font> ishero<font color=#FF0000>=</font><font color=#FF0000>(</font>wielder<font color=#FF0000>=</font><font color=#FF0000>=</font>Game<font color=#FF0000>.</font>hero<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.16'></a>
+017:           Game<font color=#FF0000>.</font><b><font color=#000000>message</font></b><font color=#FF0000>(</font>Text<font color=#FF0000>.</font><b><font color=#000000>capitalise</font></b><font color=#FF0000>(</font>wielder<font color=#FF0000>.</font><b><font color=#000000>getTheName</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>+</font><a name='line.17'></a>
+018:                      <font color=#FF0000>(</font>ishero<font color=#FF0000>?</font><font color=#808080>" miss "</font><font color=#FF0000>:</font><font color=#808080>" misses "</font><font color=#FF0000>)</font><font color=#FF0000>+</font><a name='line.18'></a>
+019:                      target<font color=#FF0000>.</font><b><font color=#000000>getTheName</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>+</font><a name='line.19'></a>
+020:                      <font color=#808080>".  "</font><font color=#FF0000>)</font><font color=#FF0000>+</font><a name='line.20'></a>
+021:                        Text<font color=#FF0000>.</font><b><font color=#000000>capitalise</font></b><font color=#FF0000>(</font><font color=#FF0000>(</font>target<font color=#FF0000>=</font><font color=#FF0000>=</font>Game<font color=#FF0000>.</font>hero<font color=#FF0000>?</font><font color=#FF0000>(</font>target<font color=#FF0000>.</font><b><font color=#000000>getTheName</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>+</font><font color=#808080>" are"</font><font color=#FF0000>)</font><font color=#FF0000>:</font><font color=#808080>"it is"</font><font color=#FF0000>)</font><font color=#FF0000>+</font><a name='line.21'></a>
+022:                        <font color=#808080>" now at "</font><font color=#FF0000>+</font><a name='line.22'></a>
+023:                        RPG<font color=#FF0000>.</font><b><font color=#000000>percentile</font></b><font color=#FF0000>(</font>target<font color=#FF0000>.</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_HPS<font color=#FF0000>)</font><font color=#FF0000>,</font> target<font color=#FF0000>.</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_HPSMAX<font color=#FF0000>)</font><font color=#FF0000>)</font><font color=#FF0000>+</font><a name='line.23'></a>
+024:                        <font color=#808080>"% health."</font><font color=#FF0000>)</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.24'></a>
+025:         <font color=#000000>}</font>  <a name='line.25'></a>
+026: <a name='line.26'></a>
+027:         <b><font color=#0000FF>return</font></b> result<font color=#FF0000>;</font><a name='line.27'></a>
+028:       <font color=#000000>}</font><a name='line.28'></a>
+029:       <a name='line.29'></a>
+030:       <b><font color=#009900>// Weapon has hit the given target</font></b><a name='line.30'></a>
+031:       <b><font color=#0000FF>case</font></b> USE_HIT<font color=#FF0000>:</font> <font color=#000000>{</font><a name='line.31'></a>
+032:         Map map<font color=#FF0000>=</font>target<font color=#FF0000>.</font><b><font color=#000000>getMap</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.32'></a>
+033: <a name='line.33'></a>
+034:         <font color=#0000FF>int</font> ast<font color=#FF0000>=</font><b><font color=#000000>getAST</font></b><font color=#FF0000>(</font>wielder<font color=#FF0000>,</font>target<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.34'></a>
+035: <a name='line.35'></a>
+036:         ast<font color=#FF0000>=</font>RPG<font color=#FF0000>.</font><b><font color=#000000>r</font></b><font color=#FF0000>(</font>ast<font color=#FF0000>+</font><font color=#9A1900>1</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.36'></a>
+037:         <font color=#0000FF>int</font> dam<font color=#FF0000>=</font>target<font color=#FF0000>.</font><b><font color=#000000>damageLocation</font></b><font color=#FF0000>(</font>ast<font color=#FF0000>,</font>RPG<font color=#FF0000>.</font>DT_NORMAL<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.37'></a>
+038:         <a name='line.38'></a>
+039:         <b><font color=#009900>// report the attack</font></b><a name='line.39'></a>
+040:         <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>target<font color=#FF0000>.</font><b><font color=#000000>isVisible</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.40'></a>
+041:           <font color=#0000FF>boolean</font> heroattack <font color=#FF0000>=</font> <font color=#FF0000>(</font>wielder<font color=#FF0000>=</font><font color=#FF0000>=</font>Game<font color=#FF0000>.</font>hero<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.41'></a>
+042:           <b><font color=#009900>//Game.message(Text.capitalise(wielder.getTheName()+ (heroattack?" hit ":" hits ")+target.getTheName()+" for "+Lib.damageDescription(dam,target.getStat(RPG.ST_HPSMAX))));</font></b><a name='line.42'></a>
+043:           Game<font color=#FF0000>.</font><b><font color=#000000>message</font></b><font color=#FF0000>(</font>Text<font color=#FF0000>.</font><b><font color=#000000>capitalise</font></b><font color=#FF0000>(</font>wielder<font color=#FF0000>.</font><b><font color=#000000>getTheName</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>+</font><a name='line.43'></a>
+044:                        <font color=#FF0000>(</font>heroattack<font color=#FF0000>?</font><font color=#808080>" hit "</font><font color=#FF0000>:</font><font color=#808080>" hits "</font><font color=#FF0000>)</font><font color=#FF0000>+</font><a name='line.44'></a>
+045:                        target<font color=#FF0000>.</font><b><font color=#000000>getTheName</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>+</font><a name='line.45'></a>
+046:                        <font color=#808080>" for "</font><font color=#FF0000>+</font><a name='line.46'></a>
+047:                        Lib<font color=#FF0000>.</font><b><font color=#000000>damageDescription</font></b><font color=#FF0000>(</font>dam<font color=#FF0000>,</font>target<font color=#FF0000>.</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_HPSMAX<font color=#FF0000>)</font><font color=#FF0000>)</font><font color=#FF0000>+</font><a name='line.47'></a>
+048:                      <font color=#808080>".  "</font><font color=#FF0000>)</font><font color=#FF0000>+</font><a name='line.48'></a>
+049:                        Text<font color=#FF0000>.</font><b><font color=#000000>capitalise</font></b><font color=#FF0000>(</font><font color=#FF0000>(</font>target<font color=#FF0000>=</font><font color=#FF0000>=</font>Game<font color=#FF0000>.</font>hero<font color=#FF0000>?</font><font color=#FF0000>(</font>target<font color=#FF0000>.</font><b><font color=#000000>getTheName</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>+</font><font color=#808080>" are"</font><font color=#FF0000>)</font><font color=#FF0000>:</font><font color=#808080>"it is"</font><font color=#FF0000>)</font><font color=#FF0000>+</font><a name='line.49'></a>
+050:                        <font color=#808080>" now at "</font><font color=#FF0000>+</font><a name='line.50'></a>
+051:                        RPG<font color=#FF0000>.</font><b><font color=#000000>percentile</font></b><font color=#FF0000>(</font>target<font color=#FF0000>.</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_HPS<font color=#FF0000>)</font><font color=#FF0000>,</font> target<font color=#FF0000>.</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_HPSMAX<font color=#FF0000>)</font><font color=#FF0000>)</font><font color=#FF0000>+</font><a name='line.51'></a>
+052:                        <font color=#808080>"% health."</font><font color=#FF0000>)</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.52'></a>
+053:         <font color=#000000>}</font><a name='line.53'></a>
+054: <a name='line.54'></a>
+055:         <b><font color=#009900>// slight wear and tear to weapon </font></b><a name='line.55'></a>
+056:         <b><font color=#009900>// lower hit damage = more armour = higher damage to weapon</font></b><a name='line.56'></a>
+057:         <b><font color=#009900>//   note: (ast-dam) is the number of hps deflected by armour</font></b><a name='line.57'></a>
+058:         <b><font color=#000000>damage</font></b><font color=#FF0000>(</font><font color=#FF0000>(</font>ast<font color=#FF0000>-</font>dam<font color=#FF0000>)</font><font color=#FF0000>/</font><font color=#9A1900>3</font><font color=#FF0000>,</font>RPG<font color=#FF0000>.</font>DT_NORMAL<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.58'></a>
+059:         <a name='line.59'></a>
+060:         <b><font color=#0000FF>return</font></b> dam<font color=#FF0000>;</font><a name='line.60'></a>
+061:       <font color=#000000>}</font><a name='line.61'></a>
+062:     <font color=#000000>}</font><a name='line.62'></a>
+063:     <b><font color=#0000FF>return</font></b> <font color=#9A1900>0</font><font color=#FF0000>;</font><a name='line.63'></a>
+064:   <font color=#000000>}</font><a name='line.64'></a>
+065:   <a name='line.65'></a>
+066:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>int</font> <b><font color=#000000>getUse</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font> <font color=#000000>{</font><b><font color=#0000FF>return</font></b> USE_HIT<font color=#FF0000>;</font><font color=#000000>}</font><a name='line.66'></a>
+067:   <a name='line.67'></a>
+068:   <b><font color=#009900>// Get weapon attack skill</font></b><a name='line.68'></a>
+069:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>int</font> <b><font color=#000000>getASK</font></b><font color=#FF0000>(</font>Thing wielder<font color=#FF0000>,</font> Thing target<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.69'></a>
+070:     <font color=#0000FF>int</font> ASK<font color=#FF0000>=</font>wielder<font color=#FF0000>.</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_SK<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.70'></a>
+071:     ASK<font color=#FF0000>=</font><font color=#FF0000>(</font>ASK<font color=#FF0000>*</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_ASKMULTIPLIER<font color=#FF0000>)</font><font color=#FF0000>)</font><font color=#FF0000>/</font><font color=#9A1900>100</font><font color=#FF0000>;</font><a name='line.71'></a>
+072:     ASK<font color=#FF0000>=</font>ASK<font color=#FF0000>+</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_ASKBONUS<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.72'></a>
+073:     <b><font color=#0000FF>return</font></b> ASK<font color=#FF0000>;</font><a name='line.73'></a>
+074:   <font color=#000000>}</font><a name='line.74'></a>
+075:   <a name='line.75'></a>
+076:   <b><font color=#009900>// Get weapon attack strength</font></b><a name='line.76'></a>
+077:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>int</font> <b><font color=#000000>getAST</font></b><font color=#FF0000>(</font>Thing wielder<font color=#FF0000>,</font> Thing target<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.77'></a>
+078:     <font color=#0000FF>int</font> AST<font color=#FF0000>=</font>wielder<font color=#FF0000>.</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_ST<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.78'></a>
+079:     AST<font color=#FF0000>=</font><font color=#FF0000>(</font>AST<font color=#FF0000>*</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_ASTMULTIPLIER<font color=#FF0000>)</font><font color=#FF0000>)</font><font color=#FF0000>/</font><font color=#9A1900>100</font><font color=#FF0000>;</font><a name='line.79'></a>
+080:     AST<font color=#FF0000>=</font>AST<font color=#FF0000>+</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_ASTBONUS<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.80'></a>
+081:     <b><font color=#0000FF>return</font></b> AST<font color=#FF0000>;</font><a name='line.81'></a>
+082:   <font color=#000000>}</font><a name='line.82'></a>
+083:   <a name='line.83'></a>
+084:   <b><font color=#009900>// get weapon defence skill</font></b><a name='line.84'></a>
+085:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>int</font> <b><font color=#000000>getDSK</font></b><font color=#FF0000>(</font>Thing wielder<font color=#FF0000>,</font> Thing attacker<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.85'></a>
+086:     <font color=#0000FF>int</font> DSK<font color=#FF0000>=</font>wielder<font color=#FF0000>.</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_SK<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.86'></a>
+087:     DSK<font color=#FF0000>=</font><font color=#FF0000>(</font>DSK<font color=#FF0000>*</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_DSKMULTIPLIER<font color=#FF0000>)</font><font color=#FF0000>)</font><font color=#FF0000>/</font><font color=#9A1900>100</font><font color=#FF0000>;</font><a name='line.87'></a>
+088:     DSK<font color=#FF0000>=</font>DSK<font color=#FF0000>+</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_DSKBONUS<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.88'></a>
+089:     <b><font color=#0000FF>return</font></b> DSK<font color=#FF0000>;</font><a name='line.89'></a>
+090:   <font color=#000000>}</font><a name='line.90'></a>
+091:   <a name='line.91'></a>
+092:   <b><font color=#0000FF>public</font></b> <b><font color=#0000FF>static</font></b> Weapon <b><font color=#000000>createWeapon</font></b><font color=#FF0000>(</font><font color=#0000FF>int</font> level<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.92'></a>
+093:     <b><font color=#0000FF>return</font></b> CommonWeapon<font color=#FF0000>.</font><b><font color=#000000>createWeapon</font></b><font color=#FF0000>(</font>level<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.93'></a>
+094:     <b><font color=#009900>//switch (RPG.d(20)) {</font></b><a name='line.94'></a>
+095:     <b><font color=#009900>//     case 1: return StandardWeapon.createWeapon(StandardWeapon.specialsource,n);</font></b><a name='line.95'></a>
+096:     <b><font color=#009900>//    default: return StandardWeapon.createWeapon(StandardWeapon.source,n);</font></b><a name='line.96'></a>
+097:     <b><font color=#009900>//}</font></b><a name='line.97'></a>
+098:   <font color=#000000>}</font><a name='line.98'></a>
+099:           <a name='line.99'></a>
+100:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>int</font> <b><font color=#000000>wieldType</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font> <font color=#000000>{</font><b><font color=#0000FF>return</font></b> RPG<font color=#FF0000>.</font>WT_MAINHAND<font color=#FF0000>;</font><font color=#000000>}</font><a name='line.100'></a>
+101: <font color=#000000>}</font></tt><a name='line.101'></a>
+</pre><a name='line.102'></a>
+</body><a name='line.103'></a>
+</html><a name='line.104'></a>

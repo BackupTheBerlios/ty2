@@ -1,0 +1,138 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="GNU source-highlight 1.4
+by Lorenzo Bettini, bettini@gnu.org
+http://w3.newnet.it/bettini
+http://www.gnu.org/software/src-highlite">
+<title>.\rl\StandardQuest.java</title>
+</head>
+<body bgcolor="#FFFFFF" text="#000000" link="#0000EE" vlink="#551A8B" alink="#FF0000">
+<pre>
+<tt>
+001: <b><font color=#009900>// This is the root object for all Quests that can be assigned to the hero</font></b><a name='line.1'></a>
+002: <b><font color=#009900>//</font></b><a name='line.2'></a>
+003: <b><font color=#009900>// Use as follows:</font></b><a name='line.3'></a>
+004: <b><font color=#009900>//   Game.hero.addThing(new Quest(Quest.SOMEQUEST));</font></b><a name='line.4'></a>
+005: <a name='line.5'></a>
+006: <b><font color=#0000FF>package</font></b> rl<font color=#FF0000>;</font><a name='line.6'></a>
+007: <a name='line.7'></a>
+008: <a name='line.8'></a>
+009: <b><font color=#0000FF>public</font></b> <b><font color=#0000FF>class</font></b> StandardQuest <b><font color=#0000FF>extends</font></b> Quest <font color=#000000>{</font><a name='line.9'></a>
+010:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>int</font> type<font color=#FF0000>;</font><a name='line.10'></a>
+011:   <a name='line.11'></a>
+012:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>int</font> phase<font color=#FF0000>=</font><font color=#9A1900>0</font><font color=#FF0000>;</font><a name='line.12'></a>
+013:   <a name='line.13'></a>
+014:   <b><font color=#009900>// names of the quests, access through questName()</font></b><a name='line.14'></a>
+015:   <b><font color=#0000FF>private</font></b> <b><font color=#0000FF>static</font></b> <b><font color=#0000FF>final</font></b> String<font color=#FF0000>[</font><font color=#FF0000>]</font> names<font color=#FF0000>=</font><font color=#000000>{</font><font color=#808080>"null"</font><font color=#FF0000>,</font><font color=#808080>"emerald sword"</font><font color=#FF0000>,</font><font color=#808080>"bandit caves"</font><font color=#000000>}</font><font color=#FF0000>;</font><a name='line.15'></a>
+016:   <a name='line.16'></a>
+017:   <b><font color=#0000FF>public</font></b> <b><font color=#0000FF>static</font></b> <b><font color=#0000FF>final</font></b> <font color=#0000FF>int</font> EMERALDSWORD<font color=#FF0000>=</font><font color=#9A1900>1</font><font color=#FF0000>;</font><a name='line.17'></a>
+018:   <b><font color=#0000FF>public</font></b> <b><font color=#0000FF>static</font></b> <b><font color=#0000FF>final</font></b> <font color=#0000FF>int</font> BANDITCAVES<font color=#FF0000>=</font><font color=#9A1900>2</font><font color=#FF0000>;</font><a name='line.18'></a>
+019:   <a name='line.19'></a>
+020:   <b><font color=#0000FF>public</font></b> <b><font color=#0000FF>static</font></b> <b><font color=#0000FF>final</font></b> String<font color=#FF0000>[</font><font color=#FF0000>]</font><font color=#FF0000>[</font><font color=#FF0000>]</font> orders <font color=#FF0000>=</font> <a name='line.20'></a>
+021:   <font color=#000000>{</font>  <b><font color=#0000FF>null</font></b><font color=#FF0000>,</font><a name='line.21'></a>
+022:     <font color=#000000>{</font><font color=#808080>"Retrieve the legendary Emerald Sword from the ruin in the deep forest."</font><font color=#FF0000>,</font><font color=#808080>"Take the Emerald Sword back to the small town to collect your reward."</font><font color=#FF0000>,</font><font color=#808080>"You successfully retrieved The Emerald Sword from the forest ruin and collected your reward."</font><font color=#000000>}</font><font color=#FF0000>,</font><a name='line.22'></a>
+023:     <font color=#000000>{</font><font color=#808080>"Journey to the bandit caves and kill their villainous leader"</font><font color=#FF0000>,</font><font color=#808080>"Find and kill the bandit leader in his lair"</font><font color=#FF0000>,</font><font color=#808080>"You defeated the Bandits of the Western Caves"</font><font color=#000000>}</font><font color=#FF0000>,</font><a name='line.23'></a>
+024:     <font color=#000000>{</font><font color=#808080>""</font><font color=#000000>}</font><font color=#FF0000>,</font><a name='line.24'></a>
+025:   <font color=#000000>}</font><font color=#FF0000>;</font><a name='line.25'></a>
+026:   <a name='line.26'></a>
+027:   <a name='line.27'></a>
+028:   <b><font color=#0000FF>public</font></b> String <b><font color=#000000>questName</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.28'></a>
+029:     <b><font color=#0000FF>return</font></b> names<font color=#FF0000>[</font>type<font color=#FF0000>]</font><font color=#FF0000>;</font> <a name='line.29'></a>
+030:   <font color=#000000>}</font><a name='line.30'></a>
+031:   <a name='line.31'></a>
+032:   <b><font color=#009900>// set up a standard quest</font></b><a name='line.32'></a>
+033:   <b><font color=#0000FF>public</font></b> <b><font color=#000000>StandardQuest</font></b><font color=#FF0000>(</font>String s<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.33'></a>
+034:     <b><font color=#0000FF>super</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.34'></a>
+035:     type<font color=#FF0000>=</font>Text<font color=#FF0000>.</font><b><font color=#000000>index</font></b><font color=#FF0000>(</font>s<font color=#FF0000>,</font>names<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.35'></a>
+036:   <font color=#000000>}</font><a name='line.36'></a>
+037: <a name='line.37'></a>
+038:   <b><font color=#0000FF>public</font></b> String <b><font color=#000000>questString</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.38'></a>
+039:     <b><font color=#0000FF>try</font></b> <font color=#000000>{</font><a name='line.39'></a>
+040:       <b><font color=#0000FF>return</font></b> orders<font color=#FF0000>[</font>type<font color=#FF0000>]</font><font color=#FF0000>[</font>phase<font color=#FF0000>]</font><font color=#FF0000>;</font> <a name='line.40'></a>
+041:     <font color=#000000>}</font> <b><font color=#0000FF>catch</font></b> <font color=#FF0000>(</font>Exception e<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.41'></a>
+042:       <b><font color=#009900>// this shouldn't happen, but if it does....</font></b><a name='line.42'></a>
+043:       <b><font color=#0000FF>return</font></b> <font color=#808080>"You must cut down the tallest tree in the forest with - a herring!"</font><font color=#FF0000>;</font><a name='line.43'></a>
+044:     <font color=#000000>}</font><a name='line.44'></a>
+045:   <font color=#000000>}</font><a name='line.45'></a>
+046:   <a name='line.46'></a>
+047: <b><font color=#009900>// used to be able to query quest state through getStat</font></b><a name='line.47'></a>
+048: <b><font color=#009900>//   seems rather unnecessaey</font></b><a name='line.48'></a>
+049: <b><font color=#009900>//</font></b><a name='line.49'></a>
+050: <b><font color=#009900>//  public int getStat(int s) {</font></b><a name='line.50'></a>
+051: <b><font color=#009900>//    if (s==RPG.ST_QUESTNUMBER) return type; </font></b><a name='line.51'></a>
+052: <b><font color=#009900>//    if (s==RPG.ST_QUESTSTATE) return queststate; </font></b><a name='line.52'></a>
+053: <b><font color=#009900>//    return super.getStat(s);</font></b><a name='line.53'></a>
+054: <b><font color=#009900>// }</font></b><a name='line.54'></a>
+055:   <a name='line.55'></a>
+056:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>void</font> <b><font color=#000000>action</font></b> <font color=#FF0000>(</font><font color=#0000FF>int</font> t<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.56'></a>
+057:     Hero h<font color=#FF0000>=</font>Game<font color=#FF0000>.</font>hero<font color=#FF0000>;</font><a name='line.57'></a>
+058:     <a name='line.58'></a>
+059:     <b><font color=#0000FF>switch</font></b> <font color=#FF0000>(</font>type<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.59'></a>
+060:       <b><font color=#0000FF>case</font></b> EMERALDSWORD<font color=#FF0000>:</font> <a name='line.60'></a>
+061:         <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font><font color=#FF0000>(</font>phase<font color=#FF0000>=</font><font color=#FF0000>=</font><font color=#9A1900>0</font><font color=#FF0000>)</font><font color=#FF0000>&amp;</font><font color=#FF0000>&amp;</font>h<font color=#FF0000>.</font><b><font color=#000000>hasItem</font></b><font color=#FF0000>(</font><font color=#808080>"The Emerald Sword"</font><font color=#FF0000>)</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.61'></a>
+062:           phase<font color=#FF0000>+</font><font color=#FF0000>+</font><font color=#FF0000>;</font><a name='line.62'></a>
+063:           Game<font color=#FF0000>.</font><b><font color=#000000>message</font></b><font color=#FF0000>(</font><b><font color=#000000>questString</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.63'></a>
+064:         <font color=#000000>}</font><a name='line.64'></a>
+065:         <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font><font color=#FF0000>(</font>phase<font color=#FF0000>=</font><font color=#FF0000>=</font><font color=#9A1900>1</font><font color=#FF0000>)</font><font color=#FF0000>&amp;</font><font color=#FF0000>&amp;</font><font color=#FF0000>(</font>h<font color=#FF0000>.</font>place <b><font color=#0000FF>instanceof</font></b> Town<font color=#FF0000>)</font><font color=#FF0000>&amp;</font><font color=#FF0000>&amp;</font>h<font color=#FF0000>.</font><b><font color=#000000>hasItem</font></b><font color=#FF0000>(</font><font color=#808080>"The Emerald Sword"</font><font color=#FF0000>)</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.65'></a>
+066:           phase<font color=#FF0000>+</font><font color=#FF0000>+</font><font color=#FF0000>;</font><a name='line.66'></a>
+067:           <b><font color=#000000>setState</font></b><font color=#FF0000>(</font>COMPLETE<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.67'></a>
+068: <a name='line.68'></a>
+069:           Game<font color=#FF0000>.</font><b><font color=#000000>infoScreen</font></b><font color=#FF0000>(</font><font color=#808080>"You return to the small town with the Emerald Sword\n"</font><a name='line.69'></a>
+070:             <font color=#FF0000>+</font><font color=#808080>"\n"</font><a name='line.70'></a>
+071:             <font color=#FF0000>+</font><font color=#808080>"It seems your deeds have already been noted. Sigmill, Master of the local Adventurers Guild, greets you and congratulates you upon your success. He pays you the reward of 500 gold for the ancient artifact.\n"</font><a name='line.71'></a>
+072:             <font color=#FF0000>+</font><font color=#808080>"\n"</font><a name='line.72'></a>
+073:             <font color=#FF0000>+</font><font color=#808080>"He also tells you of an abandoned mine somewhere in the hills to the West. Apparently a group of bandits are using it as a base, and falling upon travellers who pass that region. Kill their leader, and you will be rewarded with membership of the Adventurer's Guild.\n"</font><a name='line.73'></a>
+074:             <font color=#FF0000>+</font><font color=#808080>"\n"</font><a name='line.74'></a>
+075:             <font color=#FF0000>+</font><font color=#808080>"After passing on this information, Sigmill strides away quickly, clearly intent on some other important mission.\n"</font><a name='line.75'></a>
+076:             <font color=#FF0000>+</font><font color=#808080>"\n"</font><a name='line.76'></a>
+077:             <font color=#FF0000>+</font><font color=#808080>"\n[ Press space to continue ]"</font><a name='line.77'></a>
+078:           <font color=#FF0000>)</font><font color=#FF0000>;</font> <a name='line.78'></a>
+079:           h<font color=#FF0000>.</font><b><font color=#000000>addMoney</font></b><font color=#FF0000>(</font><font color=#9A1900>50000</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.79'></a>
+080:           <a name='line.80'></a>
+081:           h<font color=#FF0000>.</font>stats<font color=#FF0000>.</font><b><font color=#000000>incStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_SCORE<font color=#FF0000>,</font><font color=#9A1900>500</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.81'></a>
+082:           <a name='line.82'></a>
+083:           Thing es<font color=#FF0000>=</font>h<font color=#FF0000>.</font>inv<font color=#FF0000>.</font><b><font color=#000000>getContents</font></b><font color=#FF0000>(</font><font color=#808080>"The Emerald Sword"</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.83'></a>
+084:           es<font color=#FF0000>.</font><b><font color=#000000>remove</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.84'></a>
+085:           h<font color=#FF0000>.</font><b><font color=#000000>addQuest</font></b><font color=#FF0000>(</font><b><font color=#0000FF>new</font></b> <b><font color=#000000>StandardQuest</font></b><font color=#FF0000>(</font><font color=#808080>"bandit caves"</font><font color=#FF0000>)</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.85'></a>
+086:           <font color=#FF0000>(</font><font color=#FF0000>(</font>Town<font color=#FF0000>)</font>h<font color=#FF0000>.</font>place<font color=#FF0000>)</font><font color=#FF0000>.</font>entrance<font color=#FF0000>.</font>target<font color=#FF0000>.</font><b><font color=#000000>getMap</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>.</font><b><font color=#000000>addThing</font></b><font color=#FF0000>(</font><b><font color=#0000FF>new</font></b> <b><font color=#000000>PlacePortal</font></b><font color=#FF0000>(</font>PlacePortal<font color=#FF0000>.</font>BANDITCAVES<font color=#FF0000>)</font><font color=#FF0000>,</font><font color=#9A1900>7</font><font color=#FF0000>,</font><font color=#9A1900>11</font><font color=#FF0000>,</font><font color=#9A1900>9</font><font color=#FF0000>,</font><font color=#9A1900>12</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.86'></a>
+087:         <font color=#000000>}</font><a name='line.87'></a>
+088:         <b><font color=#0000FF>break</font></b><font color=#FF0000>;</font><a name='line.88'></a>
+089:       <a name='line.89'></a>
+090:       <b><font color=#0000FF>case</font></b> BANDITCAVES<font color=#FF0000>:</font> <font color=#000000>{</font><a name='line.90'></a>
+091:           <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font><font color=#FF0000>(</font>phase<font color=#FF0000>=</font><font color=#FF0000>=</font><font color=#9A1900>0</font><font color=#FF0000>)</font><font color=#FF0000>&amp;</font><font color=#FF0000>&amp;</font><font color=#FF0000>(</font><b><font color=#000000>getTarget</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>!</font><font color=#FF0000>=</font><b><font color=#0000FF>null</font></b><font color=#FF0000>)</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.91'></a>
+092:             <b><font color=#009900>//bandit hero created, ready to go!</font></b><a name='line.92'></a>
+093:             Game<font color=#FF0000>.</font><b><font color=#000000>infoScreen</font></b><font color=#FF0000>(</font><font color=#808080>"You get the feeling that this place has been recently occupied.\n"</font><a name='line.93'></a>
+094:               <font color=#FF0000>+</font><font color=#808080>"\n"</font><a name='line.94'></a>
+095:               <font color=#FF0000>+</font><font color=#808080>"There are a few broken bottles lying on the ground, one of which is stained with blood. You also find the charred remains of a small fire and sniff the distinctive smell of tobacco smoke.\n"</font><a name='line.95'></a>
+096:               <font color=#FF0000>+</font><font color=#808080>"\n[ Press space to continue ]"</font><a name='line.96'></a>
+097:             <font color=#FF0000>)</font><font color=#FF0000>;</font> <a name='line.97'></a>
+098:             phase<font color=#FF0000>+</font><font color=#FF0000>+</font><font color=#FF0000>;</font> <a name='line.98'></a>
+099:           <font color=#000000>}</font><a name='line.99'></a>
+100:           <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font><font color=#FF0000>(</font>phase<font color=#FF0000>=</font><font color=#FF0000>=</font><font color=#9A1900>1</font><font color=#FF0000>)</font><font color=#FF0000>&amp;</font><font color=#FF0000>&amp;</font><font color=#FF0000>(</font><b><font color=#000000>getTarget</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>.</font>place<font color=#FF0000>=</font><font color=#FF0000>=</font><b><font color=#0000FF>null</font></b><font color=#FF0000>)</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.100'></a>
+101:             <b><font color=#009900>// bandit leader is dead!</font></b><a name='line.101'></a>
+102:             <a name='line.102'></a>
+103:             Game<font color=#FF0000>.</font><b><font color=#000000>infoScreen</font></b><font color=#FF0000>(</font><font color=#808080>"You have defeated the evil bandit leader!\n"</font><a name='line.103'></a>
+104:               <font color=#FF0000>+</font><font color=#808080>"\n"</font><a name='line.104'></a>
+105:               <font color=#FF0000>+</font><font color=#808080>"Truly thou art a mighty hero, and all the world shall speak in awe of your deeds.\n"</font><a name='line.105'></a>
+106:               <font color=#FF0000>+</font><font color=#808080>"\n[ Press space to continue ]"</font><a name='line.106'></a>
+107:             <font color=#FF0000>)</font><font color=#FF0000>;</font> <a name='line.107'></a>
+108:             phase<font color=#FF0000>+</font><font color=#FF0000>+</font><font color=#FF0000>;</font>   <a name='line.108'></a>
+109:             <b><font color=#000000>setState</font></b><font color=#FF0000>(</font>COMPLETE<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.109'></a>
+110:             <a name='line.110'></a>
+111:             h<font color=#FF0000>.</font>stats<font color=#FF0000>.</font><b><font color=#000000>incStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_SCORE<font color=#FF0000>,</font><font color=#9A1900>1000</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.111'></a>
+112:           <font color=#000000>}</font><a name='line.112'></a>
+113:         <font color=#000000>}</font> <a name='line.113'></a>
+114:         <b><font color=#0000FF>break</font></b><font color=#FF0000>;</font><a name='line.114'></a>
+115:         <a name='line.115'></a>
+116:       <a name='line.116'></a>
+117:       <b><font color=#0000FF>default</font></b><font color=#FF0000>:</font><a name='line.117'></a>
+118:         <b><font color=#0000FF>return</font></b><font color=#FF0000>;</font>   <a name='line.118'></a>
+119:     <font color=#000000>}</font><a name='line.119'></a>
+120:   <font color=#000000>}</font> <a name='line.120'></a>
+121: <font color=#000000>}</font></tt><a name='line.121'></a>
+</pre><a name='line.122'></a>
+</body><a name='line.123'></a>
+</html><a name='line.124'></a>

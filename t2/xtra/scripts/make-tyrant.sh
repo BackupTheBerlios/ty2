@@ -1,0 +1,1 @@
+javac mikera/tyrant/QuestApplication.java

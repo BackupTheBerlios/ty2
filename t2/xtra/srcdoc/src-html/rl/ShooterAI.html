@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="GNU source-highlight 1.4
+by Lorenzo Bettini, bettini@gnu.org
+http://w3.newnet.it/bettini
+http://www.gnu.org/software/src-highlite">
+<title>.\rl\ShooterAI.java</title>
+</head>
+<body bgcolor="#FFFFFF" text="#000000" link="#0000EE" vlink="#551A8B" alink="#FF0000">
+<pre>
+<tt>
+01: <b><font color=#009900>//</font></b><a name='line.1'></a>
+02: <b><font color=#009900>// AI for throwing and firing missile weapons</font></b><a name='line.2'></a>
+03: <b><font color=#009900>//</font></b><a name='line.3'></a>
+04: <b><font color=#009900>// Not used directly by any creatures, but can be called to provide</font></b><a name='line.4'></a>
+05: <b><font color=#009900>// targetting AI. e.g. NastyCritterAI will call ShooterAI when it decides</font></b><a name='line.5'></a>
+06: <b><font color=#009900>// to try a ranged attack</font></b><a name='line.6'></a>
+07: <b><font color=#009900>//</font></b><a name='line.7'></a>
+08: <b><font color=#009900>//</font></b><a name='line.8'></a>
+09: <a name='line.9'></a>
+10: <b><font color=#0000FF>package</font></b> rl<font color=#FF0000>;</font><a name='line.10'></a>
+11: <a name='line.11'></a>
+12: <b><font color=#0000FF>public</font></b> <b><font color=#0000FF>class</font></b> ShooterAI <b><font color=#0000FF>extends</font></b> BaseAI <font color=#000000>{</font><a name='line.12'></a>
+13:   <b><font color=#0000FF>public</font></b> <b><font color=#0000FF>static</font></b> <b><font color=#0000FF>final</font></b> ShooterAI instance<font color=#FF0000>=</font><b><font color=#0000FF>new</font></b> <b><font color=#000000>ShooterAI</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.13'></a>
+14:   <a name='line.14'></a>
+15:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>boolean</font> <b><font color=#000000>doAction</font></b><font color=#FF0000>(</font>Mobile m<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.15'></a>
+16:     Hero h<font color=#FF0000>=</font>Game<font color=#FF0000>.</font>hero<font color=#FF0000>;</font><a name='line.16'></a>
+17:     Being b<font color=#FF0000>=</font><font color=#FF0000>(</font>Being<font color=#FF0000>)</font>m<font color=#FF0000>;</font><a name='line.17'></a>
+18:     Map map<font color=#FF0000>=</font>b<font color=#FF0000>.</font><b><font color=#000000>getMap</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.18'></a>
+19: <a name='line.19'></a>
+20:     m<font color=#FF0000>.</font>aps<font color=#FF0000>-</font><font color=#FF0000>=</font><font color=#9A1900>10</font><font color=#FF0000>;</font> <b><font color=#009900>// pause to think</font></b><a name='line.20'></a>
+21: <a name='line.21'></a>
+22:     <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>map<font color=#FF0000>=</font><font color=#FF0000>=</font><b><font color=#0000FF>null</font></b><font color=#FF0000>)</font> <b><font color=#0000FF>return</font></b> false<font color=#FF0000>;</font><a name='line.22'></a>
+23: <a name='line.23'></a>
+24:     <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>b<font color=#FF0000>.</font><b><font color=#000000>isVisible</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.24'></a>
+25:       <b><font color=#009900>// find weapons</font></b><a name='line.25'></a>
+26:       RangedWeapon rw<font color=#FF0000>=</font><font color=#FF0000>(</font>RangedWeapon<font color=#FF0000>)</font>b<font color=#FF0000>.</font><b><font color=#000000>getWielded</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>WT_RANGEDWEAPON<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.26'></a>
+27:       Missile miss<font color=#FF0000>=</font><font color=#FF0000>(</font>Missile<font color=#FF0000>)</font>b<font color=#FF0000>.</font><b><font color=#000000>getWielded</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>WT_MISSILE<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.27'></a>
+28:     <a name='line.28'></a>
+29:       Thing p<font color=#FF0000>=</font>map<font color=#FF0000>.</font><b><font color=#000000>findNearestFoe</font></b><font color=#FF0000>(</font>m<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.29'></a>
+30:       <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font><font color=#FF0000>(</font>p<font color=#FF0000>!</font><font color=#FF0000>=</font><b><font color=#0000FF>null</font></b><font color=#FF0000>)</font><font color=#FF0000>&amp;</font><font color=#FF0000>&amp;</font>m<font color=#FF0000>.</font><b><font color=#000000>canSee</font></b><font color=#FF0000>(</font>p<font color=#FF0000>)</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.30'></a>
+31:         <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>rw<font color=#FF0000>=</font><font color=#FF0000>=</font><b><font color=#0000FF>null</font></b><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.31'></a>
+32:           <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font><font color=#FF0000>(</font>miss<font color=#FF0000>!</font><font color=#FF0000>=</font><b><font color=#0000FF>null</font></b><font color=#FF0000>)</font><font color=#FF0000>&amp;</font><font color=#FF0000>&amp;</font><font color=#FF0000>(</font>miss<font color=#FF0000>.</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_MISSILETYPE<font color=#FF0000>)</font><font color=#FF0000>=</font><font color=#FF0000>=</font><font color=#9A1900>0</font><font color=#FF0000>)</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.32'></a>
+33:             <font color=#FF0000>(</font><font color=#FF0000>(</font>Missile<font color=#FF0000>)</font>miss<font color=#FF0000>.</font><b><font color=#000000>remove</font></b><font color=#FF0000>(</font><font color=#9A1900>1</font><font color=#FF0000>)</font><font color=#FF0000>)</font><font color=#FF0000>.</font><b><font color=#000000>throwAt</font></b><font color=#FF0000>(</font>b<font color=#FF0000>,</font>map<font color=#FF0000>,</font>p<font color=#FF0000>.</font>x<font color=#FF0000>,</font>p<font color=#FF0000>.</font>y<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.33'></a>
+34:           <font color=#000000>}</font> <b><font color=#0000FF>else</font></b> <font color=#000000>{</font><a name='line.34'></a>
+35:             <b><font color=#0000FF>return</font></b> false<font color=#FF0000>;</font> <a name='line.35'></a>
+36:           <font color=#000000>}</font><a name='line.36'></a>
+37:         <font color=#000000>}</font> <b><font color=#0000FF>else</font></b> <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>rw<font color=#FF0000>.</font><b><font color=#000000>isValidAmmo</font></b><font color=#FF0000>(</font>miss<font color=#FF0000>)</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.37'></a>
+38:           rw<font color=#FF0000>.</font><b><font color=#000000>fireAt</font></b><font color=#FF0000>(</font>b<font color=#FF0000>,</font><font color=#FF0000>(</font>Missile<font color=#FF0000>)</font>miss<font color=#FF0000>.</font><b><font color=#000000>remove</font></b><font color=#FF0000>(</font><font color=#9A1900>1</font><font color=#FF0000>)</font><font color=#FF0000>,</font>map<font color=#FF0000>,</font>p<font color=#FF0000>.</font>x<font color=#FF0000>,</font>p<font color=#FF0000>.</font>y<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.38'></a>
+39:         <font color=#000000>}</font>  <a name='line.39'></a>
+40:         b<font color=#FF0000>.</font>aps<font color=#FF0000>+</font><font color=#FF0000>=</font><font color=#9A1900>10</font><font color=#FF0000>;</font> <b><font color=#009900>// make up for lost time</font></b><a name='line.40'></a>
+41:         <b><font color=#0000FF>return</font></b> true<font color=#FF0000>;</font><a name='line.41'></a>
+42:       <font color=#000000>}</font><a name='line.42'></a>
+43:       <b><font color=#0000FF>return</font></b> false<font color=#FF0000>;</font><a name='line.43'></a>
+44:     <font color=#000000>}</font> <b><font color=#0000FF>else</font></b> <font color=#000000>{</font><a name='line.44'></a>
+45:       <b><font color=#0000FF>return</font></b> false<font color=#FF0000>;</font> <a name='line.45'></a>
+46:     <font color=#000000>}</font><a name='line.46'></a>
+47:   <font color=#000000>}</font><a name='line.47'></a>
+48: <font color=#000000>}</font></tt><a name='line.48'></a>
+</pre><a name='line.49'></a>
+</body><a name='line.50'></a>
+</html><a name='line.51'></a>

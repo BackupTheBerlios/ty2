@@ -1,0 +1,194 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="GNU source-highlight 1.4
+by Lorenzo Bettini, bettini@gnu.org
+http://w3.newnet.it/bettini
+http://www.gnu.org/software/src-highlite">
+<title>.\rl\NastyCritterAI.java</title>
+</head>
+<body bgcolor="#FFFFFF" text="#000000" link="#0000EE" vlink="#551A8B" alink="#FF0000">
+<pre>
+<tt>
+001: <b><font color=#009900>//</font></b><a name='line.1'></a>
+002: <b><font color=#009900>// AI class for agressive behaviour</font></b><a name='line.2'></a>
+003: <b><font color=#009900>// </font></b><a name='line.3'></a>
+004: <a name='line.4'></a>
+005: <b><font color=#0000FF>package</font></b> rl<font color=#FF0000>;</font><a name='line.5'></a>
+006: <a name='line.6'></a>
+007: <b><font color=#0000FF>public</font></b> <b><font color=#0000FF>class</font></b> NastyCritterAI <b><font color=#0000FF>extends</font></b> BaseAI <font color=#000000>{</font><a name='line.7'></a>
+008:     <b><font color=#0000FF>public</font></b> <b><font color=#0000FF>static</font></b> <b><font color=#0000FF>final</font></b> NastyCritterAI instance<font color=#FF0000>=</font><b><font color=#0000FF>new</font></b> <b><font color=#000000>NastyCritterAI</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.8'></a>
+009:     <a name='line.9'></a>
+010:     <b><font color=#009900>// try to move into square, attacking if necessary</font></b><a name='line.10'></a>
+011:     <b><font color=#009900>// return true if sucessful</font></b><a name='line.11'></a>
+012:     <b><font color=#0000FF>public</font></b> <font color=#0000FF>boolean</font> <b><font color=#000000>tryMove</font></b><font color=#FF0000>(</font>Mobile m<font color=#FF0000>,</font><font color=#0000FF>int</font> nx<font color=#FF0000>,</font> <font color=#0000FF>int</font> ny<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.12'></a>
+013:     <b><font color=#0000FF>return</font></b> m<font color=#FF0000>.</font><b><font color=#000000>tryMove</font></b><font color=#FF0000>(</font>m<font color=#FF0000>.</font><b><font color=#000000>getMap</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>,</font>nx<font color=#FF0000>,</font>ny<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.13'></a>
+014:   <font color=#000000>}</font><a name='line.14'></a>
+015: <a name='line.15'></a>
+016: <b><font color=#009900>/*    Map map=m.getMap();</font></b><a name='line.16'></a>
+017: <b><font color=#009900>    if (map==null) return false;</font></b><a name='line.17'></a>
+018: <b><font color=#009900>    if (m.canMove(map,nx,ny)) {</font></b><a name='line.18'></a>
+019: <b><font color=#009900>      try {</font></b><a name='line.19'></a>
+020: <b><font color=#009900>        m.aps=m.aps-(m.getStat(RPG.ST_MOVECOST)*100)/m.getStat(RPG.ST_MOVESPEED);</font></b><a name='line.20'></a>
+021: <b><font color=#009900>      } catch(Exception e) {return false;}</font></b><a name='line.21'></a>
+022: <b><font color=#009900>      m.moveTo(map,nx,ny);</font></b><a name='line.22'></a>
+023: <b><font color=#009900>      return true;</font></b><a name='line.23'></a>
+024: <b><font color=#009900>    } else {</font></b><a name='line.24'></a>
+025: <b><font color=#009900>      Mobile t=map.getMobile(nx,ny);</font></b><a name='line.25'></a>
+026: <b><font color=#009900>      if ((t!=null)&amp;&amp;(m.isHostile(t))) {</font></b><a name='line.26'></a>
+027: <b><font color=#009900>        m.attack(t);</font></b><a name='line.27'></a>
+028: <b><font color=#009900>        return true;</font></b><a name='line.28'></a>
+029: <b><font color=#009900>      }</font></b><a name='line.29'></a>
+030: <b><font color=#009900></font></b><a name='line.30'></a>
+031: <b><font color=#009900>      // use doors etc.</font></b><a name='line.31'></a>
+032: <b><font color=#009900>      Thing head=map.getObjects(nx,ny);</font></b><a name='line.32'></a>
+033: <b><font color=#009900>      while (head!=null) {</font></b><a name='line.33'></a>
+034: <b><font color=#009900>        if (head.isBlocking()) {</font></b><a name='line.34'></a>
+035: <b><font color=#009900>          head.use((Being)m);</font></b><a name='line.35'></a>
+036: <b><font color=#009900>          m.aps-=1;</font></b><a name='line.36'></a>
+037: <b><font color=#009900>          return false;       </font></b><a name='line.37'></a>
+038: <b><font color=#009900>        }</font></b><a name='line.38'></a>
+039: <b><font color=#009900>        if (head.isWarning(m)) {</font></b><a name='line.39'></a>
+040: <b><font color=#009900>          m.aps-=1;</font></b><a name='line.40'></a>
+041: <b><font color=#009900>          return false;</font></b><a name='line.41'></a>
+042: <b><font color=#009900>        }</font></b><a name='line.42'></a>
+043: <b><font color=#009900>        head=head.next;</font></b><a name='line.43'></a>
+044: <b><font color=#009900>      }</font></b><a name='line.44'></a>
+045: <b><font color=#009900></font></b><a name='line.45'></a>
+046: <b><font color=#009900>      return false;    </font></b><a name='line.46'></a>
+047: <b><font color=#009900>    }</font></b><a name='line.47'></a>
+048: <b><font color=#009900>    }  */</font></b><a name='line.48'></a>
+049:     <a name='line.49'></a>
+050:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>int</font> <b><font color=#000000>notify</font></b><font color=#FF0000>(</font>Mobile m<font color=#FF0000>,</font> <font color=#0000FF>int</font> eventtype<font color=#FF0000>,</font> <font color=#0000FF>int</font> ext<font color=#FF0000>,</font> Object o<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.50'></a>
+051:          <font color=#0000FF>int</font> state<font color=#FF0000>=</font>m<font color=#FF0000>.</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_AIMODE<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.51'></a>
+052:     <b><font color=#0000FF>switch</font></b> <font color=#FF0000>(</font>eventtype<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.52'></a>
+053:         <b><font color=#0000FF>case</font></b> EVENT_ALARM<font color=#FF0000>:</font> <b><font color=#0000FF>case</font></b> EVENT_VISIBLE<font color=#FF0000>:</font><a name='line.53'></a>
+054:              <b><font color=#000000>reTarget</font></b><font color=#FF0000>(</font>m<font color=#FF0000>,</font>Game<font color=#FF0000>.</font>hero<font color=#FF0000>.</font>x<font color=#FF0000>,</font>Game<font color=#FF0000>.</font>hero<font color=#FF0000>.</font>y<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.54'></a>
+055:            <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>state<font color=#FF0000>!</font><font color=#FF0000>=</font><font color=#9A1900>1</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.55'></a>
+056:                 m<font color=#FF0000>.</font><b><font color=#000000>getMap</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>.</font><b><font color=#000000>areaNotify</font></b><font color=#FF0000>(</font>m<font color=#FF0000>.</font>x<font color=#FF0000>,</font>m<font color=#FF0000>.</font>y<font color=#FF0000>,</font><font color=#9A1900>5</font><font color=#FF0000>,</font>AI<font color=#FF0000>.</font>EVENT_ALARM<font color=#FF0000>,</font><font color=#9A1900>0</font><font color=#FF0000>,</font><b><font color=#0000FF>null</font></b><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.56'></a>
+057:             <font color=#000000>}</font><a name='line.57'></a>
+058:             <b><font color=#0000FF>return</font></b> <font color=#9A1900>1</font><font color=#FF0000>;</font><a name='line.58'></a>
+059:             <a name='line.59'></a>
+060:       <b><font color=#0000FF>case</font></b> EVENT_ATTACKED<font color=#FF0000>:</font> <font color=#000000>{</font><a name='line.60'></a>
+061:         <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>o<font color=#FF0000>=</font><font color=#FF0000>=</font>Game<font color=#FF0000>.</font>hero<font color=#FF0000>)</font> m<font color=#FF0000>.</font><b><font color=#000000>setStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_AIMODE<font color=#FF0000>,</font>AI<font color=#FF0000>.</font>STATE_HOSTILE<font color=#FF0000>)</font><font color=#FF0000>;</font> <a name='line.61'></a>
+062:         <b><font color=#0000FF>return</font></b> <font color=#9A1900>1</font><font color=#FF0000>;</font><a name='line.62'></a>
+063:       <font color=#000000>}</font><a name='line.63'></a>
+064:       <a name='line.64'></a>
+065:       <b><font color=#0000FF>default</font></b><font color=#FF0000>:</font><a name='line.65'></a>
+066:           <b><font color=#0000FF>return</font></b> <b><font color=#0000FF>super</font></b><font color=#FF0000>.</font><b><font color=#000000>notify</font></b><font color=#FF0000>(</font>m<font color=#FF0000>,</font>eventtype<font color=#FF0000>,</font> ext<font color=#FF0000>,</font> o<font color=#FF0000>)</font><font color=#FF0000>;</font>    <a name='line.66'></a>
+067:     <font color=#000000>}</font><a name='line.67'></a>
+068:   <font color=#000000>}</font><a name='line.68'></a>
+069:     <a name='line.69'></a>
+070:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>void</font> <b><font color=#000000>reTarget</font></b><font color=#FF0000>(</font>Mobile m<font color=#FF0000>,</font> <font color=#0000FF>int</font> tx<font color=#FF0000>,</font> <font color=#0000FF>int</font> ty<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.70'></a>
+071:          m<font color=#FF0000>.</font><b><font color=#000000>setStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_TARGETX<font color=#FF0000>,</font>tx<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.71'></a>
+072:         m<font color=#FF0000>.</font><b><font color=#000000>setStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_TARGETY<font color=#FF0000>,</font>ty<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.72'></a>
+073:        m<font color=#FF0000>.</font><b><font color=#000000>setStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_AIMODE<font color=#FF0000>,</font><font color=#9A1900>1</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.73'></a>
+074:   <font color=#000000>}</font><a name='line.74'></a>
+075:   <a name='line.75'></a>
+076:   <b><font color=#009900>// creature attacks towards target tx,ty</font></b><a name='line.76'></a>
+077:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>void</font> <b><font color=#000000>doAttack</font></b><font color=#FF0000>(</font>Mobile m<font color=#FF0000>,</font> <font color=#0000FF>int</font> tx<font color=#FF0000>,</font> <font color=#0000FF>int</font> ty<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.77'></a>
+078:     Map map<font color=#FF0000>=</font>m<font color=#FF0000>.</font><b><font color=#000000>getMap</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.78'></a>
+079:     <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>map<font color=#FF0000>=</font><font color=#FF0000>=</font><b><font color=#0000FF>null</font></b><font color=#FF0000>)</font> <b><font color=#0000FF>return</font></b><font color=#FF0000>;</font><a name='line.79'></a>
+080:     <font color=#0000FF>boolean</font> visible<font color=#FF0000>=</font>m<font color=#FF0000>.</font><b><font color=#000000>isVisible</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.80'></a>
+081: <a name='line.81'></a>
+082:     <b><font color=#0000FF>while</font></b> <font color=#FF0000>(</font>m<font color=#FF0000>.</font>aps<font color=#FF0000>&gt;</font><font color=#FF0000>=</font><font color=#9A1900>0</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.82'></a>
+083:       <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>RPG<font color=#FF0000>.</font><b><font color=#000000>d</font></b><font color=#FF0000>(</font><font color=#9A1900>100</font><font color=#FF0000>)</font><font color=#FF0000>&lt;</font><font color=#FF0000>=</font>m<font color=#FF0000>.</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_CASTCHANCE<font color=#FF0000>)</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.83'></a>
+084:         <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>CasterAI<font color=#FF0000>.</font>instance<font color=#FF0000>.</font><b><font color=#000000>doAction</font></b><font color=#FF0000>(</font>m<font color=#FF0000>)</font><font color=#FF0000>)</font> <b><font color=#0000FF>continue</font></b><font color=#FF0000>;</font> <a name='line.84'></a>
+085:       <font color=#000000>}</font><a name='line.85'></a>
+086:           <a name='line.86'></a>
+087:       <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>visible<font color=#FF0000>&amp;</font><font color=#FF0000>&amp;</font><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font><b><font color=#000000>d</font></b><font color=#FF0000>(</font><font color=#9A1900>3</font><font color=#FF0000>)</font><font color=#FF0000>=</font><font color=#FF0000>=</font><font color=#9A1900>1</font><font color=#FF0000>)</font><font color=#FF0000>&amp;</font><font color=#FF0000>&amp;</font><font color=#FF0000>(</font>m<font color=#FF0000>.</font><b><font color=#000000>getWielded</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>WT_MISSILE<font color=#FF0000>)</font><font color=#FF0000>!</font><font color=#FF0000>=</font><b><font color=#0000FF>null</font></b><font color=#FF0000>)</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.87'></a>
+088:         ShooterAI<font color=#FF0000>.</font>instance<font color=#FF0000>.</font><b><font color=#000000>doAction</font></b><font color=#FF0000>(</font>m<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.88'></a>
+089:         <b><font color=#0000FF>continue</font></b><font color=#FF0000>;</font> <a name='line.89'></a>
+090:       <font color=#000000>}</font><a name='line.90'></a>
+091:           <a name='line.91'></a>
+092:       <font color=#0000FF>int</font> dx<font color=#FF0000>=</font>RPG<font color=#FF0000>.</font><b><font color=#000000>sign</font></b><font color=#FF0000>(</font>tx<font color=#FF0000>-</font>m<font color=#FF0000>.</font>x<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.92'></a>
+093:       <font color=#0000FF>int</font> dy<font color=#FF0000>=</font>RPG<font color=#FF0000>.</font><b><font color=#000000>sign</font></b><font color=#FF0000>(</font>ty<font color=#FF0000>-</font>m<font color=#FF0000>.</font>y<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.93'></a>
+094:           <a name='line.94'></a>
+095:       <b><font color=#009900>// run away?</font></b><a name='line.95'></a>
+096:       <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font><font color=#FF0000>(</font>m<font color=#FF0000>.</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_IN<font color=#FF0000>)</font><font color=#FF0000>&gt;</font><font color=#FF0000>=</font><font color=#9A1900>6</font><font color=#FF0000>)</font><font color=#FF0000>&amp;</font><font color=#FF0000>&amp;</font><font color=#FF0000>(</font><font color=#FF0000>(</font>m<font color=#FF0000>.</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_HPS<font color=#FF0000>)</font><font color=#FF0000>*</font><font color=#9A1900>3</font><font color=#FF0000>)</font><font color=#FF0000>&lt;</font><font color=#FF0000>=</font>m<font color=#FF0000>.</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_HPSMAX<font color=#FF0000>)</font><font color=#FF0000>)</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.96'></a>
+097:         <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font><b><font color=#000000>tryMove</font></b><font color=#FF0000>(</font>m<font color=#FF0000>,</font>m<font color=#FF0000>.</font>x<font color=#FF0000>-</font>dx<font color=#FF0000>,</font>m<font color=#FF0000>.</font>y<font color=#FF0000>-</font>dy<font color=#FF0000>)</font><font color=#FF0000>)</font> <b><font color=#0000FF>continue</font></b><font color=#FF0000>;</font> <a name='line.97'></a>
+098:         <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font><b><font color=#000000>tryMove</font></b><font color=#FF0000>(</font>m<font color=#FF0000>,</font>m<font color=#FF0000>.</font>x<font color=#FF0000>-</font>RPG<font color=#FF0000>.</font><b><font color=#000000>sign</font></b><font color=#FF0000>(</font>dx<font color=#FF0000>-</font>dy<font color=#FF0000>)</font><font color=#FF0000>,</font>m<font color=#FF0000>.</font>y<font color=#FF0000>-</font>RPG<font color=#FF0000>.</font><b><font color=#000000>sign</font></b><font color=#FF0000>(</font>dy<font color=#FF0000>+</font>dx<font color=#FF0000>)</font><font color=#FF0000>)</font><font color=#FF0000>)</font> <b><font color=#0000FF>continue</font></b><font color=#FF0000>;</font> <a name='line.98'></a>
+099:         <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font><b><font color=#000000>tryMove</font></b><font color=#FF0000>(</font>m<font color=#FF0000>,</font>m<font color=#FF0000>.</font>x<font color=#FF0000>-</font>RPG<font color=#FF0000>.</font><b><font color=#000000>sign</font></b><font color=#FF0000>(</font>dx<font color=#FF0000>+</font>dy<font color=#FF0000>)</font><font color=#FF0000>,</font>m<font color=#FF0000>.</font>y<font color=#FF0000>-</font>RPG<font color=#FF0000>.</font><b><font color=#000000>sign</font></b><font color=#FF0000>(</font>dy<font color=#FF0000>-</font>dx<font color=#FF0000>)</font><font color=#FF0000>)</font><font color=#FF0000>)</font> <b><font color=#0000FF>continue</font></b><font color=#FF0000>;</font> <a name='line.99'></a>
+100:       <font color=#000000>}</font><a name='line.100'></a>
+101:            <a name='line.101'></a>
+102:       <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font><b><font color=#000000>tryMove</font></b><font color=#FF0000>(</font>m<font color=#FF0000>,</font>m<font color=#FF0000>.</font>x<font color=#FF0000>+</font>dx<font color=#FF0000>,</font>m<font color=#FF0000>.</font>y<font color=#FF0000>+</font>dy<font color=#FF0000>)</font><font color=#FF0000>)</font> <b><font color=#0000FF>continue</font></b><font color=#FF0000>;</font> <a name='line.102'></a>
+103:       <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font><b><font color=#000000>tryMove</font></b><font color=#FF0000>(</font>m<font color=#FF0000>,</font>m<font color=#FF0000>.</font>x<font color=#FF0000>+</font>RPG<font color=#FF0000>.</font><b><font color=#000000>sign</font></b><font color=#FF0000>(</font>dx<font color=#FF0000>-</font>dy<font color=#FF0000>)</font><font color=#FF0000>,</font>m<font color=#FF0000>.</font>y<font color=#FF0000>+</font>RPG<font color=#FF0000>.</font><b><font color=#000000>sign</font></b><font color=#FF0000>(</font>dy<font color=#FF0000>+</font>dx<font color=#FF0000>)</font><font color=#FF0000>)</font><font color=#FF0000>)</font> <b><font color=#0000FF>continue</font></b><font color=#FF0000>;</font> <a name='line.103'></a>
+104:       <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font><b><font color=#000000>tryMove</font></b><font color=#FF0000>(</font>m<font color=#FF0000>,</font>m<font color=#FF0000>.</font>x<font color=#FF0000>+</font>RPG<font color=#FF0000>.</font><b><font color=#000000>sign</font></b><font color=#FF0000>(</font>dx<font color=#FF0000>+</font>dy<font color=#FF0000>)</font><font color=#FF0000>,</font>m<font color=#FF0000>.</font>y<font color=#FF0000>+</font>RPG<font color=#FF0000>.</font><b><font color=#000000>sign</font></b><font color=#FF0000>(</font>dy<font color=#FF0000>-</font>dx<font color=#FF0000>)</font><font color=#FF0000>)</font><font color=#FF0000>)</font> <b><font color=#0000FF>continue</font></b><font color=#FF0000>;</font> <a name='line.104'></a>
+105:            <a name='line.105'></a>
+106:       <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>RPG<font color=#FF0000>.</font><b><font color=#000000>d</font></b><font color=#FF0000>(</font><font color=#9A1900>2</font><font color=#FF0000>)</font><font color=#FF0000>=</font><font color=#FF0000>=</font><font color=#9A1900>1</font><font color=#FF0000>)</font> dx<font color=#FF0000>=</font>RPG<font color=#FF0000>.</font><b><font color=#000000>r</font></b><font color=#FF0000>(</font><font color=#9A1900>3</font><font color=#FF0000>)</font><font color=#FF0000>-</font><font color=#9A1900>1</font><font color=#FF0000>;</font><a name='line.106'></a>
+107:       <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>RPG<font color=#FF0000>.</font><b><font color=#000000>d</font></b><font color=#FF0000>(</font><font color=#9A1900>2</font><font color=#FF0000>)</font><font color=#FF0000>=</font><font color=#FF0000>=</font><font color=#9A1900>1</font><font color=#FF0000>)</font> dy<font color=#FF0000>=</font>RPG<font color=#FF0000>.</font><b><font color=#000000>r</font></b><font color=#FF0000>(</font><font color=#9A1900>3</font><font color=#FF0000>)</font><font color=#FF0000>-</font><font color=#9A1900>1</font><font color=#FF0000>;</font><a name='line.107'></a>
+108:       <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font><font color=#FF0000>!</font><b><font color=#000000>tryMove</font></b><font color=#FF0000>(</font>m<font color=#FF0000>,</font>m<font color=#FF0000>.</font>x<font color=#FF0000>+</font>dx<font color=#FF0000>,</font>m<font color=#FF0000>.</font>y<font color=#FF0000>+</font>dy<font color=#FF0000>)</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.108'></a>
+109:         m<font color=#FF0000>.</font>aps<font color=#FF0000>-</font><font color=#FF0000>=</font><font color=#9A1900>100</font><font color=#FF0000>;</font><a name='line.109'></a>
+110:         m<font color=#FF0000>.</font>xdirection<font color=#FF0000>=</font><font color=#9A1900>0</font><font color=#FF0000>;</font><a name='line.110'></a>
+111:         m<font color=#FF0000>.</font>ydirection<font color=#FF0000>=</font><font color=#9A1900>0</font><font color=#FF0000>;</font><a name='line.111'></a>
+112:       <font color=#000000>}</font><a name='line.112'></a>
+113:     <font color=#000000>}</font><a name='line.113'></a>
+114:   <font color=#000000>}</font><a name='line.114'></a>
+115:   <a name='line.115'></a>
+116:   <b><font color=#0000FF>public</font></b> <font color=#0000FF>boolean</font> <b><font color=#000000>doAction</font></b><font color=#FF0000>(</font>Mobile m<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.116'></a>
+117:       <font color=#0000FF>int</font> state<font color=#FF0000>=</font>m<font color=#FF0000>.</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_AIMODE<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.117'></a>
+118:       Hero h<font color=#FF0000>=</font>Game<font color=#FF0000>.</font>hero<font color=#FF0000>;</font><a name='line.118'></a>
+119:       Map map<font color=#FF0000>=</font>m<font color=#FF0000>.</font><b><font color=#000000>getMap</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.119'></a>
+120:       <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>map<font color=#FF0000>=</font><font color=#FF0000>=</font><b><font color=#0000FF>null</font></b><font color=#FF0000>)</font> <b><font color=#0000FF>return</font></b> true<font color=#FF0000>;</font><a name='line.120'></a>
+121:       <font color=#0000FF>boolean</font> visible<font color=#FF0000>=</font>m<font color=#FF0000>.</font><b><font color=#000000>isVisible</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.121'></a>
+122:       <a name='line.122'></a>
+123:       <b><font color=#0000FF>switch</font></b> <font color=#FF0000>(</font>state<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.123'></a>
+124:         <b><font color=#0000FF>case</font></b> <font color=#9A1900>0</font><font color=#FF0000>:</font><a name='line.124'></a>
+125:             <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>visible<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.125'></a>
+126:               <b><font color=#000000>reTarget</font></b><font color=#FF0000>(</font>m<font color=#FF0000>,</font>Game<font color=#FF0000>.</font>hero<font color=#FF0000>.</font>x<font color=#FF0000>,</font>Game<font color=#FF0000>.</font>hero<font color=#FF0000>.</font>y<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.126'></a>
+127:                 map<font color=#FF0000>.</font><b><font color=#000000>areaNotify</font></b><font color=#FF0000>(</font>m<font color=#FF0000>.</font>x<font color=#FF0000>,</font>m<font color=#FF0000>.</font>y<font color=#FF0000>,</font><font color=#9A1900>6</font><font color=#FF0000>,</font>AI<font color=#FF0000>.</font>EVENT_ALARM<font color=#FF0000>,</font><font color=#9A1900>0</font><font color=#FF0000>,</font><b><font color=#0000FF>null</font></b><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.127'></a>
+128:             <font color=#000000>}</font> <b><font color=#0000FF>else</font></b> <font color=#000000>{</font><a name='line.128'></a>
+129:             <b><font color=#009900>// wander randomly</font></b><a name='line.129'></a>
+130:             <b><font color=#0000FF>while</font></b> <font color=#FF0000>(</font>m<font color=#FF0000>.</font>aps<font color=#FF0000>&gt;</font><font color=#FF0000>=</font><font color=#9A1900>0</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.130'></a>
+131:               <font color=#0000FF>int</font> dx<font color=#FF0000>=</font>RPG<font color=#FF0000>.</font><b><font color=#000000>r</font></b><font color=#FF0000>(</font><font color=#9A1900>3</font><font color=#FF0000>)</font><font color=#FF0000>-</font><font color=#9A1900>1</font><font color=#FF0000>;</font><a name='line.131'></a>
+132:               <font color=#0000FF>int</font> dy<font color=#FF0000>=</font>RPG<font color=#FF0000>.</font><b><font color=#000000>r</font></b><font color=#FF0000>(</font><font color=#9A1900>3</font><font color=#FF0000>)</font><font color=#FF0000>-</font><font color=#9A1900>1</font><font color=#FF0000>;</font><a name='line.132'></a>
+133:             <font color=#0000FF>int</font> nx<font color=#FF0000>=</font>m<font color=#FF0000>.</font>x<font color=#FF0000>+</font>dx<font color=#FF0000>;</font><a name='line.133'></a>
+134:             <font color=#0000FF>int</font> ny<font color=#FF0000>=</font>m<font color=#FF0000>.</font>y<font color=#FF0000>+</font>dy<font color=#FF0000>;</font><a name='line.134'></a>
+135:             <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font><font color=#FF0000>!</font><b><font color=#000000>tryMove</font></b><font color=#FF0000>(</font>m<font color=#FF0000>,</font>nx<font color=#FF0000>,</font>ny<font color=#FF0000>)</font><font color=#FF0000>)</font> m<font color=#FF0000>.</font>aps<font color=#FF0000>-</font><font color=#FF0000>=</font><font color=#9A1900>100</font><font color=#FF0000>;</font><font color=#FF0000>;</font>                <a name='line.135'></a>
+136:           <font color=#000000>}</font><a name='line.136'></a>
+137:           <a name='line.137'></a>
+138:           <b><font color=#009900>// why not pick up some items?</font></b><a name='line.138'></a>
+139:           <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font><b><font color=#000000>d</font></b><font color=#FF0000>(</font><font color=#9A1900>10</font><font color=#FF0000>)</font><font color=#FF0000>=</font><font color=#FF0000>=</font><font color=#9A1900>1</font><font color=#FF0000>)</font><font color=#FF0000>&amp;</font><font color=#FF0000>&amp;</font><font color=#FF0000>(</font>m<font color=#FF0000>.</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_CR<font color=#FF0000>)</font><font color=#FF0000>&gt;</font><font color=#FF0000>=</font><font color=#9A1900>5</font><font color=#FF0000>)</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.139'></a>
+140:             Thing<font color=#FF0000>[</font><font color=#FF0000>]</font> stuff<font color=#FF0000>=</font>map<font color=#FF0000>.</font><b><font color=#000000>getThings</font></b><font color=#FF0000>(</font>m<font color=#FF0000>.</font>x<font color=#FF0000>-</font><font color=#9A1900>1</font><font color=#FF0000>,</font>m<font color=#FF0000>.</font>y<font color=#FF0000>-</font><font color=#9A1900>1</font><font color=#FF0000>,</font>m<font color=#FF0000>.</font>x<font color=#FF0000>+</font><font color=#9A1900>1</font><font color=#FF0000>,</font>m<font color=#FF0000>.</font>y<font color=#FF0000>+</font><font color=#9A1900>1</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.140'></a>
+141:             <font color=#0000FF>boolean</font> found<font color=#FF0000>=</font>false<font color=#FF0000>;</font><a name='line.141'></a>
+142:             <b><font color=#0000FF>for</font></b> <font color=#FF0000>(</font><font color=#0000FF>int</font> i<font color=#FF0000>=</font><font color=#9A1900>0</font><font color=#FF0000>;</font> i<font color=#FF0000>&lt;</font>stuff<font color=#FF0000>.</font>length<font color=#FF0000>;</font> i<font color=#FF0000>+</font><font color=#FF0000>+</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.142'></a>
+143:               <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>stuff<font color=#FF0000>[</font>i<font color=#FF0000>]</font> <b><font color=#0000FF>instanceof</font></b> Item<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.143'></a>
+144:                 m<font color=#FF0000>.</font><b><font color=#000000>addThing</font></b><font color=#FF0000>(</font>stuff<font color=#FF0000>[</font>i<font color=#FF0000>]</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.144'></a>
+145:                 found<font color=#FF0000>=</font>true<font color=#FF0000>;</font> <a name='line.145'></a>
+146:               <font color=#000000>}</font><a name='line.146'></a>
+147:             <font color=#000000>}</font><a name='line.147'></a>
+148:             <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>found<font color=#FF0000>)</font> <font color=#FF0000>(</font><font color=#FF0000>(</font>Being<font color=#FF0000>)</font>m<font color=#FF0000>)</font><font color=#FF0000>.</font><b><font color=#000000>utiliseItems</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.148'></a>
+149:           <font color=#000000>}</font><a name='line.149'></a>
+150:             <font color=#000000>}</font><a name='line.150'></a>
+151:            <b><font color=#0000FF>break</font></b><font color=#FF0000>;</font><a name='line.151'></a>
+152:         <b><font color=#0000FF>case</font></b> <font color=#9A1900>1</font><font color=#FF0000>:</font> <font color=#000000>{</font><a name='line.152'></a>
+153:         <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>visible<font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.153'></a>
+154:           Thing f<font color=#FF0000>=</font>map<font color=#FF0000>.</font><b><font color=#000000>findNearestFoe</font></b><font color=#FF0000>(</font>m<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.154'></a>
+155:           <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>f<font color=#FF0000>=</font><font color=#FF0000>=</font><b><font color=#0000FF>null</font></b><font color=#FF0000>)</font> f<font color=#FF0000>=</font>Game<font color=#FF0000>.</font>hero<font color=#FF0000>;</font><a name='line.155'></a>
+156: <a name='line.156'></a>
+157:           <b><font color=#009900>// pick up and use stuff</font></b><a name='line.157'></a>
+158:           <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font><b><font color=#000000>d</font></b><font color=#FF0000>(</font><font color=#9A1900>6</font><font color=#FF0000>)</font><font color=#FF0000>=</font><font color=#FF0000>=</font><font color=#9A1900>1</font><font color=#FF0000>)</font><font color=#FF0000>&amp;</font><font color=#FF0000>&amp;</font><font color=#FF0000>(</font>m<font color=#FF0000>.</font><b><font color=#000000>getStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_CR<font color=#FF0000>)</font><font color=#FF0000>&gt;</font><font color=#FF0000>=</font><font color=#9A1900>5</font><font color=#FF0000>)</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.158'></a>
+159:             Thing t<font color=#FF0000>=</font>map<font color=#FF0000>.</font><b><font color=#000000>getObject</font></b><font color=#FF0000>(</font>m<font color=#FF0000>.</font>x<font color=#FF0000>,</font>m<font color=#FF0000>.</font>y<font color=#FF0000>,</font>Item<font color=#FF0000>.</font><b><font color=#0000FF>class</font></b><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.159'></a>
+160:             <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>t<font color=#FF0000>!</font><font color=#FF0000>=</font><b><font color=#0000FF>null</font></b><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.160'></a>
+161:               m<font color=#FF0000>.</font><b><font color=#000000>addThing</font></b><font color=#FF0000>(</font>t<font color=#FF0000>)</font><font color=#FF0000>;</font> <a name='line.161'></a>
+162:               <font color=#FF0000>(</font><font color=#FF0000>(</font>Being<font color=#FF0000>)</font>m<font color=#FF0000>)</font><font color=#FF0000>.</font><b><font color=#000000>utiliseItems</font></b><font color=#FF0000>(</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.162'></a>
+163:             <font color=#000000>}</font><a name='line.163'></a>
+164:           <font color=#000000>}</font><a name='line.164'></a>
+165:           <a name='line.165'></a>
+166:           <b><font color=#000000>doAttack</font></b><font color=#FF0000>(</font>m<font color=#FF0000>,</font>f<font color=#FF0000>.</font>x<font color=#FF0000>,</font>f<font color=#FF0000>.</font>y<font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.166'></a>
+167:         <font color=#000000>}</font> <b><font color=#0000FF>else</font></b> <font color=#000000>{</font><a name='line.167'></a>
+168:           <b><font color=#0000FF>if</font></b> <font color=#FF0000>(</font>RPG<font color=#FF0000>.</font><b><font color=#000000>d</font></b><font color=#FF0000>(</font><font color=#9A1900>6</font><font color=#FF0000>)</font><font color=#FF0000>=</font><font color=#FF0000>=</font><font color=#9A1900>1</font><font color=#FF0000>)</font> <font color=#000000>{</font><a name='line.168'></a>
+169:             m<font color=#FF0000>.</font><b><font color=#000000>setStat</font></b><font color=#FF0000>(</font>RPG<font color=#FF0000>.</font>ST_AIMODE<font color=#FF0000>,</font><font color=#9A1900>0</font><font color=#FF0000>)</font><font color=#FF0000>;</font><a name='line.169'></a>
+170:           <font color=#000000>}</font><a name='line.170'></a>
+171:         <font color=#000000>}</font><a name='line.171'></a>
+172:         <b><font color=#0000FF>break</font></b><font color=#FF0000>;</font><a name='line.172'></a>
+173:         <font color=#000000>}</font><a name='line.173'></a>
+174:       <font color=#000000>}</font>    <a name='line.174'></a>
+175:     <b><font color=#0000FF>return</font></b> true<font color=#FF0000>;</font><a name='line.175'></a>
+176:     <font color=#000000>}</font>    <a name='line.176'></a>
+177: <font color=#000000>}</font></tt><a name='line.177'></a>
+</pre><a name='line.178'></a>
+</body><a name='line.179'></a>
+</html><a name='line.180'></a>
