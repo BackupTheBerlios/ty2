@@ -208,6 +208,7 @@ public class Person extends Being {
 					if( !((Potion)o).isIdentified()){
 						((Potion)o).setIdentified(true);
 						Game.message("\"Ah, it's a " + ((Potion)o).getSingularName() + "\"");
+						Game.getInput();
 					}
 				}
               Game.message("\"Nice doing business with yer!\"");
