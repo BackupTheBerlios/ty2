@@ -33,10 +33,15 @@ public class Ring extends Item implements Active, Description {
   protected int type;
   
   protected final Stats stats;
+  private static boolean ringKnown[] = new boolean[15];
 	
-  public Ring() {
+  public Ring(){
+	  this(RPG.d(descriptions.length-1));
+  }
+	
+  public Ring( int p_type) {
     stats=new Stats();
-    type=RPG.d(descriptions.length-1);
+    type=p_type;
     
     switch (type) {
       case 1:
@@ -67,6 +72,7 @@ public class Ring extends Item implements Active, Description {
         stats.setStat(RPG.ST_SK,RPG.d(4));
         return;        
       case 10:
+		  stats.setStat(RPG.ST_SEARCHING, RPG.d(6));
         return;
       case 11:
         stats.setStat(RPG.ST_ARMFIRE,RPG.d(2,10));
@@ -83,6 +89,10 @@ public class Ring extends Item implements Active, Description {
       default:
         return;        
 	  }
+	}
+	
+	public static int getImplemented(){
+		return powernames.length-1;
 	}
 	
 	public int getModifier(int s) {
@@ -137,4 +147,31 @@ public class Ring extends Item implements Active, Description {
   public String getDescriptionText() {
     return descriptions[type].getDescriptionText()+" ("+Text.capitalise(getName(1,ARTICLE_INDEFINITE))+")";
   }
+  
+  	public void setIdentified(boolean ident) {
+		super.setIdentified(ident);
+		if(ident){
+			setRingKnown(type);
+		}
+	}
+
+	public boolean isIdentified() {
+		boolean b = super.isIdentified();
+		Hero h=Game.hero;
+		if(b){
+			setRingKnown(type);
+			return true;
+		}else{
+			return getRingKnown(type);
+		}
+	}
+	
+	public void setRingKnown( int i ){
+		ringKnown[i] = true;
+	}
+
+	public boolean getRingKnown( int i ){
+		return ringKnown[i];
+	}  
+  
 }
