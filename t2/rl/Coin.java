@@ -56,7 +56,9 @@ public class Coin extends Stack {
     if ((RPG.d(2)==1)&&(number>=10)) {
       type++;
     }
-    for (int i=0; i<type; i++) number/=10;
+    for (int i=0; i<type; i++){ 
+		 number/=10;
+	 } 
 
     if (number<=0) number=1;
     

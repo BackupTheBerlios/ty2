@@ -36,7 +36,9 @@ public class Being extends Mobile implements ThingOwner, Talkable  {
   
   // gain multiple levels to a given target
   public void gainLevel(int targetlevel) {
-    while (getStat(RPG.ST_LEVEL)<targetlevel) gainLevel(); 
+    while (getStat(RPG.ST_LEVEL)<targetlevel){
+		 gainLevel();
+	 }
   }
   
   // gain a level
@@ -370,7 +372,9 @@ public class Being extends Mobile implements ThingOwner, Talkable  {
   public int getMoney() {
     Thing[] cash = inv.getContents(Coin.class);
     int tot=0;
-    for (int i=0; i<cash.length; i++) tot+=cash[i].getStat(RPG.ST_ITEMVALUE)*cash[i].getNumber();
+    for (int i=0; i<cash.length; i++){
+		 tot+=cash[i].getStat(RPG.ST_ITEMVALUE)*cash[i].getNumber();
+	 }
     return tot;
   }
   
@@ -385,7 +389,9 @@ public class Being extends Mobile implements ThingOwner, Talkable  {
     if (v<=0) {addMoney(-v); return;}
     int funds=getMoney()-v;
     Thing[] cash = inv.getContents(Coin.class);
-    for (int i=0; i<cash.length; i++) cash[i].remove();
+    for (int i=0; i<cash.length; i++) {
+		 cash[i].remove();
+	 }
     if (funds>0) {
       addMoney(funds); 
     }

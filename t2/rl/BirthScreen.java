@@ -203,8 +203,9 @@ public class BirthScreen extends Screen
 			}
 			g.setColor(chosenBlue);
 			String[] descs  = ((String)ror.descs.get(choice)).split("\n");
-			for(int i = 0; i < descs.length; i++)
+			for(int i = 0; i < descs.length; i++){
 				g.drawString(descs[i], 20, lineheight * (ror.races.size() + 6 + i));
+			}
 		}
 
 		if(status == status_class)
@@ -235,8 +236,9 @@ public class BirthScreen extends Screen
 			}
 			g.setColor(chosenBlue);
 			String[] descs  = ((String)roc.descs.get(choice)).split("\n");
-			for(int i = 0; i < descs.length; i++)
+			for(int i = 0; i < descs.length; i++){
 				g.drawString(descs[i], 20, lineheight * (roc.classes.size() + 6 + i));
+			}
 
 		}
 	}

@@ -30,17 +30,13 @@ public interface AI  {
   public static final int EVENT_THEFT=6;
     // ext=id of side alarmed
   
-	public boolean isHostile(Mobile m, Mobile t);
-	
-	public boolean doAction(Mobile m);	
-  
+  public boolean isHostile(Mobile m, Mobile t);
+  public boolean doAction(Mobile m);	
   public void register(Mobile m);
-  	
   public void unregister(Mobile m); 
-  	
   public int getState(Mobile m);
-  
   public int notify(Mobile m, int eventtype, int ext, Object o);
-  
   public Mobile getLeader();
 }
+
+

@@ -85,7 +85,9 @@ class GameScreen extends Screen {
 		int dx=0;
 		int dy=0;
 		final Hero h=Game.hero;	
-		if (h==null) throw new Error("No hero found!");
+		if (h==null){
+			throw new Error("No hero found!");
+		}
 
 		messagepanel.setText("");
 
@@ -145,13 +147,8 @@ class GameScreen extends Screen {
 		if ((dx!=0)||(dy!=0)) {
 			if (map.getTile(h.x+dx,h.y+dy)!=0) {
 				h.tryMove(map,h.x+dx,h.y+dy);
-			} else if (map.canExit()) {
-				Game.message("Exit area? (y/n)");
-				char c = Game.getOption("yn");
-				Game.messagepanel.setText("");
-				if (c=='y') {
-					map.exitMap(h.x,h.y);
-				}
+			} else {
+				tryLeaveMap();
 			}
 		}
 	
@@ -163,10 +160,14 @@ class GameScreen extends Screen {
 
 		// save and load games
 		if (k==key_saveAs ) {
-			if (!Game.save()) Game.message("Save game failed.");
+			if (!Game.save()){
+				Game.message("Save game failed.");
+			}
 		}
 		if (K==key_control_save && controlIsDown ) {
-			if (!Game.save(true)) Game.message("Save game failed.");
+			if (!Game.save(true)){
+				Game.message("Save game failed.");
+			}
 		}
 
 		if ((k=='+')||(k=='=')) {
@@ -174,13 +175,17 @@ class GameScreen extends Screen {
 			char opt=Game.getOption("yn");
 			Game.message("");
 			if (opt=='y') {
-				if (!Game.restore()) Game.message("Load game failed.");
+				if (!Game.restore()){
+					Game.message("Load game failed.");
+				}
 			}
 			return;
 		}
 
 		if( K == key_control_save_quit && controlIsDown ){
-			if (!Game.save()) Game.message("Save game failed.");
+			if (!Game.save()){
+				Game.message("Save game failed.");
+			}
 			System.exit(0);
 		}
 
@@ -206,20 +211,26 @@ class GameScreen extends Screen {
 			 
 		// debugger's special keys
 		if (k==':') {
-			if (!QuestApp.debug) return;
+			if (!QuestApp.debug){ return; }
 			String command=Game.getLine("What is your bidding?");
 			char ch=command.charAt(0);
 			command=command.substring(1);
 				
-			if (ch=='m') try { // summon a monster
-				int n=Integer.parseInt(command);
-				map.addThing(new Creature(n),h.x-1,h.y-1,h.x+1,h.y+1);
-			} catch (Exception exception) {return;}
+			if (ch=='m'){
+				try { // summon a monster
+					int n=Integer.parseInt(command);
+					map.addThing(new Creature(n),h.x-1,h.y-1,h.x+1,h.y+1);
+				} catch (Exception exception) 
+				{return;}
+			}
 				
-			if (ch=='a') try { // create an artifact
-				int n=Integer.parseInt(command);
-				map.addThing(Lib.createArtifact(n),h.x-1,h.y-1,h.x+1,h.y+1);
-			} catch (Exception exception) {return;}
+			if (ch=='a'){ 
+				try { // create an artifact
+					int n=Integer.parseInt(command);
+					map.addThing(Lib.createArtifact(n),h.x-1,h.y-1,h.x+1,h.y+1);
+				} catch (Exception exception) 
+				{return;}
+			}
 			
 			if (ch=='P'){
 				for(int tt=1; tt <= Potion.getImplemented(); tt++){
@@ -248,7 +259,9 @@ class GameScreen extends Screen {
 
 		if ( controlIsDown && K == key_control_quit ) {
 				Game.message("Are you sure you want to quit this game (y/n)");
-				if (Game.getOption("yn")=='y') System.exit(0);
+				if (Game.getOption("yn")=='y'){
+					System.exit(0);
+				}
 		}
 
 		if (k== key_skills) {
@@ -272,7 +285,9 @@ class GameScreen extends Screen {
 				Point p=Game.getDirection();
 				person=(Person)map.getObject(h.x+p.x,h.y+p.y,Being.class);
 			} else {
-				try {person=map.getNearbyMobile(h.x,h.y,1);} catch (Exception anyex) { person = null;} 
+				try {person=map.getNearbyMobile(h.x,h.y,1);} catch (Exception anyex) { 
+					System.err.println( anyex.toString() );
+				} 
 			}
 				
 			if ((person!=null)&&(person instanceof Talkable)) {
@@ -355,7 +370,9 @@ class GameScreen extends Screen {
 				Point p=Game.getDirection();
 				mobile=(Mobile)map.getObject(h.x+p.x,h.y+p.y,Person.class);
 			} else {
-				try {mobile=map.getNearbyMobile(h.x,h.y,1);} catch (Exception anyex) { mobile = null; } 
+				try {mobile=map.getNearbyMobile(h.x,h.y,1);} catch (Exception anyex) {
+					System.err.println( anyex.toString() );
+				} 
 			}
 				
 			if ((mobile!=null)&&(!h.isHostile(mobile))) {
@@ -452,7 +469,9 @@ class GameScreen extends Screen {
 					if (t.isOwned()&&((map.mapstate&1)==0)) {
 						// get item value
 						int val = RPG.niceNumber(t.getStat(RPG.ST_ITEMVALUE)*t.getNumber());
-						if (t instanceof Coin) val=0;
+						if (t instanceof Coin){
+							val=0;
+						}
 						
 						// present options
 						char c;
@@ -468,11 +487,15 @@ class GameScreen extends Screen {
 							Game.message(t.getTheName()+" is not yours");
 							Game.message("Steal it? (y/n)");
 							c=Game.getOption("synl");
-							if (c=='y') c='s';
+							if (c=='y'){
+								c='s';
+							}
 						}
 						messagepanel.setText("");
 
-						if (c=='l') pickup=false;
+						if (c=='l') {
+							pickup=false;
+						}
 						if (c=='b') {
 							int funds=h.getMoney();
 							if (val>funds) {
@@ -538,11 +561,15 @@ class GameScreen extends Screen {
 			Thing o=getInventoryItem("Throw Item:",h.inv.getContents());
 			if (o != null) {
 				// can't throw cursed worn item
-				if ((o.y>0)&&(!h.inv.clearUsage(o.y))) return;
+				if ((o.y>0)&&(!h.inv.clearUsage(o.y))){
+					return;
+				}
 
 				// get initial target
 				Thing f=map.findNearestFoe(h);
-				if ((f!=null)&&(!map.isVisible(f.x,f.y))) f=null;
+				if ((f!=null)&&(!map.isVisible(f.x,f.y))) {
+					f=null;
+				}
 				// get user target selection
 				Point p=getTargetLocation(f);
 					
@@ -583,9 +610,13 @@ class GameScreen extends Screen {
 					Game.message("Which finger? (r/l)");
 					char c = Game.getOption("lr");
 					if (c=='r') {
-						if (h.wield(item,RPG.WT_RIGHTRING)) Game.message("You put "+item.getTheName()+" on your right finger");
+						if (h.wield(item,RPG.WT_RIGHTRING)) {
+							Game.message("You put "+item.getTheName()+" on your right finger");
+						}
 					} else if (c=='l') {
-						if (h.wield(item,RPG.WT_LEFTRING)) Game.message("You put "+item.getTheName()+" on your left finger");
+						if (h.wield(item,RPG.WT_LEFTRING)) {
+							Game.message("You put "+item.getTheName()+" on your left finger");
+						}
 					} else messagepanel.setText("");
 				}
 
@@ -593,26 +624,38 @@ class GameScreen extends Screen {
 					Game.message("Which hand? (r/l)");
 					char c = Game.getOption("lr");
 					if (c=='r') {
-						if (h.wield(item,RPG.WT_MAINHAND)) Game.message("You wield "+item.getTheName()+" in your right hand");
+						if (h.wield(item,RPG.WT_MAINHAND)) {
+							Game.message("You wield "+item.getTheName()+" in your right hand");
+						}
 					} else if (c=='l') {
-						if (h.wield(item,RPG.WT_SECONDHAND)) Game.message("You wield "+item.getTheName()+" in your left hand");
+						if (h.wield(item,RPG.WT_SECONDHAND)) {
+							Game.message("You wield "+item.getTheName()+" in your left hand");
+						}
 					} else messagepanel.setText("");
 				}
 
 				else if ((wt==RPG.WT_TWOHANDS)) {
-					if (h.wield(item,RPG.WT_TWOHANDS)) Game.message("You wield "+item.getTheName()+" in both hands");
+					if (h.wield(item,RPG.WT_TWOHANDS)) {
+						Game.message("You wield "+item.getTheName()+" in both hands");
+					}
 				}
 
 				else if ((wt==RPG.WT_RANGEDWEAPON)) {
-					if (h.wield(item,wt)) Game.message("You wield "+item.getTheName()+" as your ranged weapon");
+					if (h.wield(item,wt)) {
+						Game.message("You wield "+item.getTheName()+" as your ranged weapon");
+					}
 				}
 
 				else if ((wt==RPG.WT_MISSILE)) {
-					if (h.wield(item,wt)) Game.message("You prepare to fire "+item.getTheName());
+					if (h.wield(item,wt)){
+						Game.message("You prepare to fire "+item.getTheName());
+					}
 				}
 				 
 				else {
-					if (h.wield(item,wt)) Game.message ("You are now wearing "+item.getTheName());
+					if (h.wield(item,wt)) {
+						Game.message ("You are now wearing "+item.getTheName());
+					}
 				}
 			}
 		}
@@ -697,17 +740,14 @@ class GameScreen extends Screen {
 	}
 
 	public Thing getInventoryItem(String s, Thing[] inv) {
-	Thing thing;
-		Hero h=Game.hero;
 		InventoryScreen is = new InventoryScreen(s,inv);
 		questapp.switchOtherScreen(is);
-		thing =	(Thing)is.getObject();
+		Thing thing = (Thing)is.getObject();
 		questapp.switchBack(is);
 	return thing;
 	}
 
 	public void showInventory(String s, Thing[] inv) {
-		Hero h=Game.hero;
 		InventoryScreen is = new InventoryScreen(s,inv);
 		questapp.switchOtherScreen(is);
 		is.showContents();
@@ -722,7 +762,9 @@ class GameScreen extends Screen {
 
 	// get location, initially place crosshairs at start
 	public Point getTargetLocation(Thing start) {
-		if (start==null) return getTargetLocation();
+		if (start==null){
+			return getTargetLocation();
+		}
 		mappanel.setCursor(start.x,start.y);
 		mappanel.viewPosition(start.x,start.y);
 		
@@ -731,7 +773,7 @@ class GameScreen extends Screen {
 		
 		while (true) {
 			KeyEvent e=Game.getInput(); 
-			if (e==null) continue;
+			if (e==null){ continue };
 			
 			char k = Character.toLowerCase(e.getKeyChar());
 			
@@ -790,7 +832,7 @@ class GameScreen extends Screen {
 	
 	public void castSpell(final Spell s) {
 		final Hero h=Game.hero;
-		if (s==null) return;
+		if (s==null) {return; }
 		
 		Game.message("You cast "+s.getName());
 		
@@ -800,14 +842,14 @@ class GameScreen extends Screen {
 				break;
 			case Spell.TARGET_LOCATION:
 				Thing f=(s.getUsage()==Spell.SPELL_OFFENCE)?map.findNearestFoe(h):null;
-				if ((f!=null)&&(!map.isVisible(f.x,f.y))) f=null;
+				if ((f!=null)&&(!map.isVisible(f.x,f.y))){ f=null; }
 				Point p=getTargetLocation(f);
 				if (p!=null) {
 					// don't fire offensive spell at self by accident
 					if ((p.x==h.x)&&(p.y==h.y)&&(s.getUsage()==Spell.SPELL_OFFENCE)) {
 						Game.message("Are you sure you want to target yourself? (y/n)");
-						char opt=Game.getOption("yn");
-						if (opt=='n') break; 
+						char opt=Game.getOption( RPG.yesno );
+						if (opt == RPG.no ){ break; }; 
 					}
 					
 					if (map.isVisible(p.x,p.y)) {
@@ -826,12 +868,24 @@ class GameScreen extends Screen {
 		}	
 	}
 	
+	private void tryLeaveMap(){
+		if (map.canExit()) {
+			Game.message("Exit area? ("+ RPG.yesno +")");
+			char c = Game.getOption( RPG.yesno );
+			Game.messagepanel.setText("");
+			if (c== RPG.yes) {
+				Hero h = Game.hero;
+				map.exitMap(h.x,h.y);
+			}
+		}
+	}
+	
 	public void endTurn() {
 		Hero h = Game.hero;
 		
 		if (h.getMap()!=map) {
 			map=h.getMap();
-			if (map==null) return;
+			if (map==null){ return; }
 			Game.enterMap(map,h.x,h.y); 
 		}
 		
@@ -850,7 +904,7 @@ class GameScreen extends Screen {
 		int advance=-h.aps;
 		while (advance>0) {
 			int step=advance;
-			if (step>500) step=500;
+			if (step>500){ step=500; }
 			
 			// call map action
 			// this includes increment of h.aps via Mobile.action(t)

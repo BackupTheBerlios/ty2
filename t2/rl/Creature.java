@@ -314,7 +314,9 @@ public class Creature extends Being {
       int thelevel=level;
       
       // Adjust level randomly. Not too much.
-      while (RPG.d(3)==1) thelevel+=RPG.r(3)-1; 
+      while (RPG.d(3)==1){ 
+			thelevel+=RPG.r(3)-1;
+		}
       
       // get random creature type from source
       int i=source[RPG.r(source.length)];

@@ -131,8 +131,8 @@ public class Caves extends Map {
     replaceTiles(0,walltile);
     
     // now do some decoration
-    for (int i=0; i<13; i++) addThing(new Missile(Missile.ROCK,1));
-    for (int i=0; i<6; i++) addThing(new Missile(Missile.STONE,1));
+    for (int i=0; i<13; i++){ addThing(new Missile(Missile.ROCK,1)); }
+    for (int i=0; i<6 ; i++){ addThing(new Missile(Missile.STONE,1)); }
   
     // bat cave
     {
@@ -223,8 +223,9 @@ public class Caves extends Map {
     int cy=(y1+y2)/2;
     
     for (int lx=x1; lx<=(x1+w*2); lx++) for (int ly=y1; ly<(y1+h*2); ly++) {
-      if ( (((lx-cx)*(lx-cx)*100)/(w*w) + ((ly-cy)*(ly-cy)*100)/(h*h)) < 100 )
+      if ( (((lx-cx)*(lx-cx)*100)/(w*w) + ((ly-cy)*(ly-cy)*100)/(h*h)) < 100 ){
            setTile(lx,ly,floortile);
+		}
     }    
 
     fillArea(cx,cy,x,y,floortile); 

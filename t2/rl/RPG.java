@@ -364,6 +364,15 @@ public class RPG {
   public static final int MISSILE_STONE=3;
   
 
+  // I18N
+  
+  public static final String yesno = "y/n";
+  public static final char yes   = 'y';
+  public static final char no    = 'n';
+  
+  
+  
+  
 
   // some standard description for internal use
   public static final Description DESC_GENERIC = 

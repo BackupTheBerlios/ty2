@@ -8,6 +8,7 @@ public class Chest extends Scenery {
   private int trap;
   private boolean trapdetected;
   private boolean locked;
+  private boolean emptied;
   private int level;
   private Thing contents;
 	
@@ -64,10 +65,10 @@ public class Chest extends Scenery {
     
     if (trap==0) {
 			if (!locked) {
-				if (contents!=null){
+				if (!emptied){
 					Game.message("You find "+contents.getAName());
 					h.getMap().addThing(contents,h.x,h.y);
-					contents=null;
+					emptied = true;
 				} else {
 				  Game.message("You find nothing in the chest");	
 				}

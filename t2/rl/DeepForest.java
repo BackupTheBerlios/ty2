@@ -113,11 +113,15 @@ class DeepForest extends Map {
     int cx=(x1+x2)/2;
     int cy=(y1+y2)/2;
     
-    for (int lx=x1; lx<=(x1+w*2); lx++) for (int ly=y1; ly<(y1+h*2); ly++) {
-      if ( (((lx-cx)*(lx-cx)*100)/(w*w) + ((ly-cy)*(ly-cy)*100)/(h*h)) < 100 ) {
-    	  if (getTile(lx,ly)==0) setTile(lx,ly,floortile);
-      }
-    }  
+    for (int lx=x1; lx<=(x1+w*2); lx++){
+		 for (int ly=y1; ly<(y1+h*2); ly++) {
+			 if ( (((lx-cx)*(lx-cx)*100)/(w*w) + ((ly-cy)*(ly-cy)*100)/(h*h)) < 100 ) {
+				 if (getTile(lx,ly)==0) {
+					 setTile(lx,ly,floortile);
+				 }//second if
+			 }//first if
+      }//second for
+    } //first for
     
     if ((w>=4)&&(h>=4)&&(RPG.d(6)==1)&&(x!=entrance.x)) {
       // do a fairy ring
@@ -178,24 +182,25 @@ class DeepForest extends Map {
 
   
   public void decorateForest(int x1,int y1,int x2,int y2) {
-   	for (int x=x1; x<=x2; x++) for (int y=y1;y<=y2; y++) {
-   	  if (isBlocked(x,y)) continue;
-   	  if (!(getTile(x,y)==floortile)) continue;
-   	  else {
-   	  	switch(RPG.d(60)) {
-   	  	  case 1: case 2:	
- 	  		    addThing(GameScenery.create(4),x,y);
- 	  		    break;
-   	  	  case 5:	
- 	  		    addThing(GameScenery.create(5),x,y);
- 	  		    break;   	  
-   	  	  case 6:	
- 	  		    addThing(Food.createFood(Food.MUSHROOM),x,y);
- 	  		    break;   	  
- 	  		}
-   	  }	
-   	}
-
+   	for (int x=x1; x<=x2; x++){
+			for (int y=y1;y<=y2; y++) {
+				if (isBlocked(x,y)) continue;
+				if (!(getTile(x,y)==floortile)) continue;
+				else {
+					switch(RPG.d(60)) {
+						case 1: case 2:	
+							addThing(GameScenery.create(4),x,y);
+							break;
+						case 5:	
+							addThing(GameScenery.create(5),x,y);
+							break;   	  
+						case 6:	
+							addThing(Food.createFood(Food.MUSHROOM),x,y);
+							break;   	  
+					}//end switch
+				}	//end else
+			}//end y for
+		}//end x for
   }
 
   private void addBeasties(int x, int y) {
@@ -245,7 +250,9 @@ class DeepForest extends Map {
   
   public void action(int time) {
     super.action(time);
-    for (int i=RPG.po(time,3000); i>0; i--) addWandering();	
+    for (int i=RPG.po(time,3000); i>0; i--) {
+		 addWandering();
+	 }
   }
   
   public String getEnterMessage() {

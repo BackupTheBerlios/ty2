@@ -30,7 +30,7 @@ public class CharacterScreen extends Screen {
 			f.write(line);
 			f.write("\n");
 		} catch (Exception e) {
-			System.out.println("An error occured while dumping"+ line.toString() + " to " + f.toString());
+			System.out.println("An error occured while dumping"+ line + " to " + f.toString());
 		}
 		}
 	}
