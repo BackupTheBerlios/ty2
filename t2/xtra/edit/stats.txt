@@ -1,0 +1,49 @@
+#Known Stats
+#This file contains all the known stats
+
+S:STR
+D:Possible values: 1->25  
+D:Description : The strength of the character
+
+S:DEX
+D:Possible values: 1->25  
+D:The dexterity of the character
+
+S:CON
+D:Possible values: 1->25
+D:The constitution of the character
+
+S:INT
+D:Possible values: 1->25
+D:Intelligence of the character
+
+S:WIS
+D:Possible values: 1->25
+D:Wisdom of the character
+
+S:CHA
+D:Possible values: 1->25
+D:Charisma of the character
+
+S:MOVESPEED
+D:Standard value: 100
+S:Walking speed compared to humans (in percent)
+
+S:ATTACKSPEED
+D:Standard value: 100
+D:Attacking speed compared to humans (in percent)
+
+S:REGENERATE
+D:Standard value: 3 
+D:Amount of turns to recover 1 hitpoints
+
+S:FATE
+D:Standard value: 2 
+D:Amount of times death is prevented
+
+S:GOLD
+D:Amount of gold pieces
+
+S:MAGICODDS
+D:Standard values:100
+D:Percent change of failing spells compared to humand (in percent)

@@ -1,0 +1,190 @@
+#Known Skills
+# This file contains all the skills that are & will be implemented
+# 
+#S:name of the skill, case sensitive
+#D:description of the skill
+#
+#Tom Demuyt, 2002
+
+S:Riding
+D:Allows to travel faster a the cost of 1 silver per square.
+D:CON based.
+
+S:Archery
+D:Allows to shoot better and faster.
+D:DEX based.
+
+S:Athletics
+D:Allows to jump over squares, travel faster and run faster. 
+D:DEX .
+D:CON based.
+
+S:Throwing
+D:Allows to throw weapons better and faster.
+D:DEX & STR based.
+
+S:Tracking
+D:Allows to travel faster in wilderness and surprise wild animals.
+D:WIS based.
+
+S:Climbing
+D:Allows to travel faster in mountains.
+D:WIS based.
+
+S:Dodge
+D:Allows to dodge blows, missiles and spells.
+D:DEX based.
+
+S:Swimming
+D:Allows to cross rivers.
+D:CON based.
+
+S:Survival
+D:Allows to reduce hunger while travelling.
+D:WIS based.
+
+S:Attack
+D:Allows to attack better, doing more damage and having more attacks. 
+D:STR & DEX based.
+
+S:Defence
+D:Allows to deflect attacks better. 
+D:DEX based.
+
+S:Parry
+D:Allows to block attacks with weaponry.
+D:STR based.
+
+S:Berserk
+D:Allows to decrease defence while increasing offence. 
+D:CON based.
+
+S:Ferocity
+D:Allows to decrease hi.
+D:CHAnce while increasing damage. 
+D:STR based.
+
+S:UnarmedCombat
+D:Allows to inflict more damage without weapons. 
+D:DEX & STR based.
+
+S:MightyBlow
+D:Allows to inflict more often full damage. 
+D:STR based.
+
+S:Bravery
+D:Allows to ignore fear and terror.
+D:WIS based.
+
+S:WeaponLore
+D:Allows to recognize weaponry.
+D:WIS & level based.
+
+S:Alertness
+D:Allows t.
+D:CONstantly spot traps and hidden doors.
+D:INT based.
+
+S:Pick-Pocket
+D:Allows to steal from others.
+D:DEX based.
+
+S:Pick-Lock
+D:Allows to easily open doors and chests.
+D:INT based.
+
+S:DisarmTrap
+D:Allows to easily disarm floortraps, doortraps and chest traps.
+D:INT based.
+
+S:Searching
+D:Allows to specificly search for traps and hidden doors.
+D:WIS based.
+
+S:Prayer
+D:Allows to receive divine spells.
+D:WIS based.
+
+S:HolyMagic
+D:Allows to cast blessed spells.
+D:INT & WIS based.
+
+S:Meditation
+D:Allows to regenerate spell points faster.
+D:INT based.
+
+S:Healing
+D:Allows to regenerate hit points faster.
+D:CON based.
+
+S:Literacy
+D:Allows to read scrolls and spell books.
+D:INT based.
+
+S:Identify
+D:Allows to identify items.
+D:INT & WIS based.
+
+S:Alchemy
+D:Allows to create magic potions with potent reagents.
+D:INT & WIS & level based.
+
+S:RuneLore
+D:Allows to draw potent runes on doors and floors.
+D:WIS based.
+
+S:HerbLore
+D:Allows to identify potent herbs.
+D:WIS based.
+
+S:BlackMagic
+D:Allows to cast forbidden magic.
+D:INT & CON based.
+
+S:TrueMagic
+D:Allows to cast all magic.
+D:INT based.
+
+S:BattleMagic
+D:Allows to cast destructice magic.
+D:INT based.
+
+S:GoblinMagic
+D:Allows to cast Goblinoid spells.
+D:INT based.
+
+S:MagicResistance
+D:Allows to resist magic.
+D:CON based.
+
+S:SpellCasting
+D:Allows to better cast spells.
+D:INT based.
+
+S:Music
+D:Allows to better play with instruments.
+D:DEX based.
+
+S:Perception
+D:Allows to see weaknesses in enemies and find traps & hidden doors.
+D:INT based.
+
+S:SleightofHand
+D:Allows to steal better.
+D:DEX based.
+
+S:Storytelling
+D:Allows to enthrall listeners in your story.
+D:CHA based.
+
+S:Seduction
+D:Allows to seduce the opposite sex.
+D:CHA based.
+
+S:Appraisal
+D:Allows to sell/buy items at a better price.
+D:INT based.
+
+S:Trading
+D:Allows to sell/buy items at a better price.
+D:WIS based.
