@@ -415,7 +415,7 @@ class GameScreen extends Screen
 		}
 
 		// give item
-		if(k == 'g')
+		if(rk == 'G')
 		{
 
 			// select mobile to give to
@@ -531,7 +531,7 @@ class GameScreen extends Screen
 		}
 
 		// pick up items
-		if((k == 'p') || (k == ','))
+		if(k == 'g')
 		{
 			Thing[] th  = map.getThings(h.x, h.y);
 			for(int i = 0; i < th.length; i++)
