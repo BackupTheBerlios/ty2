@@ -27,7 +27,8 @@ public class InventoryScreen extends Screen {
 					repaint();	
 				}
 
-				if ((c=='n'||c=='+'||c==' ')&&(((page+1)*pagesize)<things.length)) {
+//				if ((c=='n'||c=='+'||c==' ')&&(((page+1)*pagesize)<things.length)) {
+				if ( c=='n' || c=='+' || c==' ' ){
 					page++;
 					repaint();
 				}
