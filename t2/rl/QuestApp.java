@@ -83,13 +83,13 @@ public class QuestApp extends Applet implements Runnable {
     setBackground(Color.black);
     setFont(mainfont);
     
-    tiles = getImage("/images/tiles.gif");
-    scenery = getImage("/images/scenery.gif");
-    creatures = getImage("/images/creature.gif");
-    items = getImage("/images/items.gif");
-    effects = getImage("/images/effects.gif");
-    title = getImage("/images/title.gif");
-    paneltexture = getImage("/images/texture1.gif");
+    tiles = getImage("xtra/images/tiles.gif");
+    scenery = getImage("xtra/images/scenery.gif");
+    creatures = getImage("xtra/images/creature.gif");
+    items = getImage("xtra/images/items.gif");
+    effects = getImage("xtra/images/effects.gif");
+    title = getImage("xtra/images/title.gif");
+    paneltexture = getImage("xtra/images/texture1.gif");
     
     // Create mediatracker for the images
     MediaTracker mt=new MediaTracker(this);
