@@ -242,7 +242,7 @@ class GameScreen extends Screen {
 			
 			if(ch=='r'){
 				for(int tt=1; tt <= Ring.getImplemented(); tt++){
-					map.addThing(new Ring(tt),h.x,h.y);	
+					map.addThing(new Ring(tt,true),h.x,h.y);	
 				}				
 			}
 		} 
