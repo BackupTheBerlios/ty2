@@ -1,0 +1,99 @@
+# Comment : this is the file with the classes
+# How to edit
+# C:classname
+# F:filename with details about class, if no such line, c_classname.txt is taken
+# D:description
+#
+# 2002, Tom Demuyt
+
+C:Warrior
+F:c_warrio.txt
+D:A Warrior is a hack-and-slash character, who solves most of his problems
+D:by cutting them to pieces, but will occasionally fall back on the help 
+D:of a magical device. Their prime stats are Strength and Constitution, 
+D:and a good Dexterity can really help at times. A Warrior will be good 
+D:at Fighting and Throwing/Bows, but bad at most other skills.
+D:A Warrior learns no magic.
+
+C:Mage
+F:c_mage.txt
+D:A Mage is a spell caster that must live by his wits as he cannot
+D:hope to simply hack his way through the dungeon like a warrior. In
+D:addition to his spellbooks, a Mage should carry a range of magical
+D:devices to help him in his endeavors which he can master far more
+D:easily than anyone else.
+
+C:Priest
+F:c_priest.txt
+D:A Priest is a character devoted to serving a higher power. They
+D:explore the dungeon in the service of their God, cleansing the 
+D:the world from evil with divine spells. A priest must fight
+D:with blunt weapons.
+
+C:Rogue
+F:c_rogue.txt
+D:A Rogue is a character that prefers to live by his cunning, but is
+D:capable of fighting his way out of a tight spot. Rogues are good
+D:at locating hidden traps and doors and are the masters of
+D:disarming traps and picking locks. A rogue has a high stealth
+D:allowing him to sneak around many creatures. A rogue may also
+D:backstab a fleeing or unaware monster.
+
+C:Ranger
+F:c_ranger.txt
+D:A Ranger is a combination of a warrior and a mage who has
+D:developed a special affinity for the natural world around him. He
+D:is a good fighter and also good about a missile weapon such as a
+D:bow. A ranger has a good stealth, good perception, good searching,
+D:a good saving throw and is good with magical devices. Intelligence
+D:determines a Ranger's spell casting ability.
+
+C:Palladin
+F:c_pallad.txt
+D:A Paladin is a warrior and a priest. Paladins are very good fighters,
+D:but not very good at missile weapons. A paladin lacks much in the way of
+D:abilities. He is poor at stealth, perception, searching, and magical 
+D:devices but has a decent saving throw due to his divine alliance.
+D:Wisdom determines a Paladin's success at praying to his deity.
+
+C:Spellsword
+F:c_spells.txt
+D:A Warrior-Mage is precisely what the name suggests: a cross
+D:between a swordmaster and a mage. While their bow-using brothers;
+D:the rangers, specialize in Nature magic and survival skills, true
+D:Spellswords tend to use the sword and destructice magic. As
+D:warriors they are much superior to the usual Mage class.
+
+C:Bard
+F:c_bard.txt
+D:Bards are something like traveling popular musicians. The bard is
+D:the one that gets large discounts at the shop, gets big rewards
+D:for quests and tends to avoid heroic fights. Experienced bards
+D:have been known to use their music for all kinds of purposes.
+
+C:Barbarian
+F:c_barbar.txt
+D:Barbarian are fearful fighters, immune to fear and paralysis. 
+D:Experienced Barbarians have been seen fighting bare handed,
+D:reflecting bolts and magic spells in their fury. They are
+D:also resilient against curses, but are completely useless 
+D:with magic.
+
+C:Enchanter
+F:c_enchan.txt
+D:Enchanters only care about equipment. They 'acquire' equipment
+D:easily at the shops, and spend a lot of time on improving that 
+D:equipment. They also know how to use all their weaponry and magic
+D:items but have little talent for magic.
+
+C:Runecaster
+F:c_runeca.txt
+D:Runecaster have found power in the calling of names. By calling the
+D:true names of the elements, foes and even the gods, they can
+D:summon them and use them at their disposal.
+
+C:Avatar
+F:c_avatar.txt
+D:Avator are incarnations of the gods themselves, they come sometimes
+D:to the land of the mortals to settle urgent matters. Although Avatars
+D:are strong and all-knowing, they are not immortal.

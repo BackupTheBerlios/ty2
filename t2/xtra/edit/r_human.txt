@@ -1,0 +1,77 @@
+# Comment : this is the file with the human race
+# How to edit
+# R:racename
+# STAT:thestat:xx           set the player stat 'thestat' to value xx
+# STAT:ADD:thestat:xx       add xx points to stat 'thestat'
+# STAT:REMOVE:thestat:xx    remove xx points from stat 'thestat'
+# STAT:DIVIDE:thestat:xx    divide stat 'thestat' with xx
+# STAT:MULTIPLY:thestat:xx  multiply stat 'thestat' with xx
+# SKILL:theskill:           give the skill 'theskill' to the player
+#
+# Known Stats :
+# STR: 1->25  "The strength of the character
+# DEX: 1->25  "The dexterity of the character
+# CON: 1->25  "The constitution of the character
+# INT: 1->25  "Intelligence of the character
+# WIS: 1->25  "Wisdom of the character
+# CHA: 1->25  "Charisma of the character
+# MOVESPEED: 100 : human (think in percents)
+# ATTACKSPEED: 100 : human (think in percents)
+# REGENERATE: 3 : human (think in turns per recovery of 1 hitpoint)
+# FATE: 2 : Amount of times death is prevented
+# GOLD: 0->? : Amount of gold pieces
+#
+#Known Skills:
+Riding, allows to travel faster, costs 1 silver per square to ride an animal. CON based.
+#Archery, allows to shoot better and faster. DEX based.
+#Athletics, allows to jump over squares, travel faster ( if not riding) and run faster. DEX,CON,DEX.
+#Throwing, allows to throw better and faster. DEX based.
+#Tracking, allows to travel faster in wilderness, surprise wild animals. WIS based
+#Climbing, allows to travel faster in mountains. WIS based
+#Dodge, allows to dodge blows, missiles and spells. DEX based
+#Swimming, allows to cross rivers. CON based
+#Survival, allows to reduce hunger while travelling. WIS based
+#Attack, allows to attack better, do more damage and have more attacks. STR based
+#Defence, allows to deflect attacks better. DEX based
+#Parry, allows to block attacks with weaponry. 
+#Berserk, allows to decrease defence, increase offence. CON based
+#Ferocity, allows to decrease hit chance, increase damage. STR based
+#UnarmedCombat, allows to inflict more damage without weapons. DEX & STR based
+#MightyBlow, allows to inflict more often full damage. STR based
+#Bravery, allows to ignore fear and terror. WIS based
+#WeaponLore, allows to recognize weaponry. WIS & level based
+#Alertness, allows to 
+#Pick-Pocket
+#Pick-Lock
+#DisarmTrap
+#Searching
+#Prayer
+#HolyMagic
+#Meditation
+#Healing
+#Literacy
+#Identify
+#Alchemy
+#Languages
+#RuneLore
+#HerbLore
+#BlackMagic
+#TrueMagic
+#BattleMagic
+#GoblinMagic
+#MagicResistance
+#SpellCasting
+#Music
+#Perception
+#SleightofHand
+#Storytelling
+#Seduction
+#Painting
+#Smithing
+#Appraisal
+#Woodwork
+#Ropework
+#Construction
+#Carrying
+#Trading
+# 2002, Tom Demuyt

@@ -1,0 +1,109 @@
+# Comment : this is the file with the races
+# How to edit
+# R:racename
+# F:filename with details about race, if no such line, r_racename.txt is taken
+# D:description
+#
+# 2002, Tom Demuyt
+
+R:Human
+F:r_human.txt
+D:Humans act as a baseline race -- All other races are compared to them. 
+D:Humans can choose any class and are average at everything. Humans tend to 
+D:go up levels faster than most other races because of their shorter life 
+D:spans. No racial adjustments or intrinsics occur to characters choosing 
+D:human.
+
+R:Hobbit
+F:r_hobbit.txt
+D:Hobbits, or Halflings, are very good at bows, throwing, and have good 
+D:saving throws. They also are very good at searching, disarming, perception,
+D:and stealth; so they make excellent rogues, but prefer to be called 
+D:burglars. They are much weaker than humans, and no good at melee fighting.
+D:Halflings have fair infravision, so they can detect warm creatures at a 
+D:distance. Hobbits can choose between being a warrior, mage, or rogue. 
+D:They have their dexterity sustained and in time they learn to cook a 
+D:delicious meal from available ingredients.
+
+R:Dwarf
+F:r_dwarf.txt
+D:Dwarves are the headstrong miners and fighters of legend. Since dungeons 
+D:are the natural home of a dwarf, they are excellent choices for a warrior 
+D:or priest. Dwarves tend to be stronger and tougher but slower and less 
+D:intelligent than humans. Because they are so headstrong and are somewhat 
+D:wise, they resist spells which are cast on them. Dwarves also have very 
+D:good infra-vision because they live underground. They do have one big 
+D:drawback, though. Dwarves are loudmouthed and proud, singing in loud 
+D:voices, arguing with themselves for no good reason, and screaming out 
+D:challenges at nearby foes. In other words, dwarves have a miserable 
+D:stealth. They can never be blinded and learn to study the vibrations of 
+D:the earth, feeling the layout of a dungeon.
+
+R:High Elf
+F:r_helf.txt
+D:High-elves are a race of immortal beings dating from the beginning of time.
+D:They are masters of all skills, and are strong and intelligent, although 
+D:their wisdom is sometimes suspect. They can play all classes except 
+D:Paladin, and very well at that. High-elves begin their lives able to see 
+D:the unseen, and resist light effects just like regular elves. However, 
+D:there are few things that they have not seen already, and experience is 
+D:very hard for them to gain.
+
+R:Wood Elf
+F:r_welf.txt
+D:The first love of Wood Elves is hunting. As such, their skill with the bow
+D:is unparalleled. They train tirelessly with their bows, to the point of 
+D:neglecting even melee skills. They resist light as with other elves, and 
+D:do extra damage with a ranged weapon. They are almost custom made for the 
+D:archer class, but also make interesting warriors and rogues. Even Wood Elf
+D:Mages are feasible, using the bow to attack and saving their magic for 
+D:defense.
+
+R:Dark Elf
+F:r_delf.txt
+D:Another dark, cave-dwelling race, likewise unhampered by darkness attacks,
+D:the Dark Elves have a long tradition and knowledge of magic. With their 
+D:intelligence they can become superb mages or priests, and they have an 
+D:inherent magic missile attack available to them at a low level. With their
+D:keen sight, they also learn to see invisible things as their relatives 
+D:High-Elves do, but at a higher level.
+
+R:Gnome
+F:r_gnome.txt
+D:Gnomes are smaller than dwarves but larger than halflings. They, like the 
+D:hobbits, live in the earth in burrow-like homes. Gnomes make excellent 
+D:mages, and have very good saving throws. They are good at searching, 
+D:disarming, perception, and stealth. They have lower strength than humans 
+D:so they are not very good at fighting with hand weapons. Gnomes have fair 
+D:infra-vision, so they can detect warm-blooded creatures at a distance. A 
+D:gnome may choose between being a warrior, mage, priest, or rogue. Gnomes 
+D:are intrinsically protected against paralysis and some slowing effects. At
+D:higher levels, Gnomes learn to teleport at will.
+
+R:Orc
+F:r_orc.txt
+D:Orcs make excellent warriors and decent priests, but are terrible at 
+D:magic. They are as bad as dwarves at stealth, and horrible at searching, 
+D:disarming, and perception. Orcs are quite ugly, and tend to pay more 
+D:for goods in town. Orcs do make good warriors and rogues, for the 
+D:simple reason that Orcs tend to have great constitutions and lots of 
+D:hit points. Because of their preference to living underground to on the 
+D:surface, orcs resist darkness attacks. Quite soon, an orc learns to dispel
+D:any fear that may be upon him or her.
+
+R:Goblin
+F:r_goblin.txt
+D:Goblins are a weak orc race. They love poisoned weapons, and can learn 
+D:to throw poisoned darts (of which they carry an unlimited supply). They 
+D:are also inherently resistant to poison, and can become adequate fighters,
+D:although they are not one of the more powerful races.
+
+R:Troll
+F:r_troll.txt
+D:Trolls are incredibly strong, and have more hit points than any other
+D:character race. They are also very stupid and slow. They make great 
+D:warriors and iffy priests. They are bad at searching, disarming, 
+D:perception, and stealth. They are so ugly that an Orc grimaces in 
+D:their presence. They also happen to be fun to play... trolls always 
+D:have their strength sustained. At higher levels, Trolls learn to 
+D:enter a berserk fury, and regenerate wounds automatically.

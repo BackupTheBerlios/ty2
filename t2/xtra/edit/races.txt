@@ -1,0 +1,88 @@
+# Comment : this is the file with the races
+# How to edit
+# R:racename
+# F:filename with details about race, if no such line, r_racename.txt is taken
+# D:description
+#
+# 2002, Tom Demuyt
+
+R:Human
+F:r_human.txt
+D:Humans act as a baseline race -- All other races are compared to them. 
+D:Humans can choose any class and are average at everything. Humans tend to 
+D:go up levels faster than most other races because of their shorter life 
+D:spans. No racial adjustments or intrinsics occur to characters choosing 
+D:human.
+
+R:Hobbit
+F:r_hobbit.txt
+D:Hobbits, or Halflings, are very good at bows, throwing, and have good 
+D:saving throws. They also are very good at searching, disarming, perception,
+D:and stealth; so they make excellent rogues, but prefer to be called 
+D:burglars. They are much weaker than humans, and no good at melee fighting.
+D:Halflings have fair infravision, so they can detect warm creatures at a 
+D:distance. Hobbits can choose between being a warrior, mage, or rogue. 
+D:They have their dexterity sustained and in time they learn to cook a 
+D:delicious meal from available ingredients.
+
+R:Dwarf
+F:r_dwarf.txt
+D:Dwarves are the headstrong miners and fighters of legend. Dwarves tend
+D:to be stronger and tougher but slower and less intelligent than humans.
+D:Because they distrust magic, they are not good at it, but they also resist
+D:very well. They can never be blinded and learn to study the vibrations of 
+D:the earth, feeling the layout of a dungeon.
+
+R:High Elf
+F:r_helf.txt
+D:High-elves are a race of immortal beings dating from the beginning of time.
+D:They are masters of all skills, and are strong and intelligent, although 
+D:their wisdom is sometimes suspect. High-elves begin their lives able to see 
+D:the unseen, and resist light effects.
+
+R:Wood Elf
+F:r_welf.txt
+D:The first love of Wood Elves is hunting. As such, their skill with the bow
+D:is unparalleled. This comes at the cost of their melee skills.They resist
+D:light and do extra damage with ranged weapons. They also known for being
+D:pickpockets and their ease with magic.
+
+R:Dark Elf
+F:r_delf.txt
+D:Another dark, cave-dwelling race, likewise unhampered by darkness attacks,
+D:the Dark Elves have a long tradition and knowledge of magic. With their 
+D:intelligence they can become superb mages or priests, and they have an 
+D:inherent magic missile attack available to them at a low level.
+
+R:Gnome
+F:r_gnome.txt
+D:Gnomes are smaller than dwarves but larger than halflings. Gnomes make excellent 
+D:mages, and have very good saving throws. They are good at searching, 
+D:disarming, perception, and stealth. They have lower strength than humans. 
+D:Gnomes are intrinsically protected against paralysis and some slowing effects. At
+D:higher levels, Gnomes learn to teleport at will.
+
+R:Orc
+F:r_orc.txt
+D:Orcs make excellent warriors and decent priests, but are terrible at 
+D:magic. They are as bad as dwarves at stealth, and horrible at searching, 
+D:disarming, and perception. Orcs are quite ugly, and tend to pay more 
+D:for goods in town. Orcs do make good heroes for the dimple reason that Orcs
+D:tend to have great constitutions and lots of hit points. They resist darkness
+D:attacks and become fearlesss as they become more experienced.
+
+R:Goblin
+F:r_goblin.txt
+D:Goblins are a weak orc race. They love poisoned weapons, and can learn 
+D:to throw poisoned darts (of which they carry an unlimited supply). They 
+D:are also inherently resistant to poison, and can become adequate fighters,
+D:although they are not one of the more powerful races.
+
+R:Troll
+F:r_troll.txt
+D:Trolls are incredibly strong, and have more hit points than any other
+D:character race. They are also very stupid and slow. They make great 
+D:warriors and iffy priests. They are bad at searching, disarming, 
+D:perception, and stealth. They are so ugly that an Orc grimaces in 
+D:their presence. Trolls always have their strength sustained. At higher
+D:levels, Trolls learn to enter a berserk fury, and regenerate wounds automatically.
