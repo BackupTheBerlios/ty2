@@ -34,6 +34,8 @@ public class QuestApp extends Applet implements Runnable
 
 	public final static Color infoscreencolor  = new Color(0, 0, 0);
 	public final static Color infotextcolor    = new Color(192, 192, 192);
+	public final static Color trueblue         = new Color(0, 0, 255);
+	public final static Color texthighlight    = Color.YELLOW;
 //  public static final Color panelcolor=new Color(128,64,32);
 //  public static final Color panelhighlight=new Color(208,80,48);
 //  public static final Color panelshadow=new Color(80,32,16);
@@ -116,7 +118,8 @@ public class QuestApp extends Applet implements Runnable
 		try
 		{
 			mt.waitForID(1);
-		} catch(Exception e)
+		}
+		catch(Exception e)
 		{
 			System.out.println("Error loading images.");
 		}
@@ -160,14 +163,12 @@ public class QuestApp extends Applet implements Runnable
 		validate();
 //		repaint();
 		requestFocus();
-
+		repaint();
 		if(s instanceof GameScreen)
 		{
 			((GameScreen)s).mappanel.viewPosition(Game.hero.x, Game.hero.y);
 			((GameScreen)s).messagepanel.repaint();
 		}
-		else
-			s.repaint();
 	}
 
 	// this is the actual game thread start
@@ -191,7 +192,7 @@ public class QuestApp extends Applet implements Runnable
 				ss.add("South", mp);
 				switchScreen(ss);
 // Turn this off in open space workplaces ;)
-//				Game.getInput();
+				Game.getInput();
 
 				// do hero creation
 				Game.hero = createHero();
@@ -279,7 +280,8 @@ public class QuestApp extends Applet implements Runnable
 					hresult = hresult + (char)b;
 					b = s.read();
 				}
-			} catch(Exception e)
+			}
+			catch(Exception e)
 			{
 				hresult = "High score feature not available";
 			}
@@ -371,7 +373,8 @@ public class QuestApp extends Applet implements Runnable
 			if(imageURL != null)
 				image = toolkit.getImage(imageURL);
 
-		} catch(Exception e)
+		}
+		catch(Exception e)
 		{
 			System.out.println(e);
 		}

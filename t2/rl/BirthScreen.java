@@ -44,95 +44,96 @@ public class BirthScreen extends Screen
 
 				switch (status)
 				{
-					case status_name:
-					{
-						if(k.getKeyCode() == k.VK_ENTER)
+						case status_name:
 						{
-							choice = 0;
-							status = status_race;
-						}
-
-						if(k.getKeyCode() != k.VK_BACK_SPACE)
-						{
-							if(Character.isWhitespace(c) || Character.isLetterOrDigit(c))
-								pname = pname + k.getKeyChar();
-						}
-						else
-							try
+							if(k.getKeyCode() == k.VK_ENTER)
 							{
-								pname = pname.substring(0, pname.length() - 1);
-							} catch(Exception e)
-							{
+								choice = 0;
+								status = status_race;
 							}
 
-						repaint();
-					}
-						break;
-					case status_race:
-					{
-						if(k.getKeyCode() == k.VK_ESCAPE)
-							status = status_name;
+							if(k.getKeyCode() != k.VK_BACK_SPACE)
+							{
+								if(Character.isWhitespace(c) || Character.isLetterOrDigit(c))
+									pname = pname + k.getKeyChar();
+							}
+							else
+								try
+								{
+									pname = pname.substring(0, pname.length() - 1);
+								}
+								catch(Exception e)
+								{
+								}
 
-						if(k.getKeyCode() == k.VK_DOWN)
-							choice++;
-
-						if(k.getKeyCode() == k.VK_UP)
-							choice--;
-
-						if(choice < 0)
-							choice = races.length - 1;
-
-						if(choice == races.length)
-							choice = 0;
-
-						int kv  = (int)c - (int)'a';
-						if((kv < races.length && kv > 0) || k.getKeyCode() == k.VK_ENTER)
-						{
-							if(k.getKeyCode() == k.VK_ENTER)
-								kv = choice;
-
-							status = status_class;
-							prace = races[kv];
-							choice = 0;
+							repaint();
 						}
-						repaint();
-					}
-						break;
-					case status_class:
-					{
-						if(k.getKeyCode() == k.VK_ESCAPE)
+							break;
+						case status_race:
 						{
-							choice = 0;
-							status = status_name;
+							if(k.getKeyCode() == k.VK_ESCAPE)
+								status = status_name;
+
+							if(k.getKeyCode() == k.VK_DOWN)
+								choice++;
+
+							if(k.getKeyCode() == k.VK_UP)
+								choice--;
+
+							if(choice < 0)
+								choice = races.length - 1;
+
+							if(choice == races.length)
+								choice = 0;
+
+							int kv  = (int)c - (int)'a';
+							if((kv < races.length && kv > 0) || k.getKeyCode() == k.VK_ENTER)
+							{
+								if(k.getKeyCode() == k.VK_ENTER)
+									kv = choice;
+
+								status = status_class;
+								prace = races[kv];
+								choice = 0;
+							}
+							repaint();
 						}
-
-						if(k.getKeyCode() == k.VK_DOWN)
-							choice++;
-
-						if(k.getKeyCode() == k.VK_UP)
-							choice--;
-
-						if(choice < 0)
-							choice = classes.length - 1;
-
-						if(choice == classes.length)
-							choice = 0;
-
-						int kv  = (int)c - (int)'a';
-						if((kv < races.length && kv > 0) || k.getKeyCode() == k.VK_ENTER)
+							break;
+						case status_class:
 						{
-							if(k.getKeyCode() == k.VK_ENTER)
-								kv = choice;
+							if(k.getKeyCode() == k.VK_ESCAPE)
+							{
+								choice = 0;
+								status = status_name;
+							}
 
-							status = status_sign;
-							pclass = classes[kv];
-							choice = 0;
-							return new Hero(pname, prace, pclass);
+							if(k.getKeyCode() == k.VK_DOWN)
+								choice++;
+
+							if(k.getKeyCode() == k.VK_UP)
+								choice--;
+
+							if(choice < 0)
+								choice = classes.length - 1;
+
+							if(choice == classes.length)
+								choice = 0;
+
+							int kv  = (int)c - (int)'a';
+							if((kv < races.length && kv > 0) || k.getKeyCode() == k.VK_ENTER)
+							{
+								if(k.getKeyCode() == k.VK_ENTER)
+									kv = choice;
+
+								status = status_sign;
+								pclass = classes[kv];
+								choice = 0;
+								return new Hero(pname, prace, pclass);
+							}
+
+							repaint();
 						}
-
-						repaint();
-					}
-						break;
+							break;
 				}
 
 			}
@@ -153,17 +154,17 @@ public class BirthScreen extends Screen
 		//Put the title
 		g.drawString(title, 20, 1 * lineheight);
 		//Draw the name of the player
-		g.setColor(Color.gray);
+		g.setColor(QuestApp.textcolor);
 		g.drawString("Name", 20, 3 * lineheight);
-		g.setColor(Color.blue);
+		g.setColor(QuestApp.trueblue);
 		g.drawString(pname, 60, 3 * lineheight);
 
 		if(status == status_race)
 		{
 			//Draw the race of the player
-			g.setColor(new Color(128, 128, 128));
+			g.setColor(QuestApp.textcolor);
 			g.drawString("Race", 20, 4 * lineheight);
-			g.setColor(new Color(0, 0, 128));
+			g.setColor(QuestApp.trueblue);
 			g.drawString(races[choice], 60, 4 * lineheight);
 			//Draw the different races
 			for(int i = 0; i < races.length; i++)
@@ -172,10 +173,10 @@ public class BirthScreen extends Screen
 				String s  = "[" + (char)((int)'a' + i) + "] " + races[i];
 				//Highlight the current choice
 				if(i == choice)
-					g.setColor(Color.yellow);
+					g.setColor(QuestApp.texthighlight);
 
 				else
-					g.setColor(Color.gray);
+					g.setColor(QuestApp.textcolor);
 
 				g.drawString(s, 50, lineheight * (i + 5));
 			}
@@ -184,14 +185,14 @@ public class BirthScreen extends Screen
 		if(status == status_class)
 		{
 			//Draw the race of the player
-			g.setColor(new Color(128, 128, 128));
+			g.setColor(QuestApp.textcolor);
 			g.drawString("Race", 20, 4 * lineheight);
-			g.setColor(new Color(0, 0, 128));
+			g.setColor(QuestApp.trueblue);
 			g.drawString(prace, 60, 4 * lineheight);
 			//draw the class of the player
-			g.setColor(new Color(128, 128, 128));
+			g.setColor(QuestApp.textcolor);
 			g.drawString("Class", 20, 5 * lineheight);
-			g.setColor(new Color(0, 0, 128));
+			g.setColor(QuestApp.trueblue);
 			//Draw the different classes
 			g.drawString(classes[choice], 60, 5 * lineheight);
 			for(int i = 0; i < classes.length; i++)
@@ -199,10 +200,10 @@ public class BirthScreen extends Screen
 				String s  = "[" + (char)((int)'a' + i) + "] " + classes[i];
 				//Highlight the current choices
 				if(i == choice)
-					g.setColor(Color.yellow);
+					g.setColor(QuestApp.texthighlight);
 
 				else
-					g.setColor(Color.gray);
+					g.setColor(QuestApp.textcolor);
 
 				g.drawString(s, 50, lineheight * (i + 6));
 			}

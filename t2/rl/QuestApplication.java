@@ -9,7 +9,7 @@ import java.awt.event.*;
 
 public class QuestApplication {	
 	public static void main(String args[]) {
-  	Frame f = new Frame("Tyrant - The Adventure");
+  	Frame f = new Frame("Tyrant II - The Adventure");
 	  f.addWindowListener(new WindowAdapter() {
 	  	public void windowClosing(WindowEvent e) {
   	    System.exit(0);
@@ -22,7 +22,7 @@ public class QuestApplication {
     
     // do we have a script to execute?
     // activate debug mode if we do....
-    java.io.File script=new java.io.File("mikeradebug");
+    java.io.File script=new java.io.File("debug");
     
     // old method to activate debug cheat
     if (script.exists()) QuestApp.debug=true;

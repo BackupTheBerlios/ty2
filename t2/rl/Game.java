@@ -319,7 +319,7 @@ public class Game extends Object
 	{
 		if(QuestApp.isapplet)
 		{
-			Game.message("You cannot save in the applet version of Tyrant");
+			Game.message("You cannot save in the applet version of Tyrant II");
 			Game.message("This is due to browser security restrictions");
 			Game.message("Run the downloaded application version instead");
 			return false;
@@ -354,7 +354,7 @@ public class Game extends Object
 	{
 		if(QuestApp.isapplet)
 		{
-			Game.message("You cannot load in the applet version of Tyrant");
+			Game.message("You cannot load in the applet version of Tyrant II");
 			Game.message("This is due to browser security restrictions");
 			Game.message("Run the downloaded application version instead");
 			return false;
