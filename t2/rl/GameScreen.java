@@ -773,7 +773,7 @@ class GameScreen extends Screen {
 		
 		while (true) {
 			KeyEvent e=Game.getInput(); 
-			if (e==null){ continue };
+			if (e==null){ continue; }
 			
 			char k = Character.toLowerCase(e.getKeyChar());
 			
