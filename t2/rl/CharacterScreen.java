@@ -25,10 +25,14 @@ public class CharacterScreen extends Screen {
 	}
 
 	private void writeFile( FileWriter f, String line ){
+		if( f != null & line != null ){
 		try {
 			f.write(line);
 			f.write("\n");
-		} catch (Exception e) { }
+		} catch (Exception e) {
+			System.out.println("An error occured while dumping"+ line.toString() + " to " + f.toString());
+		}
+		}
 	}
 
 	private boolean doDump(){
@@ -117,7 +121,7 @@ public class CharacterScreen extends Screen {
 	private String statString(int s) {
 		int bs=character.getBaseStat(s);
 		int ms=character.getStat(s)-bs;
-		return Text.centrePad(new Integer(bs).toString(),((ms>=0)?"(+"+ms:"("+ms)+")",8);
+		return Text.centrePad( String.valueOf(bs),((ms>=0)?"(+"+ms:"("+ms)+")",8);
 	}
 	
 	public void paint(Graphics g) {

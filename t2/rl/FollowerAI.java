@@ -35,8 +35,6 @@ public class FollowerAI extends BaseAI {
       m.setAI(NastyCritterAI.instance);
       m.setStat(RPG.ST_SIDE,0);
       m.setStat(RPG.ST_STATE,AI.STATE_HOSTILE);
-    } else {
-      
     }
   }
   

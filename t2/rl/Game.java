@@ -76,7 +76,7 @@ public class Game extends Object {
 			} else {
 				try {
 					result=result.substring(0,result.length()-1);
-				} catch (Exception e) {}
+				} catch (Exception e) { result = "";  }
 			}
 			messagepanel.setText(prompt+result+"_");
 		} 

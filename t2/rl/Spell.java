@@ -393,8 +393,7 @@ public class Spell extends Art {
             Game.message(caster.getTheName()+" teleports away!"); 
           }  
           caster.moveTo(map,p.x,p.y);
-        } else {
-        }
+        } //else {        }
         break;
       }
       

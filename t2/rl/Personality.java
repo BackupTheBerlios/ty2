@@ -49,9 +49,9 @@ public class Personality implements Talkable, Serializable {
   public Personality(int t, int st) {
     this(t);
     subtype=st;
-    switch(type) {
+//    switch(type) {
        
-    } 
+//    } 
   }  
 
   public int offerTeaching(Thing t) {

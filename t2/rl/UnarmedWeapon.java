@@ -36,10 +36,7 @@ public class UnarmedWeapon extends Weapon {
       case USE_HIT: {
         int dam=super.use(wielder,target,action);
         
-        if (dam>0) {
-          
-          
-        }
+        //if (dam>0) {        }
         
         return dam;
       }

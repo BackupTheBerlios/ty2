@@ -47,11 +47,12 @@ public class CritterAI extends BaseAI {
         // do search for food
         
         // randomize movement
-        if (d>5) {
+        //if (d>5) {
           // could make them run... probably not worth it
           //if (RPG.d(2)==1) dx=-RPG.sign(h.x-m.x);
           //if (RPG.d(2)==1) dy=-RPG.sign(h.y-m.y);
-        } else {
+        //} else {
+		  if(!(d>5)){	  
           // make them charge vaguely at hero
           if (RPG.d(2)==1) dx=RPG.sign(h.x-m.x);
           if (RPG.d(2)==1) dy=RPG.sign(h.y-m.y);

@@ -15,6 +15,11 @@ public class Reader
 		}
 		catch(Exception e)
 		{
+			if( filename == null ){
+				System.out.println("Passed a null value for filename");
+			}else{
+				System.out.println("Could not open file " + filename);
+			}
 		}
 		eof = false;
 	}
@@ -31,6 +36,7 @@ public class Reader
 		}
 		catch(Exception e)
 		{
+			System.out.println("Error occured while reading file " + lnr.toString());
 		}
 		eof = true;
 		return null;

@@ -30,9 +30,7 @@ public class FriendlyCritterAI extends BaseAI {
       
       if (!map.isBlocked(nx,ny)) {
       	m.moveTo(map,nx,ny);
-      } else {
-        // don't do anything. we are nice!!!
-      }
+      } //else {        // don't do anything. we are nice!!!      }
 	    m.aps=m.aps-10000/m.getStat(RPG.ST_MOVESPEED);	
 	  }	
     return true;

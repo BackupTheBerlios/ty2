@@ -272,7 +272,7 @@ class GameScreen extends Screen {
 				Point p=Game.getDirection();
 				person=(Person)map.getObject(h.x+p.x,h.y+p.y,Being.class);
 			} else {
-				try {person=map.getNearbyMobile(h.x,h.y,1);} catch (Exception anyex) {} 
+				try {person=map.getNearbyMobile(h.x,h.y,1);} catch (Exception anyex) { person = null;} 
 			}
 				
 			if ((person!=null)&&(person instanceof Talkable)) {
@@ -342,8 +342,7 @@ class GameScreen extends Screen {
 				
 			if (w!=null) {
 				w.use(h); 
-			} else {
-			}
+			}// else {			}
 		}
 			
 		// give item
@@ -356,7 +355,7 @@ class GameScreen extends Screen {
 				Point p=Game.getDirection();
 				mobile=(Mobile)map.getObject(h.x+p.x,h.y+p.y,Person.class);
 			} else {
-				try {mobile=map.getNearbyMobile(h.x,h.y,1);} catch (Exception anyex) {} 
+				try {mobile=map.getNearbyMobile(h.x,h.y,1);} catch (Exception anyex) { mobile = null; } 
 			}
 				
 			if ((mobile!=null)&&(!h.isHostile(mobile))) {

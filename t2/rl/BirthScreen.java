@@ -71,6 +71,10 @@ public class BirthScreen extends Screen
 								}
 								catch(Exception e)
 								{
+									//Of course, you can't fake , or should not fake
+									//a backspace on an empty string
+									//in case we have some other error, we put pname to ''
+									pname = "";
 								}
 
 							repaint();

@@ -124,9 +124,7 @@ public class RangedWeapon extends Item {
       } else {
         Game.message("You are unable to use "+missile.getTheName()+" as ammunition for your "+getName());
       } 
-    } else {
-      // perhaps some AI here later
-    }
+    } // else { // perhaps some AI here later    }
   }
   
   public Thing createAmmo() {
