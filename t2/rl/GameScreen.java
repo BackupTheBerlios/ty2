@@ -239,6 +239,12 @@ class GameScreen extends Screen {
 					map.addThing(new SpellBook(tt,0),h.x,h.y);	
 				}
 			}
+			
+			if(ch=='r'){
+				for(int tt=1; tt <= Ring.getImplemented(); tt++){
+					map.addThing(new Ring(tt),h.x,h.y);	
+				}				
+			}
 		} 
 
 		if ( controlIsDown && K == key_control_quit ) {
