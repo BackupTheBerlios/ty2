@@ -109,6 +109,7 @@ class GameScreen extends Screen
 		messagepanel.setText("");
 
 		char k        = Character.toLowerCase(e.getKeyChar());
+		char rk       = e.getKeyChar();
 
 		// handle key conversions
 		if(e.getKeyCode() == e.VK_UP)
@@ -381,7 +382,7 @@ class GameScreen extends Screen
 		}
 
 		// eat an item
-		if(k == 'e')
+		if(rk == 'E')
 		{
 			Thing o  = getInventoryItem("Select item to eat:", h.inv.getUsableContents(Item.USE_EAT));
 			questapp.switchScreen(this);
@@ -808,7 +809,7 @@ class GameScreen extends Screen
 				"Key Commands:\n"
 				 + "  c = chat to somebody              = = load game\n"
 				 + "  d = drop item                     - = save game\n"
-				 + "  e = eat item\n"
+				 + "  E = eat item\n"
 				 + "  f = fire ranged weapon\n"
 				 + "  i = view inventory\n"
 //       +"  j = jump\n"
