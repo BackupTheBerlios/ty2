@@ -189,6 +189,11 @@ class GameScreen extends Screen {
         map.addThing(Lib.createArtifact(n),h.x-1,h.y-1,h.x+1,h.y+1);
       } catch (Exception exception) {return;}
       
+	if (ch=='P'){
+		for(int tt=1; tt <= Potion.getImplemented(); tt++){
+			map.addThing(Potion.createPotion(tt),h.x,h.y);  
+		}
+	}
       if (ch=='p') {
         Thing[] portals=map.getObjects(0,0,map.width-1,map.height-1,Portal.class); 
         if (portals.length>0) {
@@ -205,9 +210,9 @@ class GameScreen extends Screen {
       
     if (k=='a') {
       ArtScreen ls=new ArtScreen("Your Skills:",h.arts.getArts(Skill.class));
-      questapp.switchScreen(ls);
+      questapp.switchOtherScreen(ls);
       Art a=ls.getArt();
-      questapp.switchScreen(this);
+      questapp.switchBack(ls);
       repaint();
       if (a!=null) {
         ((Skill)a).apply();
@@ -253,7 +258,7 @@ class GameScreen extends Screen {
             
     // drop an item
     if (k=='d') {
-      Thing o=Game.selectItem("Select item to drop:",h.inv.getContents());
+      Thing o=getInventoryItem("Select item to drop:",h.inv.getContents());
       if (o instanceof Item) {
         // break if worn and cursed
         if ((o.y>0)&&(!h.inv.clearUsage(o.y))) return;
