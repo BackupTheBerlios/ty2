@@ -91,11 +91,33 @@ public class Thing extends Object implements Cloneable, Serializable, Descriptio
   public String getDescriptionText() {
     return Text.capitalise(getName()+"."); 
   }
+
+private String getEnhancedName(int article){
+	Hero h=Game.hero;
+	String armourValue = "";
+	String weaponValue = "";
+	if(this instanceof StandardArmour) {
+		armourValue = " [" + String.valueOf(getModifier(RPG.ST_ARMNORMAL)) + "]";
+	}
+	if(this instanceof StandardWeapon || this instanceof CommonWeapon) {
+		int skillValue    = ((Weapon)this).getASK(h,null);
+		int strengthValue = ((Weapon)this).getAST(h,null);
+		armourValue   = " [" + String.valueOf(this.getModifier(RPG.ST_DSKBONUS)) + "]";
+		weaponValue = " (+" + String.valueOf(skillValue) + ",+" + String.valueOf(strengthValue) + ")";
+	}
+	if(this instanceof CommonArmour) {
+		armourValue = " [" + String.valueOf(((CommonArmour)this).getArmour()) + "]";
+	}
+	return getDescription().getName(getNumber(), article) + armourValue + weaponValue;
+}
   
-  public String getName() { return getDescription().getName(getNumber(),Description.ARTICLE_NONE);}
-  public String getAName() { return getDescription().getName(getNumber(),Description.ARTICLE_INDEFINITE);}
-  public String getTheName() { return getDescription().getName(getNumber(),Description.ARTICLE_DEFINITE);}
-  public String getFullName() {return getAdjectives()+getName();}
+  public String getName() { return getEnhancedName(Description.ARTICLE_NONE); }
+  public String getAName() { return getEnhancedName( Description.ARTICLE_INDEFINITE);}
+  public String getTheName() { return getEnhancedName( Description.ARTICLE_DEFINITE);}
+
+public String getFullName() {
+	return getAdjectives()+getName();
+}
   
   // return describing adjectives if applicable
   public String getAdjectives() {
