@@ -25,7 +25,7 @@ public class SpellScreen extends Screen {
 		    repaint();	
 		  }
 
-		  if ((c=='n'||c==' ')&&(((page+1)*pagesize)<spells.length)) {
+		  if (c=='n'||c==' ') {
 		    page++;
 		    repaint();	
 		  }
