@@ -28,67 +28,102 @@ public class Ring extends Item implements Active, Description {
   protected static final String []     powernames   = {null,"speed",       "unburdening",  "adornment",    "godly might",    "ferocity",     "fire resistance", "poison protection", "intelligence",    "skill",       "searching",   "cold",            "the wild",    "burden",       "poison resistance"};
   protected static final int []        images       = {0   ,201,           200,            202,            208,              205,            204,               202,                 203,               206,           206,           203,               206,           205,            202};
   protected static final int []        zeroes       = {0   ,0  ,           0,              0,              0,                0,              0,                 0,                   0,                 0,             0,             0,                 0,             0,              0};
-  
+    
   
   protected int type;
   
   protected final Stats stats;
   private static boolean ringKnown[] = new boolean[15];
+  private int val;
+  private int stat;
+  private int max;
 	
   public Ring(){
-	  this(RPG.d(descriptions.length-1));
+	  this(RPG.d(descriptions.length-1),false);
   }
 	
-  public Ring( int p_type) {
+  public Ring( int p_type, boolean perfect) {
     stats=new Stats();
     type=p_type;
     
     switch (type) {
       case 1:
-        stats.setStat(RPG.ST_MOVESPEED,RPG.d(50));
-        return;
+		  stat  = RPG.ST_MOVESPEED;
+		  val = RPG.d(50);
+		  max = 50;
+        break;
       case 2:
-        stats.setStat(RPG.ST_ENCUMBERANCE,-RPG.d(20));
-        return;	    	
+		  stat = RPG.ST_ENCUMBERANCE;
+        val  = -RPG.d(20);
+		  max = -20;
+        break;	    	
       case 3:
-        stats.setStat(RPG.ST_CH,RPG.d(6));
-        return;	    	
+		  stat = RPG.ST_CH;
+		  val = RPG.d(6);
+		  max = 6;
+        break;
       case 4:
-        stats.setStat(RPG.ST_ST,RPG.d(2,6));
-        return;	    	
+		  stat = RPG.ST_ST;
+		  val = RPG.d(2,6);
+		  max = 12;
+        break;	    	
       case 5:
-        stats.setStat(RPG.ST_ATTACKSPEED,RPG.d(40));
-        return;        
+		  stat = RPG.ST_ATTACKSPEED;
+		  val = RPG.d(40);
+		  max = 40;
+        break;
       case 6:
-        stats.setStat(RPG.ST_RESISTFIRE,RPG.d(10));
-        return;        
+		  stat = RPG.ST_RESISTFIRE;
+		  val = RPG.d(10);
+		  max = 10;
+        break;
       case 7:
-        stats.setStat(RPG.ST_ARMPOISON,RPG.d(6));
-        return;        
+		  stat = RPG.ST_ARMPOISON;
+		  val = RPG.d(6);
+		  max = 6;
+        break;        
       case 8:
-        stats.setStat(RPG.ST_IN,RPG.d(4));
-        return;        
+		  stat = RPG.ST_IN;
+		  val = RPG.d(4);
+        max = 4;
+        break;       
       case 9:
-        stats.setStat(RPG.ST_SK,RPG.d(4));
-        return;        
+		  stat = RPG.ST_SK;
+		  val = RPG.d(4);
+        max = 4;
+        break;        
       case 10:
-		  stats.setStat(RPG.ST_SEARCHING, RPG.d(6));
-        return;
+		  stat = RPG.ST_SEARCHING;
+		  val = RPG.d(6);
+		  max = 6;
+        break;
       case 11:
-        stats.setStat(RPG.ST_ARMFIRE,RPG.d(2,10));
-        return;
+		  stat = RPG.ST_ARMFIRE;
+		  val = RPG.d(2,10);
+		  max = 20;
+        break;
       case 12:
-        stats.setStat(RPG.ST_RANGER,1);
-        return;
+		  stat = RPG.ST_RANGER;
+		  val = 1;
+		  max = 1;
+        break;
       case 13:
-        stats.setStat(RPG.ST_ENCUMBERANCE,RPG.d(30));
-        return;
+		  stat = RPG.ST_ENCUMBERANCE;
+		  val = RPG.d(30);
+		  max = 30;
+        break;
       case 14:
-        stats.setStat(RPG.ST_RESISTPOISON,RPG.d(5));
-        return;
+		  stat = RPG.ST_RESISTPOISON;
+		  val = RPG.d(5);
+        max = 5;
+        break;
       default:
-        return;        
+        break;        
 	  }
+	  if(perfect){
+		  val = max;
+	  }
+	  stats.setStat( stat , val );
 	}
 	
 	public static int getImplemented(){
@@ -121,8 +156,6 @@ public class Ring extends Item implements Active, Description {
   }
 
   public int wieldType() {return RPG.WT_RIGHTRING;}
-
-  public Description getDescription() {return isIdentified()?this:descriptions[type];}
   
   public void action(int time) {
     if ((type==10)&&(place==Game.hero)) {
@@ -134,10 +167,21 @@ public class Ring extends Item implements Active, Description {
 
   public int getImage() {return images[type];}
 
+  //If we dont know yet the type, we return
+  public Description getDescription() {return getRingKnown(type)?this:descriptions[type];}
+  
   // Description interface 
   public String getName(int number, int article)	{
-    return Describer.getArticleName((number>1)?"ring of ":"ring of "+powernames[type],number,article);	
+	  String perfectname = (val==max)?"perfect ":"";
+	  String basename = "ring of " + powernames[type];
+	  String idvalue  = isIdentified()?" ["+String.valueOf(val)+"]":"";
+    return Describer.getArticleName( perfectname + basename + idvalue ,number,article);	
   }
+
+	// description stuff
+	public String getSingularName()	{
+		return Text.capitalise(getName( 1 , ARTICLE_NONE ));
+	}
   
 
  	public String getPronoun(int number, int acase) {
@@ -160,10 +204,8 @@ public class Ring extends Item implements Active, Description {
 		Hero h=Game.hero;
 		if(b){
 			setRingKnown(type);
-			return true;
-		}else{
-			return getRingKnown(type);
 		}
+		return b;
 	}
 	
 	public void setRingKnown( int i ){
