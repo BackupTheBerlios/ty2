@@ -38,6 +38,7 @@ public class Game extends Object {
   
   // Print a general game message
   // All messages should be routed through here
+  // Note that they're not.
   public static void message(String s) {
 		if (s.equals("")) {
       messagepanel.setText("");
@@ -93,9 +94,9 @@ public class Game extends Object {
   public static void infoScreen(String s) {
     Screen old=questapp.screen;
     InfoScreen is = new InfoScreen(s);
-    questapp.switchScreen(is);
+    questapp.switchOtherScreen(is);
     getOption(" q");
-    questapp.switchScreen(old);
+    questapp.switchBack(is);
   }
   
   
@@ -198,9 +199,9 @@ public class Game extends Object {
   public static String selectString(String message, String[] strings) {
     Screen old=questapp.screen;
     ListScreen ls= new ListScreen(message,strings); 
-    questapp.switchScreen(ls);
+    questapp.switchOtherScreen(ls);
     String ret=(String)ls.getObject();
-    questapp.switchScreen(old);
+    questapp.switchBack(ls);
     return ret;
   } 
    
@@ -210,9 +211,9 @@ public class Game extends Object {
   public static Thing selectItem(String message, Thing[] things) {
     Screen old=questapp.screen;
     InventoryScreen is = new InventoryScreen(message,things);
-    questapp.switchScreen(is);
+    questapp.switchOtherScreen(is);
     Thing ret=(Thing)is.getObject();
-    questapp.switchScreen(old);
+    questapp.switchBack(is);
     return ret;
   }
    
