@@ -1,0 +1,36 @@
+# Comment : this is the file with the warrior class
+# How to edit
+# R:racename
+# STAT:thestat:xx           set the player stat 'thestat' to value xx
+# STAT:ADD:thestat:xx       add xx points to stat 'thestat'
+# STAT:REMOVE:thestat:xx    remove xx points from stat 'thestat'
+# STAT:DIVIDE:thestat:xx    divide stat 'thestat' with xx
+# STAT:MULTIPLY:thestat:xx  multiply stat 'thestat' with xx
+# SKILL:theskill:           give the skill 'theskill' to the player
+# All possible skills are in skills.txt
+# All possible stats are in stats.txt
+#ITEM:itemname              give a certain item to the player
+#ITEM:amount:itemname       give a certain amount of certain items to the player
+#
+#Tom Demuyt, 2002
+
+C:Spellsword
+STAT:ADD:STR:2
+STAT:ADD:INT:2
+STAT:IMAGE:2
+
+ITEM:Arrows
+ITEM:Spellbook
+ITEM:Potion of Berserk
+
+SKILL:Attack
+SKILL:Defence
+SKILL:Literacy
+SKILL:True Magic
+
+ART:Fireball
+ART:Spark
+
+SKILL:Fighter
+SKILL:Scholar
+SKILL:Mage
