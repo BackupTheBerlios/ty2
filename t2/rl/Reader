@@ -1,0 +1,39 @@
+package rl;
+
+import java.io.*;
+
+
+class Reader
+{
+	private static LineNumberReader lnr  = null;
+	private static boolean eof           = false;
+
+	private static void openReader(String filename)
+	{
+		try
+		{
+			lnr = new LineNumberReader(new FileReader(filename));
+		}
+		catch(Exception e)
+		{
+		}
+	}
+
+
+	private static String nextLine()
+	{
+		try
+		{
+			String t  = lnr.readLine();
+			if(t == null)
+				eof = true;
+			return (t);
+		}
+		catch(Exception e)
+		{
+		}
+		eof = true;
+		return null;
+	}
+}
+

@@ -29,10 +29,13 @@ public class Hero extends Being
 	public Hero(String n, String r, String p)
 	{
 		super();
-
 		name = n;
-		race = r;
-		profession = p;
+
+		ReaderOfRace ror   = new ReaderOfRace(r);
+		race = ror.name;
+
+		ReaderOfClass roc  = new ReaderOfClass(p);
+		profession = roc.name;
 
 		stats = new Stats(new int[]{AI.STATE_NEUTRAL, 0, 0, 0, 0, 0, 0, 0, 0});
 		setAI(HeroAI.instance);
@@ -59,7 +62,7 @@ public class Hero extends Being
 		//      Races
 		// ****************
 
-		if(race.equals("human"))
+		if(race.equals("Human"))
 		{
 			// humans are the most common inhabitants in the world of Tyrant
 			// they are good all-round characters
@@ -274,7 +277,7 @@ public class Hero extends Being
 		//   Professions
 		// ****************
 
-		if(profession.equals("fighter"))
+		if(profession.equals("Warrior"))
 		{
 			image = 3;
 			stats.incStat(RPG.ST_SK, RPG.d(2, 4) + 1);
@@ -863,3 +866,4 @@ public class Hero extends Being
 		super.action(t);// iventory action etc.
 	}
 }
+

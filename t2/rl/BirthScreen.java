@@ -12,7 +12,9 @@ public class BirthScreen extends Screen
 	String title                           = "Character Creation Screen";
 	String pname                           = "";
 	String prace                           = "";
+	String pracef                          = null;
 	String pclass                          = "";
+	String pclassf                         = null;
 
 	private static int lineheight          = 20;
 	private final static int status_name   = 0;
@@ -99,6 +101,7 @@ public class BirthScreen extends Screen
 
 								status = status_class;
 								prace = races[kv];
+								pracef = "xtra/edit/".concat((String)ror.files.get(kv));
 								choice = 0;
 							}
 							repaint();
@@ -132,8 +135,9 @@ public class BirthScreen extends Screen
 
 								status = status_sign;
 								pclass = classes[kv];
+								pclassf = "xtra/edit/".concat((String)roc.files.get(kv));
 								choice = 0;
-								return new Hero(pname, prace, pclass);
+								return new Hero(pname, pracef, pclassf);
 							}
 
 							repaint();

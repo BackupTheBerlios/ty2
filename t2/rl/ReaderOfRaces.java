@@ -1,18 +1,13 @@
 package rl;
-
-import java.io.*;
-import java.util.*;
-class ReaderOfRaces
+import java.util.ArrayList;
+class ReaderOfRaces extends Reader
 {
-	private static LineNumberReader lnr  = null;
-	private static boolean eof           = false;
-	public ArrayList races               = new ArrayList();
-	public ArrayList files               = new ArrayList();
-	public ArrayList descs               = new ArrayList();
+	public ArrayList races  = new ArrayList();
+	public ArrayList files  = new ArrayList();
+	public ArrayList descs  = new ArrayList();
 
 	public ReaderOfRaces()
 	{
-
 		String l     = null;
 		String desc  = "";
 		openReader("xtra/edit/races.txt");
@@ -41,38 +36,6 @@ class ReaderOfRaces
 //		System.out.println(races.toString());
 //		System.out.println(files.toString());
 //		System.out.println(descs.toString());
-//
-//		System.out.println(races.get(3));
-//		System.out.println(files.get(3));
-//		System.out.println(descs.get(3));
-	}
-
-	private static void openReader(String filename)
-	{
-		try
-		{
-			lnr = new LineNumberReader(new FileReader(filename));
-		}
-		catch(Exception e)
-		{
-		}
-	}
-
-
-	private static String nextLine()
-	{
-		try
-		{
-			String t  = lnr.readLine();
-			if(t == null)
-				eof = true;
-			return (t);
-		}
-		catch(Exception e)
-		{
-		}
-		eof = true;
-		return null;
 	}
 }
 

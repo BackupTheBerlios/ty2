@@ -1,14 +1,10 @@
 package rl;
-
-import java.io.*;
-import java.util.*;
-class ReaderOfClasses
+import java.util.ArrayList;
+class ReaderOfClasses extends Reader
 {
-	private static LineNumberReader lnr  = null;
-	private static boolean eof           = false;
-	public ArrayList classes             = new ArrayList();
-	public ArrayList files               = new ArrayList();
-	public ArrayList descs               = new ArrayList();
+	public ArrayList classes  = new ArrayList();
+	public ArrayList files    = new ArrayList();
+	public ArrayList descs    = new ArrayList();
 
 	public ReaderOfClasses()
 	{
@@ -41,36 +37,6 @@ class ReaderOfClasses
 //		System.out.println(races.toString());
 //		System.out.println(files.toString());
 //		System.out.println(descs.toString());
-//
-//		System.out.println(races.get(3));
-//		System.out.println(files.get(3));
-//		System.out.println(descs.get(3));
-	}
-
-	private static void openReader(String filename)
-	{
-		try
-		{
-			lnr = new LineNumberReader(new FileReader(filename));
-		} catch(Exception e)
-		{
-		}
-	}
-
-
-	private static String nextLine()
-	{
-		try
-		{
-			String t  = lnr.readLine();
-			if(t == null)
-				eof = true;
-			return (t);
-		} catch(Exception e)
-		{
-		}
-		eof = true;
-		return null;
 	}
 }
 
