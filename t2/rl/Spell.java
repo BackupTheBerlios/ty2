@@ -403,10 +403,10 @@ public class Spell extends Art {
         
       case LAYRUNE: {
         if (caster==Game.hero) {
-          SpellScreen ls=new SpellScreen("Select spell to scribe in this location:",h.arts.getArts(Spell.class));           Screen old=Game.questapp.screen;
-          Game.questapp.switchScreen(ls);
+          SpellScreen ls=new SpellScreen("Select spell to scribe in this location:",h.arts.getArts(Spell.class));
+          Game.questapp.switchOtherScreen(ls);
           Spell s=ls.getSpell();
-          Game.questapp.switchScreen(old);
+          Game.questapp.switchBack(ls);
           
           if (s!=null) {
             Game.message("You carefully scribe the runes of "+s.getName());  
