@@ -96,9 +96,11 @@ class GameScreen extends Screen {
 		if (controlIsDown)
 		{
 			String keyText = e.getKeyText( e.getKeyCode() );
-			if ( keyText != "Ctrl"){
+			if ( !keyText.equals("Ctrl")){
 				K = keyText.charAt(0); 
 			}
+			//System.out.println( "keyText = " + keyText );
+			//System.out.print( k );
 			//System.out.println( K );
 			//System.out.println( e.paramString() );
 		}
