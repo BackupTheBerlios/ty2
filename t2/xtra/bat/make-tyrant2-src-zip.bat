@@ -1,1 +1,1 @@
-@jar cf TyrantSource.zip rl\*.java xtra\images\*.gif xtra\www\*.html *.bat README.txt *.MF xtra\scripts\*
+@jar cf .\xtra\zip\TyrantSource.zip rl\*.java xtra\images\*.gif xtra\www\*.html *.bat README.txt *.MF xtra\scripts\*
