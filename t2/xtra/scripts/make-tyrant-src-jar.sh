@@ -1,1 +1,0 @@
-jar cvf TyrantSource.jar mikera/tyrant/*.java images/*.gif

@@ -1,1 +1,0 @@
-jar cvfm Tyrant.jar MANIFEST.MF mikera/tyrant/*.class images/*.gif
