@@ -107,17 +107,23 @@ public class Text {
 	}
 	
 	public static String[] wrapString(String s, int len) {
-		String[] working = new String[1+((2*s.length())/len)];
+		String[] working = null;
+		try{
+			working = new String[1+((2*s.length())/len)];
+		}catch( NegativeArraySizeException e ){
+			working = new String[1];
+			len = s.length();
+		}
 		
 		int end=s.length();
 		int pos=0;
 		int i=0;
-	  while (pos<end) {
+		while (pos<end) {
 			int inc=wrapLength(s,pos,len);
 			working[i]=s.substring(pos,pos+inc);
 			i++;
-      pos=pos+inc;
-      while ((pos<end)&&Character.isWhitespace(s.charAt(pos))) pos++;
+			pos=pos+inc;
+			while ((pos<end)&&Character.isWhitespace(s.charAt(pos))) pos++;
 		};
 		
 		// return empty string if size zero

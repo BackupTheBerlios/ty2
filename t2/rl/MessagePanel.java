@@ -11,6 +11,7 @@ import java.awt.event.*;
 public class MessagePanel extends TPanel {
 	
 	private TextZone textzone=new TextZone();
+	private String messages = "";
 	
 	public MessagePanel() {
 		super();
@@ -31,13 +32,20 @@ public class MessagePanel extends TPanel {
 		return textzone.getText();
 	}
 	
+	public String getMessages(){
+		return messages;
+	}
+
 	public void addMessage(String s) {
 		String t=getText();
 		if (t.length()>2000) {
 			setText(t.substring(t.length()-2000,t.length()));
 		}
-		
-		String newtext=getText()+s;	
+		if (messages.length()>2000) {
+			setText(messages.substring(messages.length()-2000,messages.length()));
+		}		
+		String newtext= t + s;	
+		messages = messages + s;
 		setText(newtext);
 	}
 	
