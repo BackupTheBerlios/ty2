@@ -1,4 +1,4 @@
-To build Tyrant in Windows:
+To build Tyrant II in Windows:
 ===========================
 
 1. Make sure the java compiler and tools (JDK\bin etc.) are in the
@@ -17,10 +17,10 @@ You can now run Tyrant with the command:
   java -jar Tyrant.jar
 
 
-To build Tyrant in Linux\Unix:
+To build Tyrant II in Linux\Unix:
 ==============================
 
-Scripts are totally out of date.
+Scripts have not been uodated in ages
 
 But all you have to do is compile the main application class:
 
@@ -33,3 +33,6 @@ And build the resulting class and image files into a .jar file:
 And run it with:
 
   java -jar Tyrant.jar
+
+Cheers,
+T.

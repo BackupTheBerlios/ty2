@@ -1,21 +1,17 @@
-@echo Tyrant2 build script
-@echo by tdemuyt, may 2002
-@echo Building tyrant2...
+@echo Tyrant III build script
+@echo by Tom Demuyt, 27-09-03
+@cd xtra
+@cd bat
+call make-tyrant
+call make-tyrant-jar
 
-@echo Compiling class files...
-@call xtra/bat/make-tyrant2
-@echo Creation of jar file... 
-@call xtra/bat/make-tyrant2-jar
-@echo Clean up...
-@del *.class /s >log.del
-@del log.del
+@echo To run Tyrant type:
+@echo java -jar Tyrant.jar
 
-@echo Making source jar...
-@call xtra/bat/make-tyrant2-src-jar
-@echo Making source zip...
-@call xtra/bat/make-tyrant2-src-zip
-@echo Making resource zip...
-@call xtra/bat/make-tyrant2-zip
-@REM @callxtra/bat/ make-web-dist
-@echo Making source documentation
-@call xtra/bat/make-tyrant2-srcdoc
+call make-tyrant-src-jar
+call make-tyrant-src-zip
+call make-tyrant-zip
+call make-web-dist
+call srcdoc
+@cd..
+@cd..
