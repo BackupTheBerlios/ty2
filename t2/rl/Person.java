@@ -203,11 +203,11 @@ public class Person extends Being {
               addMoney(-val);
               o.remove();
               addThing(o);          
-//Identify unidentified sold potions
-				if( o instanceof Potion){
-					if( !((Potion)o).isIdentified()){
-						((Potion)o).setIdentified(true);
-						Game.message("\"Ah, it's a " + ((Potion)o).getSingularName() + "\"");
+            //Identify unidentified sold potions
+				if( o instanceof Potion || o instanceof Ring ){
+					if( !((Item)o).isIdentified()){
+						((Item)o).setIdentified(true);
+						Game.message("\"Ah, it's a " + ((Item)o).getSingularName() + "\"");
 						Game.getInput();
 					}
 				}
