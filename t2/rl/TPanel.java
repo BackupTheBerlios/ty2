@@ -22,8 +22,8 @@ public class TPanel extends Panel {
     Graphics bg; 
     
     // only build when needed
-    if ((buffer==null) || (buffer.getWidth(this) != this.size().width) || (buffer.getHeight(this) != this.size().height)) {
-      buffer = this.createImage(size().width, size().height);
+    if ((buffer==null) || (buffer.getWidth(this) != this.getSize().width) || (buffer.getHeight(this) != this.getSize().height)) {
+      buffer = this.createImage(getSize().width, getSize().height);
     }
 
     bg = buffer.getGraphics();
