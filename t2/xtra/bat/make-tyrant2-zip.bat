@@ -1,1 +1,1 @@
-@jar cf .xtra\zip\tyrant.zip xtra\images\*.gif xtra\www\tyrantjar.html tyrant.jar tyrant.bat
+@jar cf .\xtra\zip\tyrant.zip xtra\images\*.gif xtra\www\tyrantjar.html tyrant.jar tyrant.bat
