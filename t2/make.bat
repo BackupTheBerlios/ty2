@@ -7,3 +7,4 @@
 @echo Clean up...
 @del *.class /s >log.del
 @del log.del
+@beep
