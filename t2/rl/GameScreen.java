@@ -112,7 +112,7 @@ class GameScreen extends Screen {
 		if (e.getKeyCode()== e.VK_END) {k='1';}	
 		if (e.getKeyCode()== e.VK_PAGE_UP) {k='9';}
 		if (e.getKeyCode()== e.VK_PAGE_DOWN) {k='3';}	
-		if (e.getKeyCode()== e.VK_ESCAPE) {k ='q';}
+//		if (e.getKeyCode()== e.VK_ESCAPE) {k ='q';}
 		if (e.getKeyCode()== e.VK_F1) {k ='?';}
 		if (e.getKeyCode()== e.VK_F2) {k ='(';}
 		if (e.getKeyCode()== e.VK_F3) {k =')';}
@@ -230,6 +230,11 @@ class GameScreen extends Screen {
 				if (portals.length>0) {
 					int r=RPG.r(portals.length);
 					map.addThing(h,portals[r].x,portals[r].y);
+				}
+			}
+			if(ch=='b'){
+				for(int tt=1; tt <= Spell.getImplemented(); tt++){
+					map.addThing(new SpellBook(tt,0),h.x,h.y);	
 				}
 			}
 		} 
@@ -365,7 +370,12 @@ class GameScreen extends Screen {
 			
 		// inventory
 		if (k== key_inventory ) {
-			getInventoryItem("Your inventory:");
+			showInventory("Your inventory:", h.inv.getInventoryContents());
+		}
+
+		// inventory
+		if (K== 'e' ) {
+			showInventory("Your equipment:", h.inv.getEquipmentContents());
 		}
 
 		// kick something
@@ -685,6 +695,15 @@ class GameScreen extends Screen {
 		questapp.switchBack(is);
 	return thing;
 	}
+
+	public void showInventory(String s, Thing[] inv) {
+		Hero h=Game.hero;
+		InventoryScreen is = new InventoryScreen(s,inv);
+		questapp.switchOtherScreen(is);
+		is.showContents();
+		questapp.switchBack(is);
+	}
+
 
 	// get user to unput a location
 	public Point getTargetLocation() {
