@@ -49,12 +49,12 @@ public class Ring extends Item implements Active, Description {
     switch (type) {
       case 1:
 		  stat  = RPG.ST_MOVESPEED;
-		  val = RPG.d(50);
+		  val = RPG.d(5)*10;
 		  max = 50;
         break;
       case 2:
 		  stat = RPG.ST_ENCUMBERANCE;
-        val  = -RPG.d(20);
+        val  = -RPG.d(5)*4;
 		  max = -20;
         break;	    	
       case 3:
@@ -69,12 +69,12 @@ public class Ring extends Item implements Active, Description {
         break;	    	
       case 5:
 		  stat = RPG.ST_ATTACKSPEED;
-		  val = RPG.d(40);
+		  val = RPG.d(5)*8;
 		  max = 40;
         break;
       case 6:
 		  stat = RPG.ST_RESISTFIRE;
-		  val = RPG.d(10);
+		  val = RPG.d(5)*2;
 		  max = 10;
         break;
       case 7:
@@ -99,7 +99,7 @@ public class Ring extends Item implements Active, Description {
         break;
       case 11:
 		  stat = RPG.ST_ARMFIRE;
-		  val = RPG.d(2,10);
+		  val = RPG.d(5)*4;
 		  max = 20;
         break;
       case 12:
@@ -109,7 +109,7 @@ public class Ring extends Item implements Active, Description {
         break;
       case 13:
 		  stat = RPG.ST_ENCUMBERANCE;
-		  val = RPG.d(30);
+		  val = RPG.d(5)*6;
 		  max = 30;
         break;
       case 14:
