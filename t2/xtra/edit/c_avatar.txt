@@ -49,6 +49,6 @@ ART:Layrune
 ART:Firepath
 ART:Broomstick
 
-SKILL:Mage
-SKILL:Scholar
-SKILL:Bard
+BASE:Mage
+BASE:Scholar
+BASE:Bard

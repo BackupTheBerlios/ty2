@@ -32,6 +32,6 @@ ART:Lightheal
 ART:Heal
 ART:Acidbolt
 
-SKILL:Scholar
-SKILL:Priest
-SKILL:Priest
+BASE:Scholar
+BASE:Priest
+BASE:Priest

@@ -31,6 +31,6 @@ SKILL:True Magic
 ART:Fireball
 ART:Spark
 
-SKILL:Fighter
-SKILL:Scholar
-SKILL:Mage
+BASE:Fighter
+BASE:Scholar
+BASE:Mage

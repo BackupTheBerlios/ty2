@@ -30,6 +30,6 @@ SKILL:Attack
 SKILL:Defence
 SKILL:Unarmed Combat
 
-SKILL:Fighter
-SKILL:Fighter
-SKILL:Ranger
+BASE:Fighter
+BASE:Fighter
+BASE:Ranger

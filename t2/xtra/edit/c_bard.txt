@@ -33,6 +33,6 @@ SKILL:Literacy
 
 ART:Lightheal
 
-SKILL:Scholar
-SKILL:Bard
-SKILL:Thief
+BASE:Scholar
+BASE:Bard
+BASE:Thief

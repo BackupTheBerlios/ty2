@@ -33,6 +33,6 @@ ART:Poison
 ART:Layrune
 ART:Firedart
 
-SKILL:Scholar
-SKILL:Mage
-SKILL:Artisan
+BASE:Scholar
+BASE:Mage
+BASE:Artisan

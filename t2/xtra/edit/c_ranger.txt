@@ -28,6 +28,6 @@ SKILL:Swimming
 SKILL:Riding
 SKILL:Tracking
 
-SKILL:Fighter
-SKILL:Ranger
-SKILL:Ranger
+BASE:Fighter
+BASE:Ranger
+BASE:Ranger

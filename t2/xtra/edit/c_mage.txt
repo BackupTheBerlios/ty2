@@ -32,6 +32,6 @@ ART:Missile
 ART:Blaze
 ART:Heal
 
-SKILL:Scholar
-SKILL:Mage
-SKILL:Mage
+BASE:Scholar
+BASE:Mage
+BASE:Mage

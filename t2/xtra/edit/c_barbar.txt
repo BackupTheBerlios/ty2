@@ -35,6 +35,6 @@ SKILL:Survival
 SKILL:Pick-Pocket
 SKILL:UnarmedCombat
 
-SKILL:Ranger
-SKILL:Fighter
-SKILL:Thief
+BASE:Ranger
+BASE:Fighter
+BASE:Thief

@@ -32,6 +32,6 @@ ART:Broomstick
 ART:Infestation
 ART:Acidbolt
 
-SKILL:Mage
-SKILL:Scholar
-SKILL:Bard
+BASE:Mage
+BASE:Scholar
+BASE:Bard

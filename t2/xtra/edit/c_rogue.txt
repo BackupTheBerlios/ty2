@@ -30,6 +30,6 @@ SKILL:Pick-Pocket
 SKILL:Pick-Lock
 SKILL:Disarm Trap
 
-SKILL:Bard
-SKILL:Ranger
-SKILL:Thief
+BASE:Bard
+BASE:Ranger
+BASE:Thief

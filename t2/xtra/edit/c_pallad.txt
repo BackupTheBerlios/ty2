@@ -30,6 +30,6 @@ ART:Acidbolt
 ART:Heal
 ART:Fireball
 
-SKILL:Scholar
-SKILL:Fighter
-SKILL:Priest
+BASE:Scholar
+BASE:Fighter
+BASE:Priest
