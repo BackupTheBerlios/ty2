@@ -17,3 +17,5 @@
 @echo Making resource zip...
 @call xtra/bat/make-tyrant2-zip
 @REM @callxtra/bat/ make-web-dist
+@echo Making source documentation
+@call xtra/bat/make-tyrant2-srcdoc
