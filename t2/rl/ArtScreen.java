@@ -16,7 +16,7 @@ public class ArtScreen extends Screen {
     while (true) {
       KeyEvent k=Game.getInput();
       
-		  if (k.getKeyCode()==k.VK_ESCAPE) return null;
+		if (k.getKeyCode()==k.VK_ESCAPE){ return null; }
 		  
 		  char c=Character.toLowerCase(k.getKeyChar());
 		  
@@ -33,7 +33,7 @@ public class ArtScreen extends Screen {
 		  int kv = (int)c - (int)'a';
 		  if ((kv>=0)&&(kv<pagesize)) {
 		    kv=kv+page*pagesize;
-		    if ((kv>=0)&&(kv<arts.length)) return arts[kv];
+		    if ((kv>=0)&&(kv<arts.length)){ return arts[kv]; }
       }
 		}
 	}
@@ -48,14 +48,14 @@ public class ArtScreen extends Screen {
 	
 	  // get the things
 	  arts=thearts;
-	  if (arts==null) arts=new Art[0];
+	  if (arts==null){ arts=new Art[0]; }
 	  
 	  // set the list title
 	  title=s;
 	}
 	
 	public void paint(Graphics g) {
-		if ((page*pagesize)>arts.length) page=0;
+		if ((page*pagesize)>arts.length){ page=0; }
 		
 		g.drawString(title,20,1*lineheight);
 		
@@ -67,8 +67,8 @@ public class ArtScreen extends Screen {
 		}
 		
 		String bottomstring="ESC=Cancel ";
- 		if (page>0) bottomstring=bottomstring+" P=Previous ";
- 		if (((page+1)*pagesize)<arts.length) bottomstring=bottomstring+" N=Next ";
+ 		if (page>0){  bottomstring=bottomstring+" P=Previous "; }
+ 		if (((page+1)*pagesize)<arts.length){ bottomstring=bottomstring+" N=Next "; }
 		String powerstring="Power: "+Game.hero.getStat(RPG.ST_MPS)+" / "+Game.hero.getStat(RPG.ST_MPSMAX);
 		g.drawString(Text.centrePad(bottomstring,powerstring,55),20,getSize().height-10);
 	}

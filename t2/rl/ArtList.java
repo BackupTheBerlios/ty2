@@ -6,7 +6,9 @@ public class ArtList extends Object implements Cloneable, java.io.Serializable {
   private int count=0;
   
   public Art[] getArts() {
-    if (count==0) return new Art[0];
+    if (count==0) {
+		 return new Art[0];
+	 }
     Art[] result = new Art[count];
     System.arraycopy(arts,0,result,0,count);
     return result;    	
@@ -49,12 +51,15 @@ public class ArtList extends Object implements Cloneable, java.io.Serializable {
   }
 
   public void ensureSize (int s) {
-    if (s<=size) return;
-    s=s+3;
-    Art[] newarts=new Art[s];
-    if (arts!=null) System.arraycopy(arts,0,newarts,0,count);
+    if (s>size){
+    int newsize = s + 3;
+    Art[] newarts=new Art[newsize];
+    if (arts!=null){
+		 System.arraycopy(arts,0,newarts,0,count);
+	 }
     arts=newarts;
-    size=s;
+    size=newsize;
+	 }
   } 
 	
   public int getModifier(int s) {
@@ -67,14 +72,13 @@ public class ArtList extends Object implements Cloneable, java.io.Serializable {
   
   // add art, returns reference to added art
 	public Art addArt(Art newart) {
-	  if (newart==null) return null;
-	  boolean found=false;
+	  if (newart==null){ return null; }
 	  for (int i=0; i<count; i++) {
-	    if (arts[i].compare(newart)) return arts[i];
+	    if (arts[i].compare(newart)) { return arts[i]; }
 	  }
     ensureSize(count+1);
     arts[count]=newart;
-    count=count+1;
+    count++;
     return newart;
   }
 }
