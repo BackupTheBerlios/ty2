@@ -1,0 +1,35 @@
+. "Tyrant II compare script";
+
+if( #args[0] == "" ){
+	. "Please use the other tree as first argument";
+}else{
+	. "Deleting diff directory";
+	rmdir "./../diff/" force;
+	mkdir "./../diff/";
+	once = false;
+	list "*.java" in "./../../rl/" fileOnly;
+
+	for z in $$fs_result {
+
+//		. z;
+		list z.getFileName() in z.getFilePath() size;
+	//	. $$fs_result;
+		coreSize = $$fs_result;
+		list z.getFileName() in #args[0] size;
+	//	. $$fs_result;
+		otherSize = $$fs_result;
+		if (otherSize != coreSize){
+			y = #args[0] @ "/" @ z.getFileName();
+			if( z.fileTime() < y.fileTime() ){
+				copy z.getFileName() in #args[0] to "./../diff/";
+				. y , " was modified.";
+				once = true;
+			}
+		}
+	}
+	if( once ){
+	. "All modified files are copied to the \\xtra\\diff folder";
+	}else{
+	. "No modifications found";
+	}
+}
