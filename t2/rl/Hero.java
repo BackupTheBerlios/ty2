@@ -2,6 +2,7 @@ package rl;
 
 import java.util.Vector;
 import java.util.Hashtable;
+import java.util.ArrayList;
 
 public class Hero extends Being
 {
@@ -9,40 +10,158 @@ public class Hero extends Being
 	public String race;
 	public String profession;
 	public int gameseed;
-
 	public Hashtable uniques             = new Hashtable();
+	private ArrayList rlskills           = new ArrayList();
+	private Hashtable rlstats            = new Hashtable();
+	private ArrayList rlitems            = new ArrayList();//Most likely to be changed in future
 
-	// set tick count at which hero becomes hungry
-	public final static int HUNGERLEVEL  = 250000;
+	public final static int HUNGERLEVEL  = 250000;// set tick count at which hero becomes hungry
+	public boolean recharging            = true;// flag for whether we can recharge/regenerate naturally
+	private Description desc             = new Describer("you", "you", "Yourself, the brave hero of this adventure.", Description.NAMETYPE_PROPER, Description.GENDER_MALE);
 
-	// flag for whether we can recharge/regenerate naturally
-	public boolean recharging            = true;
-
-	private Description desc             =
-		new Describer("you", "you", "Yourself, the brave hero of this adventure.", Description.NAMETYPE_PROPER, Description.GENDER_MALE);
-
+	/**
+	 *  Gets the name of the Hero
+	 *
+	 * @return    The name
+	 */
 	public String getName()
 	{
 		return name;
 	}
 
+	/**
+	 *  Check if the hero has a certain skill
+	 *
+	 * @param  skillname  Name of the skill
+	 * @return            Boolean, indicating posession
+	 */
+	public boolean hasSkill(String skillname)
+	{
+		return rlskills.contains(skillname);
+	}
+
+	/**
+	 *  Sets a stat of the Hero
+	 *
+	 * @param  stat   The name of the stat
+	 * @param  value  The value of the stat
+	 */
+	public void setStat(String stat, int value)
+	{
+		rlstats.put(stat, new Integer(value));
+	}
+
+	/**
+	 *  Sets a stat of the Hero IF the stat isnt set yet
+	 *
+	 * @param  stat   The name of the stat
+	 * @param  value  The value of the stat
+	 */
+	public void mendStat(String stat, int value)
+	{//Mendstat checks if this stat has a value, if not it adds the value
+		if(!rlstats.containsKey(stat))
+			setStat(stat, value);
+	}
+
+	/**
+	 *  Gets a stat of the Hero
+	 *
+	 * @param  stat  The name of the stat
+	 * @return       The value of the stat
+	 */
+	public int getStat(String stat)
+	{
+		Integer i  = (Integer)rlstats.get(stat);
+		if(i == null)
+			return (getStat(stat.concat("def")));
+		else
+			return i.intValue();
+	}
+
+	/**
+	 *  Gets a stat of the Hero
+	 *
+	 * @param  stat  Name of the stat
+	 * @param  def   default value in case of non-existing stat
+	 * @return       The stat value
+	 */
+	public int getStat(String stat, int def)
+	{
+		Integer i  = (Integer)rlstats.get(stat);
+		if(i == null)
+			return (def);
+		else
+			return i.intValue();
+	}
+
+	/**
+	 *  Constructor for the Hero object
+	 *
+	 * @param  n  Name of the hero
+	 * @param  r  Filename for the race, ex. : xtra/edit/r_???.txt
+	 * @param  p  Filename for the class ex. : xtra/edit/c_???.txt
+	 */
 	public Hero(String n, String r, String p)
 	{
 		super();
 		name = n;
-
-		ReaderOfRace ror   = new ReaderOfRace(r);
-		race = ror.name;
-
-		ReaderOfClass roc  = new ReaderOfClass(p);
-		profession = roc.name;
-
 		stats = new Stats(new int[]{AI.STATE_NEUTRAL, 0, 0, 0, 0, 0, 0, 0, 0});
 		setAI(HeroAI.instance);
+		gameseed = RPG.r(1000000000);// set up a game seed , use for game-specific settings
+		stats.setStat(RPG.ST_SIDE, -999);
 
-		// set up a game seed
-		// use for game-specific settings
-		gameseed = RPG.r(1000000000);
+		ReaderOfRace ror   = new ReaderOfRace(r);
+		ReaderOfClass roc  = new ReaderOfClass(p);
+
+		race = ror.name;
+		profession = roc.name;
+
+		for(int i = 0; i < ror.skills.size(); i++)
+			rlskills.add(ror.skills.get(i));
+		for(int i = 0; i < roc.skills.size(); i++)
+			rlskills.add(roc.skills.get(i));
+
+		for(int i = 0; i < ror.stats.size(); i++)
+		{
+			String[] parts  = ((String)ror.stats.get(i)).split(":");
+			if(parts.length == 2)
+				setStat(parts[0], RPG.EvaluateValueExpression(parts[1]));
+			if(parts.length == 3)
+			{
+				int part1  = getStat(parts[1], 0);
+				int part2  = Integer.parseInt(parts[2]);
+				if(parts[0].equals("ADD"))
+					setStat(parts[1], part1 + part2);
+				if(parts[0].equals("REMOVE"))
+					setStat(parts[1], part1 - part2);
+				if(parts[0].equals("MULTIPLY"))
+					setStat(parts[1], part1 * part2);
+				if(parts[0].equals("DIVIDE") && part2 != 0)
+					setStat(parts[1], part1 / part2);
+			}
+		}
+
+		for(int i = 0; i < roc.stats.size(); i++)
+		{
+			String[] parts  = ((String)roc.stats.get(i)).split(":");
+			if(parts.length == 2)
+				setStat(parts[0], RPG.EvaluateValueExpression(parts[1]));
+			if(parts.length == 3)
+			{
+				int part1  = getStat(parts[1], 0);
+				int part2  = Integer.parseInt(parts[2]);
+				if(parts[0].equals("ADD"))
+					setStat(parts[1], part1 + part2);
+				if(parts[0].equals("REMOVE"))
+					setStat(parts[1], part1 - part2);
+				if(parts[0].equals("MULTIPLY"))
+					setStat(parts[1], part1 * part2);
+				if(parts[0].equals("DIVIDE") && part2 != 0)
+					setStat(parts[1], part1 / part2);
+			}
+		}
+
+		System.out.print(rlstats.toString());
 
 		addThing(Weapon.createWeapon(3));
 		addThing(Food.createFood(Food.MEATRATION));
@@ -56,7 +175,7 @@ public class Hero extends Being
 
 		// use a large negative side
 		// don't want this to clash with anything else
-		stats.setStat(RPG.ST_SIDE, -999);
+
 
 		// ****************
 		//      Races
@@ -629,6 +748,7 @@ public class Hero extends Being
 		addQuest(new StandardQuest("emerald sword"));
 	}
 
+	/**  Set hitpoints & Spell Points */
 	private void initStats()
 	{
 		stats.setStat(RPG.ST_HPSMAX, getBaseStat(RPG.ST_TG));
@@ -638,6 +758,7 @@ public class Hero extends Being
 		mps = getStat(RPG.ST_MPSMAX);
 	}
 
+	/**  Improve stats slightly ( called after level increase ) */
 	public void improveSlightly()
 	{
 		stats.incStat(RPG.ST_MOVESPEED, 100);
@@ -647,6 +768,7 @@ public class Hero extends Being
 		stats.incStat(RPG.ST_RECHARGE, 50);
 	}
 
+	/**  Search around the level for hidden traps & doors */
 	public void searchAround()
 	{
 		Map map     = getMap();
@@ -662,6 +784,11 @@ public class Hero extends Being
 		}
 	}
 
+	/**
+	 *  Lets the Hero gain experience
+	 *
+	 * @param  x  Amount of experience (xp)
+	 */
 	public void gainExperience(int x)
 	{
 		int exp    = getStat(RPG.ST_EXP) + x;
@@ -674,6 +801,11 @@ public class Hero extends Being
 		stats.setStat(RPG.ST_EXP, exp);
 	}
 
+	/**
+	 *  Lets the hero gain a skill ( deprecated )
+	 *
+	 * @param  skill  Number of the skill ( defined in class RPG )
+	 */
 	public void gainSkill(int skill)
 	{
 		switch (skill)
@@ -705,11 +837,21 @@ public class Hero extends Being
 		stats.incStat(skill, 1);
 	}
 
+	/**
+	 *  Send a message to the User Interface
+	 *
+	 * @param  s  Message
+	 */
 	public void message(String s)
 	{
 		Game.message(s);
 	}
 
+	/**
+	 *  Gets the hunger attribute of the Hero object
+	 *
+	 * @return    The hunger value
+	 */
 	public int getHunger()
 	{
 		int hunger  = getStat(RPG.ST_HUNGER);
@@ -717,6 +859,13 @@ public class Hero extends Being
 	}
 
 	// kick in specified direction
+	/**
+	 *  Kick something in a specified direction, the item will move that way
+	 *
+	 * @param  t   The item
+	 * @param  dx  Horizontal vector [ -1 (left) , 0 , +1 (right)]
+	 * @param  dy  Vertical vector [ -1 (up) , 0 , +1 (down)]
+	 */
 	public void kick(Thing t, int dx, int dy)
 	{
 		Game.message("You kick " + t.getTheName());
@@ -735,6 +884,12 @@ public class Hero extends Being
 	}
 
 	// kick in specified direction
+	/**
+	 *  Kick in a specified direction
+	 *
+	 * @param  dx  Horizontal vector [ -1 (left) , 0 , +1 (right)]
+	 * @param  dy  Vertical vector [ -1 (up) , 0 , +1 (down)]
+	 */
 	public void kick(int dx, int dy)
 	{
 		aps = aps - 50000 / getStat(RPG.ST_ATTACKSPEED);
@@ -773,6 +928,10 @@ public class Hero extends Being
 
 
 	// do message for items in location
+	/**
+	 *  What you see (on MessagePanel) when moving on a location, should give a
+	 *  string in the future [TDM]
+	 */
 	public void locationMessage()
 	{
 		Thing t  = getMap().getObjects(x, y);
@@ -785,12 +944,25 @@ public class Hero extends Being
 		}
 	}
 
-	// do we regard creature <b> as hostile?
+	//
+	/**
+	 *  do we regard creature b as hostile?
+	 *
+	 * @param  b  A creature
+	 * @return    Boolean, is the creature hostile ?
+	 */
 	public boolean isHostile(Mobile b)
 	{
 		return (b instanceof Hero) ? false : b.isHostile(this);
 	}
 
+	/**
+	 *  Move to a location, then show the location message
+	 *
+	 * @param  m   which map ( wilderness, zone, dungeon ?)
+	 * @param  tx  target horizatontal position
+	 * @param  ty  target vertical position
+	 */
 	public void moveTo(Map m, int tx, int ty)
 	{
 		super.moveTo(m, tx, ty);
@@ -799,12 +971,22 @@ public class Hero extends Being
 
 
 	// add a Quest to the hero
+	/**
+	 *  Adds a Quest for the Hero
+	 *
+	 * @param  q  The Quest
+	 */
 	public void addQuest(Quest q)
 	{
 		addThing(q);
 	}
 
-	// get a quest by name
+	/**
+	 *  get a quest by name
+	 *
+	 * @param  s  Description of the Quest
+	 * @return    The quest Object
+	 */
 	public Quest getQuest(String s)
 	{
 		Quest[] quests  = getQuests();
@@ -814,7 +996,11 @@ public class Hero extends Being
 		return null;
 	}
 
-	// get all quests currenty active
+	/**
+	 *  get all quests currenty active
+	 *
+	 * @return    The quests value
+	 */
 	public Quest[] getQuests()
 	{
 		Thing[] quests  = inv.getContents(Quest.class);
@@ -830,6 +1016,11 @@ public class Hero extends Being
 		return temp;
 	}
 
+	/**
+	 *  Register the killing of a creature
+	 *
+	 * @param  t  The creature that just got killed
+	 */
 	public void registerKill(Thing t)
 	{
 		if(t instanceof Being)
@@ -844,13 +1035,21 @@ public class Hero extends Being
 		}
 	}
 
+	/**
+	 *  Gets the description attribute of the Hero object
+	 *
+	 * @return    The description value
+	 */
 	public Description getDescription()
 	{
 		return desc;
 	}
 
-	// can't do anything in monster action phase
-	// but allow for hunger effects
+	/**
+	 *  can't do anything in monster action phase, but allow for hunger effects
+	 *
+	 * @param  t  Dont know at all [TDM]
+	 */
 	public void action(int t)
 	{
 		// hunger
