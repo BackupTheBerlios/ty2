@@ -1,1 +1,7 @@
-@jar cf .\xtra\zip\tyrant.zip xtra\images\*.gif xtra\www\*.html rl\*.java xtra\bat\*.bat *.bat *.judo *.MF *.txt tyrant.jar xtra\zip\delete.me xtra\scripts\*.sh xtra\srcdoc\delete.me
+@cd..
+@cd..
+
+jar cvf tyrant.zip xtra\images\*.gif tyrantjar.html tyrant.jar tyrant.bat
+
+@cd xtra
+@cd bat
