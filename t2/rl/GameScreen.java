@@ -453,6 +453,10 @@ class GameScreen extends Screen {
 						// present options
 						char c;
 						if (val>0) {
+							if( !((Item)t).isIdentified() ){
+								((Item)t).setIdentified(true);
+								Game.message("That's " +  ((Item)t).getAName() + ".");
+							}
 							Game.message(t.getTheName()+" costs "+Coin.valueString(val));
 							Game.message("Buy, Steal or Leave?");
 							c=Game.getOption("sbl");
