@@ -31,6 +31,7 @@ public class TextZone extends Component {
   }  
   
   public void paint(Graphics g) {
+	super.paint(g);
     FontMetrics met=g.getFontMetrics(g.getFont());
     
     g.setColor(QuestApp.infotextcolor);

@@ -25,12 +25,6 @@ public class Scenery extends Special {
   public boolean isOwned() {return true;}
   
   public boolean isBlocking() {return blocking;}
-  
-  // Can the item be pushed around?
-  //   0 = definitely not
-  //   1 = always
-  //   x = yes, with difficulty increasing with x (compare to character ST)
-  public int getPushability() {return 0;}
 	
   public boolean isInvisible() {return false;}
   

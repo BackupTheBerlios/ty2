@@ -4,6 +4,25 @@ public class GameScenery extends Scenery {
   protected int type;
   protected int hps;
 
+  protected static final Description DESC_BUSH =
+    new Describer("bush","A thorny underworld bush.");
+  protected static final Description DESC_PLANT =
+    new Describer("plant","A colourful underworld plant.");
+  protected static final Description DESC_TREE =
+    new Describer("tree","A gnarled tree.");
+  protected static final Description DESC_THORNYBUSH =
+    new Describer("thorny bush","A bush with razor sharp thorns.");
+  protected static final Description DESC_TREESTUMP =
+		new Describer("tree stump","A rotting tree stump.");
+  protected static final Description DESC_MUSHROOM =
+		new Describer("mushroom","A large mushroom.");
+  protected static final Description DESC_SIGN =
+    new Describer("sign","A wooden sign.");
+  protected static final Description DESC_APPLETREE =
+    new Describer("apple tree","An apple tree.");
+  protected static final Description DESC_TABLE =
+    new Describer("table","A wooden table.");
+	
   protected static final int BUSH=1;
   protected static final int PLANT=2;
   protected static final int TREE=3;
@@ -16,11 +35,12 @@ public class GameScenery extends Scenery {
   protected static final int VTABLE=10;
   protected static final int EVILBUSH=11;
   
+  private static final Description[] descriptions={null,DESC_BUSH,DESC_PLANT,DESC_TREE,DESC_THORNYBUSH,DESC_TREESTUMP,DESC_MUSHROOM,DESC_APPLETREE,DESC_TABLE,DESC_TABLE,DESC_TABLE};
+  
   public static final String[] names=    {"",  "bush",  "plant",   "tree",   "thorny bush",  "tree stump",  "mushroom", "apple tree", "table",  "table",  "table",  "evil thorny bush", "stool",   "tent",  "armoury sign", "bank sign",  "store sign",  "magic shop sign",  "food shop sign", "smithy sign"};
   public static final int[] images=      {0,   80,      81,        82,       83,             84,            85,         80,           200,      201,      202,      83,                 203,       304,     63,             67,           67,            62,                 60,               61};
   public static final int[] hits=        {0,   6,       4,         20,       8,              15,            2,          25,           6,        10,       10,       60,                 5,         5,       10,             30,           10,            50,                 10,               10};
   public static final int[] blocking=    {0,   1,       1,         1,        1,              0,             0,          1,            1,        1,        1,        1,                  0,         1,       0,              0,            0,             0,                  0,                0};
-  public static final int[] pushability= {0,   0,       0,         0,        0,              0,             0,          0,            10,       20,       20,       0,                  2,         0,       0,              0,            0,             0,                  0,                0};
 
   public static final int[] transparent= {0,   0,       1,         0,        1,              1,             1,          0,            1,        1,        1,        0,                  1,         0,       1,              1,            1,             1,                  1,                1};
   
@@ -47,16 +67,8 @@ public class GameScenery extends Scenery {
   
   public String getSingularName() {
     return names[type]; 
-  }  
-    
-  // Can the item be pushed around?
-  //   0 = definitely not
-  //   1 = always
-  //   x = yes, with difficulty increasing with x (compare to character ST)
-  public int getPushability() {
-    return pushability[type]; 
   }
-  
+    
   
   public void use(Being user) {
     boolean ishero=(user==Game.hero);

@@ -558,9 +558,6 @@ public class Being extends Mobile implements ThingOwner, Talkable  {
     boolean ishero=(this==Game.hero);
     boolean moving=false;
     
-    int dx=RPG.sign(tx-x);
-    int dy=RPG.sign(ty-y);
-    
     if ((getStat(RPG.ST_CONFUSED)>0)) {
       if (RPG.test(getStat(RPG.ST_CONFUSED),getStat(RPG.ST_WP))) {
         if (ishero) {
@@ -605,54 +602,25 @@ public class Being extends Mobile implements ThingOwner, Talkable  {
       return false; 
     }
     
+    if (moving) {
+      aps=aps-(map.getMoveCost(this,tx,ty)*getStat(RPG.ST_MOVECOST))/getStat(RPG.ST_MOVESPEED);
+      moveTo(map,tx,ty);
+      return true;
+    }
     
     // use doors etc.
     Thing head=map.getObjects(tx,ty);
     while (head!=null) {
       if (head.isBlocking()) {
-        if ( (head instanceof Scenery) && (((Scenery)head).getPushability()>0) ) {
-          // try to push the scenery around
-          Scenery sc=(Scenery)head;
-          int push_difficulty = sc.getPushability();
-          
-          aps-=100;
-          if (RPG.test(getStat(RPG.ST_ST),push_difficulty)) {
-            // success
-            if (!map.isBlocked(tx+dx,ty+dy)) {
-              // push forwards  
-              head.moveTo(map,tx+dx,ty+dy);
-            } else {
-              // swap places
-              head.moveTo(map,x,y); 
-            }
-            if (!map.isBlocked(tx,ty)) {
-              // we can now move in to the target square
-              moving = true;
-              break; // exit this while loop 
-            }
-          } else {
-            // failed to push objeck
-            if (ishero) Game.message("You fail to move "+head.getTheName());
-            return false;
-          }  
-        } else {
-          // use it to se if we can do anything
-          head.use(this);
-          aps-=10;
-          return false;       
-        }
+        head.use(this);
+        aps-=10;
+        return false;       
       }
       if ((!ishero)&&head.isWarning(this)) {
         aps-=10;
         return false;
       }
       head=head.next;
-    }
-    
-    if (moving) {
-      aps=aps-(map.getMoveCost(this,tx,ty)*getStat(RPG.ST_MOVECOST))/getStat(RPG.ST_MOVESPEED);
-      moveTo(map,tx,ty);
-      return true;
     }
     
     // can't do this move, will have to try something else!
