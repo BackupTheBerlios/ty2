@@ -187,10 +187,11 @@ public class Person extends Being {
               }
             }
             o.remove(); 
-            int val=o.getStat(RPG.ST_ITEMVALUE)*o.getNumber();  
-            int funds=getMoney();
+            int val=o.getStat(RPG.ST_ITEMVALUE)*o.getNumber();
+				//Dont pester the player that much !
+            //int funds=getMoney();
             val=val/3;
-            if (val>funds) val=funds;
+            //if (val>funds) val=funds;
             val=RPG.niceNumber(val);
             if (val<=0) {
               Game.message("\"Sorry, can't give you anything for that.\""); 
