@@ -2,7 +2,7 @@ package rl;
 
 import java.io.*;
 
-class Reader
+public class Reader
 {
 	private static LineNumberReader lnr  = null;
 	public static boolean eof            = false;

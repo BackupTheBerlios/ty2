@@ -1,6 +1,6 @@
 package rl;
 import java.util.ArrayList;
-class ReaderOfClass extends Reader
+public class ReaderOfClass extends Reader
 {
 	public ArrayList stats   = new ArrayList();
 	public ArrayList skills  = new ArrayList();

@@ -1,6 +1,6 @@
 package rl;
 import java.util.ArrayList;
-class ReaderOfRaces extends Reader
+public class ReaderOfRaces extends Reader
 {
 	public ArrayList races  = new ArrayList();
 	public ArrayList files  = new ArrayList();
