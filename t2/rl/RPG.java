@@ -657,4 +657,34 @@ public class RPG {
     if (tempcount>0) System.arraycopy(temp,0,result,0,tempcount);
     return result;      
   } 
+
+  public static String describeHurt(int var, int base){
+	int p = percentile(var , base);
+    if (p < 5){
+		return "senseless";
+    }
+	if (p < 25){
+		return "trashed";
+	}
+	if(p < 40){
+		return "crippled";
+	}
+	if(p < 55){
+		return "heavily bleeding";
+	}
+	if(p < 65){
+		return "bleeding";
+	}
+	if(p < 75){
+		return "mildly injured";
+	}
+	if(p < 95){
+		return "scratched";
+	}
+	if(p < 100){
+		return "slightly scratched";
+	}
+    return "in perfect health";
+  }
+
 }

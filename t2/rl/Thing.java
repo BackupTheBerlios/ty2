@@ -102,7 +102,7 @@ private String getEnhancedName(int article){
 	if(this instanceof StandardWeapon || this instanceof CommonWeapon) {
 		int skillValue    = ((Weapon)this).getASK(h,null);
 		int strengthValue = ((Weapon)this).getAST(h,null);
-		armourValue   = " [" + String.valueOf(this.getModifier(RPG.ST_DSKBONUS)) + "]";
+		armourValue   = " [" + ((Weapon)this).getDSK(h,null) + "]";
 		weaponValue = " (+" + String.valueOf(skillValue) + ",+" + String.valueOf(strengthValue) + ")";
 	}
 	if(this instanceof CommonArmour) {

@@ -19,9 +19,9 @@ public class Weapon extends Item {
           	       target.getTheName()+
           	       ".  ")+
                        Text.capitalise((target==Game.hero?(target.getTheName()+" are"):"it is")+
-                       " now at "+
-                       RPG.percentile(target.getStat(RPG.ST_HPS), target.getStat(RPG.ST_HPSMAX))+
-                       "% health."));
+                       " now "+
+                       RPG.describeHurt(target.getStat(RPG.ST_HPS), target.getStat(RPG.ST_HPSMAX))+
+                       "."));
         }  
 
         return result;
@@ -47,9 +47,9 @@ public class Weapon extends Item {
                        Lib.damageDescription(dam,target.getStat(RPG.ST_HPSMAX))+
           	       ".  ")+
                        Text.capitalise((target==Game.hero?(target.getTheName()+" are"):"it is")+
-                       " now at "+
-                       RPG.percentile(target.getStat(RPG.ST_HPS), target.getStat(RPG.ST_HPSMAX))+
-                       "% health."));
+                       " now "+
+                       RPG.describeHurt(target.getStat(RPG.ST_HPS), target.getStat(RPG.ST_HPSMAX))+
+                       "."));
         }
 
         // slight wear and tear to weapon 

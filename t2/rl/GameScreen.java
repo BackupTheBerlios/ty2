@@ -366,7 +366,6 @@ class GameScreen extends Screen {
 		// inventory
 		if (k== key_inventory ) {
 			getInventoryItem("Your inventory:");
-			System.out.println( "Getting back				: " + new Date().toString() );
 		}
 
 		// kick something
