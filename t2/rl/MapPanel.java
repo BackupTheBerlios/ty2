@@ -289,7 +289,6 @@ public class MapPanel extends Panel {
 	// standard paint method
 	// - builds map image in back buffer then copies to screen
 	public void paint(Graphics g) {
-	System.out.println("Painting map..." + new Date().toString());
 		Rectangle rect=getBounds();
 		if (zoomfactor!=lastzoomfactor) {
 			int w=rect.width;
