@@ -29,3 +29,7 @@ STAT:MAGICODDS:30
 
 SKILL:Mighty Blow
 SKILL:Healing
+
+ITEM:Meatration
+ITEM:Meatration
+ITEM:Meatration

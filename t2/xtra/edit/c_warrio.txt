@@ -20,6 +20,7 @@ STAT:ADD:DEX:2
 STAT:ADD:CON:2
 STAT:REMOVE:INT:2
 STAT:REMOVE:WIS:2
+STAT:IMAGE:3
 
 ITEM:Longsword
 ITEM:Shield
@@ -28,3 +29,7 @@ ITEM:Potion of Berserk
 SKILL:Attack
 SKILL:Defence
 SKILL:Unarmed Combat
+
+SKILL:Fighter
+SKILL:Fighter
+SKILL:Ranger

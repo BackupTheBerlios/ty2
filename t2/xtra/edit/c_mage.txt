@@ -18,11 +18,20 @@ C:Mage
 STAT:ADD:INT:2
 STAT:REMOVE:STR:2
 STAT:REMOVE:CON:2
+STAT:IMAGE:6
 
-ITEM:Longsword
-ITEM:Shield
-ITEM:Potion of Berserk
+ITEM:Spellbook
+ITEM:Spellbook
 
 SKILL:Identify
 SKILL:Literacy
 SKILL:TrueMagic
+
+ART:Fireball
+ART:Missile
+ART:Blaze
+ART:Heal
+
+SKILL:Scholar
+SKILL:Mage
+SKILL:Mage
