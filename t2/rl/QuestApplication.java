@@ -22,7 +22,7 @@ public class QuestApplication {
     
     // do we have a script to execute?
     // activate debug mode if we do....
-    java.io.File script=new java.io.File("mikeradebug");
+    java.io.File script=new java.io.File("konijn");
     
     // old method to activate debug cheat
     if (script.exists()) QuestApp.debug=true;
