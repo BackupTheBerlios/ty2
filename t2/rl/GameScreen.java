@@ -547,7 +547,7 @@ class GameScreen extends Screen {
 		if ((k=='v')||(k=='@')) {
 			CharacterScreen ls=new CharacterScreen(h);
 			questapp.switchOtherScreen(ls);
-			Game.getInput();
+			ls.handleScreen();
 			questapp.switchBack(ls);				
 		}
 

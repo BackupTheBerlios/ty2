@@ -12,33 +12,7 @@ public class InventoryScreen extends Screen {
 	
 	private static final int pagesize=12;
 	private static final int lineheight=20;
-	
-	KeyAdapter keyhandler = new KeyAdapter () {
-		public void keyPressed(KeyEvent k) {
-			if (k.getKeyCode()==k.VK_ESCAPE) select(null);
-			if (k.getKeyCode()==k.VK_SPACE) select(null);
-			
-			char c=Character.toLowerCase(k.getKeyChar());
-
-			if ((c=='p'||c=='-')&&(page>0)) {
-				page--;
-				repaint();	
-				return;	
-			}
-
-			if ((c=='n'||c=='+')&&(((page+1)*pagesize)<things.length)) {
-				page++;
-				repaint();
-				return;	
-			}
-
-			int kv = (int)c - (int)'a';
-			if ((kv<0)||(kv>=pagesize)) return;
-			kv=kv+page*pagesize;
-			if ((kv>=0)&&(kv<things.length)) select(things[kv]);
-		}
-	};
-	
+		
 	public Object getObject() {
 		boolean end=false;
 		while (!end) {
