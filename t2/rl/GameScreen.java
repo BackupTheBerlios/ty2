@@ -99,8 +99,8 @@ class GameScreen extends Screen {
 			if ( keyText != "Ctrl"){
 				K = keyText.charAt(0); 
 			}
-			System.out.println( K );
-			System.out.println( e.paramString() );
+			//System.out.println( K );
+			//System.out.println( e.paramString() );
 		}
 			
 		// handle key conversions

@@ -17,30 +17,18 @@ public class Person extends Being {
 	
   public int chat=0;
   
-  public static final Description DESC_TOWNIE =
-	  new Describer("townie","A burly townsman");
-  public static final Description DESC_SHOPPIE =
-    new Describer("shopkeeper","A tough-looking shopkeeper");
-  public static final Description DESC_GUARD =
-    new Describer("guard","A beefy town guard");
-  public static final Description DESC_WIZARD =
-    new Describer("wizard","A bumbling old wizard");
-  public static final Description DESC_GIRL =
-    new Describer("village girl","A young village girl");
-  public static final Description DESC_WOMAN =
-    new Describer("woman","A townswoman");
-  public static final Description DESC_PRIEST =
-    new Describer("goodly priest","A gentle priest");
-  public static final Description DESC_RANGER =
-    new Describer("ranger","A young ranger");
-  public static final Description DESC_SHEEPDOG =
-    new Describer("sheepdog","A friendly sheepdog.");
-  public static final Description DESC_ARMOURER =
-    new Describer("armourer","A battle-hardened town armourer.");
-  public static final Description DESC_BLACKSMITH =
-    new Describer("blacksmith","A blacksmith.");
-  public static final Description DESC_TEACHER =
-    new Describer("teacher","A Teacher of Skills.");
+  public static final Description DESC_TOWNIE     =    new Describer("townie","A burly townsman");
+  public static final Description DESC_SHOPPIE    =    new Describer("shopkeeper","A tough-looking shopkeeper");
+  public static final Description DESC_GUARD      =    new Describer("guard","A beefy town guard");
+  public static final Description DESC_WIZARD     =    new Describer("wizard","A bumbling old wizard");
+  public static final Description DESC_GIRL       =    new Describer("village girl","A young village girl");
+  public static final Description DESC_WOMAN      =    new Describer("woman","A townswoman");
+  public static final Description DESC_PRIEST     =    new Describer("goodly priest","A gentle priest");
+  public static final Description DESC_RANGER     =    new Describer("ranger","A young ranger");
+  public static final Description DESC_SHEEPDOG   =    new Describer("sheepdog","A friendly sheepdog.");
+  public static final Description DESC_ARMOURER   =    new Describer("armourer","A battle-hardened town armourer.");
+  public static final Description DESC_BLACKSMITH =    new Describer("blacksmith","A blacksmith.");
+  public static final Description DESC_TEACHER    =    new Describer("teacher","A Teacher of Skills.");
 
   // item arrays
   protected static final Thing[] RANGERSTUFF= {
@@ -79,6 +67,7 @@ public class Person extends Being {
   
   public void talk() {
     Hero h=Game.hero;
+   Thing o;
     
     switch(creaturetype) {
       // wizard identifies stuff
@@ -88,7 +77,7 @@ public class Person extends Being {
         Game.messagepanel.setText("");
         if (c=='i') {
           if (h.getMoney()>=500) { 
-            Thing o=Game.selectItem("Select item to sell:",h.inv.getContents());
+            o=Game.selectItem("Select item to sell:",h.inv.getContents());
             if (o instanceof Item) {
               ((Item)o).identify(10);
               Game.message(getTheName()+" inspects "+o.getTheName()+" carefully.");
@@ -120,7 +109,7 @@ public class Person extends Being {
         if (c=='r') {
 
           Game.messagepanel.setText("");
-          Thing o=Game.selectItem("Select item to sell:",h.inv.getContents());
+          o=Game.selectItem("Select item to sell:",h.inv.getContents());
           if (o instanceof Item) {
             int q=o.getQuality();
             if ((q<=0)||(q>5)) {
@@ -158,7 +147,7 @@ public class Person extends Being {
           Game.message("\"Do you need to buy any supplies?\" (y/n)"); 
           if (Game.getOption("yn")=='y') {
             Game.messagepanel.setText("");
-            Thing o=Game.selectItem("What would you like to buy?",RANGERSTUFF);
+            o=Game.selectItem("What would you like to buy?",RANGERSTUFF);
             if (o instanceof Item) {
               o=(Thing)o.clone();
               int cost=o.getStat(RPG.ST_ITEMVALUE)*o.getNumber();
@@ -186,8 +175,9 @@ public class Person extends Being {
       case SHOPPIE: {
         Game.message("\"Wanna sell something?\" (y/n)");
         if (Game.getOption("yn")=='y') {
+          do { 
           Game.messagepanel.setText("");
-          Thing o=Game.selectItem("Select item to sell:",h.inv.getContents());
+          o=Game.selectItem("Select item to sell:",h.inv.getContents());
           if (o instanceof Item) {
             if ((o instanceof Stack)&&(((Stack)o).number>1)) {
               Game.message("Sell how many? (Enter=All)");
@@ -225,8 +215,8 @@ public class Person extends Being {
               Game.message("\"Well, you won't get a better price!\"");
               h.addThing(o);
             }
-            break;
           }
+}while( o != null );
         } else {
           Game.message("\"Feel free to browse!\""); 
         }
