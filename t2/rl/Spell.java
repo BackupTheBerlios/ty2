@@ -135,7 +135,10 @@ public class Spell extends Art {
   public int cost=1;
   public int power=0;
 
-    
+	public static int getImplemented(){
+		return names.length-1;
+	}
+
   public Spell(int t) {
     this(t,levels[t]);
   }
