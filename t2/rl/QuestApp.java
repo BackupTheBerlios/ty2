@@ -5,14 +5,14 @@ package rl;
 import java.applet.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.Vector;
-import java.net.*;
-import java.io.*;
 import java.awt.image.*;
+import java.io.*;
+import java.net.*;
+import java.util.Vector;
 
 public class QuestApp extends Applet implements Runnable
 {
-	public final static String version              = "0.100";
+	public final static String version         = "2.001";
 
 	public static Image tiles;
 	public static Image greytiles;
@@ -23,17 +23,17 @@ public class QuestApp extends Applet implements Runnable
 	public static Image title;
 	public static Image paneltexture;
 
-	public static Font mainfont                     = new Font("Monospaced", Font.PLAIN, 12);
+	public static Font mainfont                = new Font("Monospaced", Font.PLAIN, 12);
 	public static int charsize;
-	public final static Color textcolor             = new Color(192, 192, 192);
-	public final static Color backcolor             = new Color(0, 0, 0);
+	public final static Color textcolor        = new Color(192, 192, 192);
+	public final static Color backcolor        = new Color(0, 0, 0);
 
-	public final static Color panelcolor            = new Color(64, 64, 64);
-	public final static Color panelhighlight        = new Color(96, 96, 96);
-	public final static Color panelshadow           = new Color(32, 32, 32);
+	public final static Color panelcolor       = new Color(64, 64, 64);
+	public final static Color panelhighlight   = new Color(96, 96, 96);
+	public final static Color panelshadow      = new Color(32, 32, 32);
 
-	public final static Color infoscreencolor       = new Color(0, 0, 0);
-	public final static Color infotextcolor         = new Color(192, 192, 192);
+	public final static Color infoscreencolor  = new Color(0, 0, 0);
+	public final static Color infotextcolor    = new Color(192, 192, 192);
 //  public static final Color panelcolor=new Color(128,64,32);
 //  public static final Color panelhighlight=new Color(208,80,48);
 //  public static final Color panelshadow=new Color(80,32,16);
@@ -41,8 +41,25 @@ public class QuestApp extends Applet implements Runnable
 	public GameScreen screen;
 
 	public static QuestApp questapp;
-	public static boolean debug                     = false;
-	public static boolean isapplet                  = true;
+	public static boolean debug                = false;
+	public static boolean isapplet             = true;
+
+	// key handling stuff
+	private KeyAdapter keyhandler;
+
+	// All keypresses get directed here.....
+	public final KeyAdapter keyadapter         =
+		new KeyAdapter()
+		{
+			public void keyPressed(KeyEvent e)
+			{
+				// call the currently registered keyhandler
+				//if (keyhandler!=null) keyhandler.keyPressed(e);
+				if(e.getID() == e.KEY_PRESSED)
+					Game.userinterface.go(e);
+
+			}
+		};
 
 	public Dimension getPreferredSize()
 	{
@@ -57,23 +74,6 @@ public class QuestApp extends Applet implements Runnable
 		Game.messagepanel = null;
 		Game.hero = null;
 		Game.thread = null;
-	}
-
-	// image filter object to create greyed tiles
-	class GreyFilter extends RGBImageFilter
-	{
-		public GreyFilter()
-		{
-			canFilterIndexColorModel = true;
-		}
-
-		public int filterRGB(int x, int y, int rgb)
-		{
-			return (rgb & 0xff000000)
-				 | (0x10101 * (((rgb & 0xff0000) >> 18)
-				 + ((rgb & 0xff00) >> 10)
-				 + ((rgb & 0xff) >> 2)));
-		}
 	}
 
 	// inits the applet, loading all necessary resources
@@ -116,8 +116,7 @@ public class QuestApp extends Applet implements Runnable
 		try
 		{
 			mt.waitForID(1);
-		}
-		catch(Exception e)
+		} catch(Exception e)
 		{
 			System.out.println("Error loading images.");
 		}
@@ -131,16 +130,11 @@ public class QuestApp extends Applet implements Runnable
 		Game.thread.start();
 	}
 
-	// hero names used for search
-	private final static String[] herostrings = {"fighter", "fighter-mage", "sorceror", "runecaster", "priest", "bard", "warrior-priest", "barbarian", "ranger", "enchanter", "thief"};
-	private final static String[] raceherostrings = {"human", "hobbit", "dwarf", "high elf", "wood elf", "dark elf", "gnome", "orc", "goblin", "troll"};
-	private final static String[] debugherostrings = {"fighter", "fighter-mage", "sorceror", "runecaster", "priest", "bard", "warrior-priest", "barbarian", "ranger", "enchanter", "avatar"};
-
 	// creates a hero according to specified parameters
 	public Hero createHero()
 	{
-		String hname       = null;
-		String race        = null;
+
+		Hero hero  = null;
 
 		if(true)
 		{
@@ -148,37 +142,11 @@ public class QuestApp extends Applet implements Runnable
 			bs.setForeground(new Color(128, 128, 128));
 			bs.setBackground(new Color(0, 0, 0));
 			switchScreen(bs);
-			while(hname == null)
-				hname = (String)bs.getInfo();
-
+			while(hero == null)
+				hero = (Hero)bs.getInfo();
 		}
 
-		if(true)
-		{
-			ListScreen ls  = new ListScreen("What race are you, " + hname + "?", raceherostrings);
-			ls.setForeground(new Color(128, 128, 128));
-			ls.setBackground(new Color(0, 0, 0));
-			switchScreen(ls);
-			while(race == null)
-				race = (String)ls.getObject();
-
-		}
-		else
-			race = "human";
-
-		ListScreen ls      = new ListScreen("What is your profession, " + hname + "?", debug ? debugherostrings : herostrings);
-		ls.setForeground(new Color(128, 128, 128));
-		ls.setBackground(new Color(0, 0, 0));
-		switchScreen(ls);
-
-		String profession  = null;
-
-		while(profession == null)
-			profession = (String)ls.getObject();
-
-		// randomise until correct hero found
-
-		return new Hero(hname, race, profession);
+		return (hero);
 	}
 
 	// switches to a new screen, discarding the old one
@@ -190,14 +158,16 @@ public class QuestApp extends Applet implements Runnable
 		add("Center", s);
 		s.addKeyListener(keyadapter);
 		validate();
-		repaint();
+//		repaint();
 		requestFocus();
-		s.repaint();
+
 		if(s instanceof GameScreen)
 		{
 			((GameScreen)s).mappanel.viewPosition(Game.hero.x, Game.hero.y);
 			((GameScreen)s).messagepanel.repaint();
 		}
+		else
+			s.repaint();
 	}
 
 	// this is the actual game thread start
@@ -220,6 +190,8 @@ public class QuestApp extends Applet implements Runnable
 				Game.messagepanel = mp;
 				ss.add("South", mp);
 				switchScreen(ss);
+// Turn this off in open space workplaces ;)
+//				Game.getInput();
 
 				// do hero creation
 				Game.hero = createHero();
@@ -307,8 +279,7 @@ public class QuestApp extends Applet implements Runnable
 					hresult = hresult + (char)b;
 					b = s.read();
 				}
-			}
-			catch(Exception e)
+			} catch(Exception e)
 			{
 				hresult = "High score feature not available";
 			}
@@ -379,23 +350,6 @@ public class QuestApp extends Applet implements Runnable
 		Game.over = true;
 	}
 
-	// key handling stuff
-	private KeyAdapter keyhandler;
-
-	// All keypresses get directed here.....
-	public final KeyAdapter keyadapter =
-		new KeyAdapter()
-		{
-			public void keyPressed(KeyEvent e)
-			{
-				// call the currently registered keyhandler
-				//if (keyhandler!=null) keyhandler.keyPressed(e);
-				if(e.getID() == e.KEY_PRESSED)
-					Game.userinterface.go(e);
-
-			}
-		};
-
 	public void destroy()
 	{
 		removeAll();
@@ -417,8 +371,7 @@ public class QuestApp extends Applet implements Runnable
 			if(imageURL != null)
 				image = toolkit.getImage(imageURL);
 
-		}
-		catch(Exception e)
+		} catch(Exception e)
 		{
 			System.out.println(e);
 		}
@@ -432,6 +385,23 @@ public class QuestApp extends Applet implements Runnable
 		}
 
 		return image;
+	}
+
+	// image filter object to create greyed tiles
+	class GreyFilter extends RGBImageFilter
+	{
+		public GreyFilter()
+		{
+			canFilterIndexColorModel = true;
+		}
+
+		public int filterRGB(int x, int y, int rgb)
+		{
+			return (rgb & 0xff000000)
+				 | (0x10101 * (((rgb & 0xff0000) >> 18)
+				 + ((rgb & 0xff00) >> 10)
+				 + ((rgb & 0xff) >> 2)));
+		}
 	}
 }
 
